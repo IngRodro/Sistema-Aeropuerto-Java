@@ -41,11 +41,11 @@ public class frmLoguin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnEntrar.setBackground(new java.awt.Color(0, 0, 153));
+        btnEntrar.setBackground(new java.awt.Color(0, 0, 0));
         btnEntrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setText("Iniciar Sesion");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,11 +53,11 @@ public class frmLoguin extends javax.swing.JFrame {
             }
         });
 
-        txtPass.setBackground(new java.awt.Color(0, 0, 153));
+        txtPass.setBackground(new java.awt.Color(0, 0, 0));
         txtPass.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setText("Ingrese Contraseña");
-        txtPass.setBorder(null);
+        txtPass.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPassFocusGained(evt);
@@ -67,11 +67,11 @@ public class frmLoguin extends javax.swing.JFrame {
             }
         });
 
-        txtUser.setBackground(new java.awt.Color(0, 0, 153));
+        txtUser.setBackground(new java.awt.Color(0, 0, 0));
         txtUser.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setText("Ingrese Usuario");
-        txtUser.setBorder(null);
+        txtUser.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUserFocusGained(evt);
@@ -137,19 +137,19 @@ public class frmLoguin extends javax.swing.JFrame {
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(173, 173, 173)
+                .addGap(155, 155, 155)
                 .addComponent(btnEntrar)
                 .addGap(48, 48, 48))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel1.setText("¿Aún no eres Usuario? ");
 
-        lblRegistrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblRegistrar.setBackground(new java.awt.Color(0, 0, 0));
+        lblRegistrar.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         lblRegistrar.setText("¡Regístrate! ");
         lblRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,7 +276,6 @@ public class frmLoguin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblRegistrar;
     private javax.swing.JTextField txtPass;
