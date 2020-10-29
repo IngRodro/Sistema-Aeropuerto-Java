@@ -30,6 +30,8 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ADMIN");
+        setBackground(new java.awt.Color(102, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
 
