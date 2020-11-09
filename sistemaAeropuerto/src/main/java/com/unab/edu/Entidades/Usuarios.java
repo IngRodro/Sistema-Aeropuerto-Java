@@ -5,10 +5,13 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author Usuario
  */
+@Data
 public class Usuarios {
     
     private String nombreUsuario;
