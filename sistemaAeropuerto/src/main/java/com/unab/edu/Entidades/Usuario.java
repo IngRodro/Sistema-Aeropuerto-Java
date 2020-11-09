@@ -12,13 +12,11 @@ import lombok.Data;
  * @author Usuario
  */
 @Data
-public class Usuarios {
-    
+public class Usuario {
     private String nombreUsuario;
     private String nombres;
     private String apellidos;
     private int Edad;
     private String telefono;
     private String password;
-    
 }
