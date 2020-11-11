@@ -5,6 +5,8 @@
  */
 package com.unab.edu.sistemaaeropuerto;
 
+import com.unab.edu.DAO.ClsUsuario;
+import com.unab.edu.OperacionesBd.frmCrearUsuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -225,11 +227,16 @@ public class frmLoguin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassFocusLost
 
     private void lblRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseClicked
-        // TODO add your handling code here:
+       frmCrearUsuario nuevoUsuario = new frmCrearUsuario();
+       nuevoUsuario.setVisible(true);
+       this.hide();
     }//GEN-LAST:event_lblRegistrarMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if(txtUser.getText().equals("Admin") && txtPass.getText().equals("123"))
+        ClsUsuario claseUsuario = new ClsUsuario();
+        String user = txtUser.getText();
+        String pass = txtPass.getText();
+        if(claseUsuario.LoguinUser(user, pass) == true)
         {
             JOptionPane.showMessageDialog(null, "Bienvenido");
         }

@@ -5,6 +5,8 @@
  */
 package com.unab.edu.Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Milton
@@ -13,6 +15,6 @@ public class Itinerario {
     private int idItinerario;
     private int idAeropuertoOrigen;
     private int idEscala;
-    private date fecha;
-    private time Hora;
+    private Date fecha;
+    private String Hora;
 }

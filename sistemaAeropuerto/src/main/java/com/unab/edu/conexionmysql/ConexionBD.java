@@ -18,7 +18,7 @@ public class ConexionBD {
 
     public ConexionBD() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/sistemaviajes","root","root");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/sistemaaeropuerto","root","root");
             System.out.println("Conectado a la BD");
         } catch (Exception e) {
             System.out.println("Error de Conexion: " + e);

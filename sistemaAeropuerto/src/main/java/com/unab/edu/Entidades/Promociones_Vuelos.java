@@ -5,6 +5,8 @@
  */
 package com.unab.edu.Entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author Milton
@@ -12,8 +14,8 @@ package com.unab.edu.Entidades;
 public class Promociones_Vuelos {
     
     private int idPromociones_Vuelos;
-    private date FechaInicioPromo;
-    private date FechaFinalPromo;
+    private Date FechaInicioPromo;
+    private Date FechaFinalPromo;
     private float Descuento;
     private int idVuelo;
     
