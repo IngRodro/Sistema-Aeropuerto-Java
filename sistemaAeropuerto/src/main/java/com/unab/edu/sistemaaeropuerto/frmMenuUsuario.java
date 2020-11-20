@@ -29,41 +29,33 @@ public class frmMenuUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         DkpUsuario = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        DkpUsuario.setBackground(new java.awt.Color(0, 0, 153));
+        DkpUsuario.setBackground(new java.awt.Color(51, 102, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel2.setText("Vuelos");
+
+        DkpUsuario.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DkpUsuarioLayout = new javax.swing.GroupLayout(DkpUsuario);
         DkpUsuario.setLayout(DkpUsuarioLayout);
         DkpUsuarioLayout.setHorizontalGroup(
             DkpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 974, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DkpUsuarioLayout.createSequentialGroup()
+                .addContainerGap(437, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(435, 435, 435))
         );
         DkpUsuarioLayout.setVerticalGroup(
             DkpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGroup(DkpUsuarioLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel2)
+                .addContainerGap(481, Short.MAX_VALUE))
         );
-
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 102));
-        jMenuBar1.setBorder(null);
-        jMenuBar1.setBorderPainted(false);
-
-        jMenu1.setBackground(new java.awt.Color(0, 0, 102));
-        jMenu1.setBorder(null);
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Vuelos");
-        jMenu1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,12 +70,6 @@ public class frmMenuUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        CRUDAeropuerto crudAeropuerto = new CRUDAeropuerto();
-        DkpUsuario.add(crudAeropuerto);
-        crudAeropuerto.show();
-    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -123,8 +109,7 @@ public class frmMenuUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DkpUsuario;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
 }

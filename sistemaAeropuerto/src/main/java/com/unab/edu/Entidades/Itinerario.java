@@ -6,13 +6,18 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author Milton
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Itinerario {
     private int idItinerario;
+    private int idAeropuertoDestino;
     private int idAeropuertoOrigen;
     private int idEscala;
     private Date fecha;

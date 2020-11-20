@@ -5,10 +5,15 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  *
  * @author Milton
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Aeropuerto {
     private int idAeropuerto;
     private String nombre;
