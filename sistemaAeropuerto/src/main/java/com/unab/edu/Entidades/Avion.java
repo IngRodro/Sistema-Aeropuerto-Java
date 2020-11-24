@@ -15,5 +15,5 @@ import lombok.Data;
 public class Avion {
     private int idAvion;
     private String modeloAvion;
-    private String capacidad;
+    private int capacidad;
 }
