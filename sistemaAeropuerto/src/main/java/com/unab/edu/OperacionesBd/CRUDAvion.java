@@ -5,19 +5,19 @@
  */
 package com.unab.edu.OperacionesBd;
 
-import com.unab.edu.DAO.Clsaeropuerto;
-import com.unab.edu.Entidades.Aeropuerto;
+import com.unab.edu.DAO.ClsAvion;
+import com.unab.edu.Entidades.Avion;
 
 /**
  *
  * @author PREDATOR
  */
-public class CRUDAeropuerto extends javax.swing.JFrame {
+public class CRUDAvion extends javax.swing.JFrame {
 
     /**
-     * Creates new form CRUDAeropuerto
+     * Creates new form CRUDAvion
      */
-    public CRUDAeropuerto() {
+    public CRUDAvion() {
         initComponents();
     }
 
@@ -30,6 +30,7 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -37,17 +38,15 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtPrecioEst = new javax.swing.JTextField();
-        txtCiudad = new javax.swing.JTextField();
-        txtPais = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
+        txtCapacidad = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,30 +58,20 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
-        jLabel1.setText("Registro Aeropuertos");
+        jLabel1.setText("Aviones");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Id:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Modelo:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Pais:");
+        jLabel4.setText("Capacidad:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Ciudad:");
+        txtCapacidad.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Precio Estimado:");
-
-        txtPrecioEst.setBackground(new java.awt.Color(0, 0, 0));
-
-        txtCiudad.setBackground(new java.awt.Color(0, 0, 0));
-
-        txtPais.setBackground(new java.awt.Color(0, 0, 0));
-
-        txtNombre.setBackground(new java.awt.Color(0, 0, 0));
+        txtModelo.setBackground(new java.awt.Color(0, 0, 0));
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -104,12 +93,12 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setText("Actualizar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("Actualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -117,72 +106,57 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(198, 198, 198)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre)
-                            .addComponent(txtCiudad)
-                            .addComponent(txtPais)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtPrecioEst, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtId))))
-                .addGap(144, 144, 144))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(338, 338, 338))
+                .addGap(321, 321, 321))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                            .addComponent(txtModelo)
+                            .addComponent(txtId))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtPrecioEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addGap(46, 46, 46))
+                    .addComponent(jButton3))
+                .addGap(42, 42, 42))
         );
 
-        jTabbedPane1.addTab("Registro Aeropuertos", jPanel2);
+        jTabbedPane1.addTab("Registro Aviones", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -190,24 +164,24 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 942, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGap(0, 407, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Lista Aeropuertos", jPanel3);
+        jTabbedPane1.addTab("Lista Aviones", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,31 +199,27 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Clsaeropuerto aeropuertos = new Clsaeropuerto();
-        Aeropuerto aeropuerto = new Aeropuerto();
-        aeropuerto.setNombre(txtNombre.getText());
-        aeropuerto.setPais(txtPais.getText());
-        aeropuerto.setCiudad(txtCiudad.getText());
-        aeropuerto.setPrecioEstimVuelo(Float.parseFloat(txtPrecioEst.getText()));
-        aeropuertos.AgregarAeropuerto(aeropuerto);
+        ClsAvion avion = new ClsAvion();
+        Avion aviones = new Avion();
+        aviones.setModeloAvion(txtModelo.getText());
+        aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
+        avion.AgregarAvion(aviones);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Clsaeropuerto aeropuertos = new Clsaeropuerto();
-        Aeropuerto aeropuerto = new Aeropuerto();
-        aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
-        aeropuerto.setNombre(txtNombre.getText());
-        aeropuerto.setPais(txtPais.getText());
-        aeropuerto.setCiudad(txtCiudad.getText());
-        aeropuerto.setPrecioEstimVuelo(Float.parseFloat(txtPrecioEst.getText()));
-        aeropuertos.ActualizarAeropuerto(aeropuerto);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ClsAvion avion = new ClsAvion();
+        Avion aviones = new Avion();
+        aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+        aviones.setModeloAvion(txtModelo.getText());
+        aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
+        avion.ActualizarAvion(aviones);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Clsaeropuerto aeropuertos = new Clsaeropuerto();
-        Aeropuerto aeropuerto = new Aeropuerto();
-        aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
-        aeropuertos.BorrarAeropuerto(aeropuerto);
+        ClsAvion avion = new ClsAvion();
+        Avion aviones = new Avion();
+        aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+        avion.BorrarAvion(aviones);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -269,20 +239,20 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CRUDAeropuerto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CRUDAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CRUDAeropuerto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CRUDAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CRUDAeropuerto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CRUDAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CRUDAeropuerto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CRUDAvion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CRUDAeropuerto().setVisible(true);
+                new CRUDAvion().setVisible(true);
             }
         });
     }
@@ -290,21 +260,18 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPais;
-    private javax.swing.JTextField txtPrecioEst;
+    private javax.swing.JTextField txtModelo;
     // End of variables declaration//GEN-END:variables
 }
