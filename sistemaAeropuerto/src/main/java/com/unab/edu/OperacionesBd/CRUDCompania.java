@@ -70,7 +70,6 @@ public class CRUDCompania extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
         tbPCompany.setBackground(new java.awt.Color(0, 153, 204));
-        tbPCompany.setForeground(new java.awt.Color(255, 255, 255));
         tbPCompany.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
@@ -115,20 +114,18 @@ public class CRUDCompania extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Compañias");
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
 
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0));
 
-        txtId.setBackground(new java.awt.Color(255, 255, 255));
+        txtId.setBackground(new java.awt.Color(0, 0, 0));
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
