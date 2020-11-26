@@ -7,6 +7,8 @@ package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.Clsaeropuerto;
 import com.unab.edu.Entidades.Aeropuerto;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +22,22 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     public CRUDAeropuerto() {
         initComponents();
     }
+    
+    void CargarTabla() {
+        String Titulos[] = {"ID", "Nombre", "Pais", "Ciudad"};
+        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
+        Clsaeropuerto clsAeropuerto = new Clsaeropuerto();
+        ArrayList<Aeropuerto> Companies = clsAeropuerto.MostrAeropuerto();
+        String filas[] = new String[5];
+        for (var IterarCom : Companies) {
+            filas[0] = String.valueOf(IterarCom.getIdAeropuerto());
+            filas[1] = String.valueOf(IterarCom.getNombre());
+            filas[2] = String.valueOf(IterarCom.getPais());            
+            filas[3] = String.valueOf(IterarCom.getCiudad());
+            ModeloT.addRow(filas);
+        }
+        tbAeropuerto.setModel(ModeloT);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +49,7 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbPAeropuerto = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,13 +64,15 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbAeropuerto = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 204));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
+        tbPAeropuerto.setBackground(new java.awt.Color(0, 153, 204));
+        tbPAeropuerto.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -167,32 +187,56 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
                 .addGap(94, 94, 94))
         );
 
-        jTabbedPane1.addTab("Registro Aeropuertos", jPanel2);
+        tbPAeropuerto.addTab("Registro Aeropuertos", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+
+        tbAeropuerto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbAeropuerto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAeropuertoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbAeropuerto);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 942, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lista Aeropuertos", jPanel3);
+        tbPAeropuerto.addTab("Lista Aeropuertos", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tbPAeropuerto)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tbPAeropuerto)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,6 +278,20 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
         aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
         aeropuertos.BorrarAeropuerto(aeropuerto);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tbAeropuertoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAeropuertoMouseClicked
+        tbPAeropuerto.setSelectedIndex(tbPAeropuerto.indexOfComponent(jPanel2));
+        int fila = tbAeropuerto.getSelectedRow();
+
+        String ID = String.valueOf(tbAeropuerto.getValueAt(fila, 0));
+        String Nombre = String.valueOf(tbAeropuerto.getValueAt(fila, 1));
+        String Pais = String.valueOf(tbAeropuerto.getValueAt(fila, 2));
+        String Ciudad = String.valueOf(tbAeropuerto.getValueAt(fila, 3));
+        txtId.setText(ID);
+        txtNombre.setText(Nombre);
+        txtPais.setText(Pais);
+        txtCiudad.setText(Ciudad);
+    }//GEN-LAST:event_tbAeropuertoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,7 +340,9 @@ public class CRUDAeropuerto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbAeropuerto;
+    private javax.swing.JTabbedPane tbPAeropuerto;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
