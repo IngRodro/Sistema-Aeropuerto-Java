@@ -19,7 +19,4 @@ public class Aeropuerto {
     private String nombre;
     private String pais;
     private String ciudad;
-    private float PrecioEstimVuelo;
-    
-     
 }
