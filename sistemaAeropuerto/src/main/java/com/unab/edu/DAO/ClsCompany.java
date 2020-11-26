@@ -89,7 +89,6 @@ public class ClsCompany {
 
     public boolean ComprobarExistenciaCom(Company Com) {
         boolean Existencia = false;
-        ArrayList<Company> companies = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
             ResultSet rs = Statement.executeQuery();
@@ -107,7 +106,6 @@ public class ClsCompany {
 
     public boolean ComprobarEstadoCom(Company Com) {
         boolean Estado = true;
-        ArrayList<Company> companies = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
             ResultSet rs = Statement.executeQuery();

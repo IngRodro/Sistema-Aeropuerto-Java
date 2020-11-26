@@ -10,6 +10,8 @@ import com.unab.edu.Entidades.Itinerario;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +23,25 @@ public class ClsAvion {
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
     
+    
+    public ArrayList<Avion> MostrarAvion() {
+        ArrayList<Avion> companies = new ArrayList<>();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                Avion com = new Avion();
+                com.setIdAvion(rs.getInt("idAvion"));
+                com.setModeloAvion(rs.getString("modelo"));
+                com.setCapacidad(rs.getInt("capacidad"));
+                companies.add(com);
+            }
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return companies;
+    }
     
     public void AgregarAvion(Avion Avi){
         try {

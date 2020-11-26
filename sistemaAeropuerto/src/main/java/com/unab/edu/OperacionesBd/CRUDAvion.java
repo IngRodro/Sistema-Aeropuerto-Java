@@ -7,6 +7,8 @@ package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.ClsAvion;
 import com.unab.edu.Entidades.Avion;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,7 +22,22 @@ public class CRUDAvion extends javax.swing.JFrame {
     public CRUDAvion() {
         initComponents();
     }
-
+    
+    void CargarTabla() {
+        String Titulos[] = {"ID", "Modelo", "Capacidad"};
+        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
+        ClsAvion clsAvion = new ClsAvion();
+        ArrayList<Avion> Companies = clsAvion.MostrarAvion();
+        String filas[] = new String[4];
+        for (var IterarCom : Companies) {
+            filas[0] = String.valueOf(IterarCom.getIdAvion());
+            filas[1] = String.valueOf(IterarCom.getModeloAvion());
+            filas[2] = String.valueOf(IterarCom.getCapacidad());
+            ModeloT.addRow(filas);
+        }
+        tbAviones.setModel(ModeloT);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +49,7 @@ public class CRUDAvion extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbPAvion = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,6 +62,8 @@ public class CRUDAvion extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbAviones = new javax.swing.JTable();
 
         jTextField1.setText("jTextField1");
 
@@ -52,8 +71,8 @@ public class CRUDAvion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 204));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
+        tbPAvion.setBackground(new java.awt.Color(0, 153, 204));
+        tbPAvion.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -115,7 +134,7 @@ public class CRUDAvion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(71, 71, 71)
                         .addComponent(jButton2))
@@ -148,7 +167,7 @@ public class CRUDAvion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -156,32 +175,56 @@ public class CRUDAvion extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
-        jTabbedPane1.addTab("Registro Aviones", jPanel2);
+        tbPAvion.addTab("Registro Aviones", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 102, 255));
+
+        tbAviones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbAviones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAvionesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbAviones);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lista Aviones", jPanel3);
+        tbPAvion.addTab("Lista Aviones", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tbPAvion, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tbPAvion, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,6 +264,18 @@ public class CRUDAvion extends javax.swing.JFrame {
         aviones.setIdAvion(Integer.parseInt(txtId.getText()));
         avion.BorrarAvion(aviones);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tbAvionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAvionesMouseClicked
+        tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel2));
+        int fila = tbAviones.getSelectedRow();
+
+        String ID = String.valueOf(tbAviones.getValueAt(fila, 0));
+        String Modelo = String.valueOf(tbAviones.getValueAt(fila, 1));
+        String Capacidad = String.valueOf(tbAviones.getValueAt(fila, 2));
+        txtId.setText(ID);
+        txtModelo.setText(Modelo);
+        txtCapacidad.setText(Capacidad);
+    }//GEN-LAST:event_tbAvionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -268,8 +323,10 @@ public class CRUDAvion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tbAviones;
+    private javax.swing.JTabbedPane tbPAvion;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModelo;

@@ -33,7 +33,6 @@ public class Clsaeropuerto {
                 aeropuerto.setNombre(resultadoDeConsulta.getString("nombre"));
                 aeropuerto.setPais(resultadoDeConsulta.getString("pais"));
                 aeropuerto.setCiudad(resultadoDeConsulta.getString("ciudad"));
-                aeropuerto.setPrecioEstimVuelo(resultadoDeConsulta.getFloat("PrecioEstimVuelo"));
                 aeropuertos.add(aeropuerto);
             }
             conexion.close();
@@ -42,37 +41,46 @@ public class Clsaeropuerto {
         }
         return aeropuertos;
     }
-    
-    public void AgregarAeropuerto(Aeropuerto Aero){
+
+    public void AgregarAeropuerto(Aeropuerto Aero) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?,?)");
-            Statement.setString("Anombre", Aero.getNombre());
-            Statement.setString("Apais", Aero.getPais());
-            Statement.setString("Aciudad", Aero.getCiudad());
-            Statement.setFloat("APrecioEstimVuelo", Aero.getPrecioEstimVuelo());
-            JOptionPane.showMessageDialog(null, "Guardado");
-            conexion.close();
+            if (ComprobarExistenciaAeroP(Aero) == true) {
+                if (ComprobarEstadoAeroP(Aero) == true) {
+                    JOptionPane.showMessageDialog(null, "La Compañia ya se encuentra registrada");
+                }else{
+                    CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
+                    Statement.setString("PNombre", Aero.getNombre());
+                    Statement.execute();
+                    JOptionPane.showMessageDialog(null, "Guardado");
+                }
+            } else {
+                CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?,?)");
+                Statement.setString("Anombre", Aero.getNombre());
+                Statement.setString("Apais", Aero.getPais());
+                Statement.setString("Aciudad", Aero.getCiudad());
+                JOptionPane.showMessageDialog(null, "Guardado");
+                conexion.close();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public void ActualizarAeropuerto(Aeropuerto Aero){
+
+    public void ActualizarAeropuerto(Aeropuerto Aero) {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Aeropuerto(?,?,?,?,?)");
             Statement.setInt("AidAeropuerto", Aero.getIdAeropuerto());
             Statement.setString("Anombre", Aero.getNombre());
             Statement.setString("Apais", Aero.getPais());
             Statement.setString("Aciudad", Aero.getCiudad());
-            Statement.setFloat("APrecioEstimVuelo", Aero.getPrecioEstimVuelo());
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public void BorrarAeropuerto(Aeropuerto Aero){
+
+    public void BorrarAeropuerto(Aeropuerto Aero) {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Aeropuerto(?)");
             Statement.setInt("AidAeropuerto", Aero.getIdAeropuerto());
@@ -81,5 +89,40 @@ public class Clsaeropuerto {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public boolean ComprobarExistenciaAeroP(Aeropuerto Aero) {
+        boolean Existencia = false;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (Aero.getNombre().equals(rs.getString("nombre"))) {
+                    Existencia = true;
+                    break;
+                };
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Existencia;
+    }
+
+    public boolean ComprobarEstadoAeroP(Aeropuerto Aero) {
+        boolean Estado = true;
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                if (Aero.getNombre().equals(rs.getString("nombre"))) {
+                    if (rs.getString("nombre").equals("Inactivo")) {
+                        Estado = false;
+                    }
+                };
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Estado;
     }
 }
