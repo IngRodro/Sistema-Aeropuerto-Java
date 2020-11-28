@@ -6,7 +6,9 @@
 package com.unab.edu.sistemaaeropuerto;
 
 import com.unab.edu.OperacionesBd.PnlAeropuerto;
+import com.unab.edu.OperacionesBd.PnlAvion;
 import com.unab.edu.OperacionesBd.PnlCompania;
+import com.unab.edu.OperacionesBd.PnlItenirario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -22,12 +24,15 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     public frmMenuAdmin() {
         initComponents();
     Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
-    this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2));
+    this.setLocation((pantallaTamano.width/2)-(this.getWidth()/4), (pantallaTamano.height/2)-(this.getHeight()/2));
     }
     
     CambioPanel CmPanel = new CambioPanel();
     PnlAeropuerto frmAeropuerto = new PnlAeropuerto();
     PnlCompania frmCompania = new PnlCompania();
+    PnlAvion frmAvion = new PnlAvion();
+    PnlItenirario frmItinerario = new PnlItenirario();
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +45,11 @@ public class frmMenuAdmin extends javax.swing.JFrame {
 
         PnlContenedor = new java.awt.Panel();
         panel1 = new java.awt.Panel();
-        btnAeropuerto = new javax.swing.JButton();
         btnCompania = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN");
@@ -50,16 +58,10 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
         PnlContenedor.setLayout(new javax.swing.BoxLayout(PnlContenedor, javax.swing.BoxLayout.LINE_AXIS));
 
-        btnAeropuerto.setBorderPainted(false);
-        btnAeropuerto.setContentAreaFilled(false);
-        btnAeropuerto.setLabel("Aeropuerto");
-        btnAeropuerto.setName(""); // NOI18N
-        btnAeropuerto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAeropuertoActionPerformed(evt);
-            }
-        });
+        panel1.setBackground(new java.awt.Color(51, 102, 255));
 
+        btnCompania.setBackground(new java.awt.Color(51, 102, 255));
+        btnCompania.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCompania.setLabel("Compañia");
         btnCompania.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,25 +69,63 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("Aeropuerto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(51, 102, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setText("Avion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(51, 102, 255));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("Itinerario");
+        jButton3.setActionCommand("Itinerario");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight_30822.png"))); // NOI18N
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCompania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompania, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnAeropuerto)
-                .addGap(61, 61, 61)
-                .addComponent(btnCompania)
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCompania, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,13 +146,21 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAeropuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAeropuertoActionPerformed
-       CmPanel.ModificarPanel(PnlContenedor, frmAeropuerto);
-    }//GEN-LAST:event_btnAeropuertoActionPerformed
-
     private void btnCompaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompaniaActionPerformed
        CmPanel.ModificarPanel(PnlContenedor, frmCompania);
     }//GEN-LAST:event_btnCompaniaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmAeropuerto);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmAvion);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmItinerario);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +199,11 @@ public class frmMenuAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Panel PnlContenedor;
-    private javax.swing.JButton btnAeropuerto;
     private javax.swing.JButton btnCompania;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }

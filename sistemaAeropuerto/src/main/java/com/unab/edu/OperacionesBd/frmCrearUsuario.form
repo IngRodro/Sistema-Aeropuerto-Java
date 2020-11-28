@@ -68,22 +68,15 @@
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtEdad" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="txtNombres" min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="txtApellidos" min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="txtNombreUsuario" min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="txtPassword" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="143" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="txtEdad" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="txtTelefono" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="txtNombres" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="txtApellidos" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="txtNombreUsuario" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="txtPassword" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -360,6 +353,9 @@
               <Image iconType="3" name="/img/cerrar(3).png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel8MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
