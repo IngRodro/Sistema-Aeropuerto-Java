@@ -27,7 +27,7 @@ public class ClsAvion {
     public ArrayList<Avion> MostrarAvion() {
         ArrayList<Avion> companies = new ArrayList<>();
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_S_Company()");
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Avion()");
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
                 Avion com = new Avion();

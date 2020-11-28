@@ -23,17 +23,16 @@ public class frmMenuAdmin extends javax.swing.JFrame {
      */
     public frmMenuAdmin() {
         initComponents();
-    Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
-    this.setLocation((pantallaTamano.width/2)-(this.getWidth()/4), (pantallaTamano.height/2)-(this.getHeight()/2));
+        Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((pantallaTamano.width / 2) - (this.getWidth() / 4), (pantallaTamano.height / 2) - (this.getHeight() / 2));
     }
-    
+
     CambioPanel CmPanel = new CambioPanel();
     PnlAeropuerto frmAeropuerto = new PnlAeropuerto();
     PnlCompania frmCompania = new PnlCompania();
     PnlAvion frmAvion = new PnlAvion();
     PnlItenirario frmItinerario = new PnlItenirario();
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,34 +89,33 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(51, 102, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("Itinerario");
-        jButton3.setActionCommand("Itinerario");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight_30822.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight_30822 - Copy.png"))); // NOI18N
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
             .addComponent(btnCompania, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCompania, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +145,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCompaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompaniaActionPerformed
-       CmPanel.ModificarPanel(PnlContenedor, frmCompania);
+        CmPanel.ModificarPanel(PnlContenedor, frmCompania);
     }//GEN-LAST:event_btnCompaniaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

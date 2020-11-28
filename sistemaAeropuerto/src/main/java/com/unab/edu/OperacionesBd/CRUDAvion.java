@@ -21,6 +21,7 @@ public class CRUDAvion extends javax.swing.JFrame {
      */
     public CRUDAvion() {
         initComponents();
+        CargarTabla();
     }
     
     void CargarTabla() {
