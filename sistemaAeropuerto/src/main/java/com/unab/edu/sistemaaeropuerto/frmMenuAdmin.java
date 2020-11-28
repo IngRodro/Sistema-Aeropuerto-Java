@@ -5,6 +5,11 @@
  */
 package com.unab.edu.sistemaaeropuerto;
 
+import com.unab.edu.OperacionesBd.PnlAeropuerto;
+import com.unab.edu.OperacionesBd.PnlCompania;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Usuario
@@ -16,8 +21,14 @@ public class frmMenuAdmin extends javax.swing.JFrame {
      */
     public frmMenuAdmin() {
         initComponents();
+    Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
+    this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2));
     }
-
+    
+    CambioPanel CmPanel = new CambioPanel();
+    PnlAeropuerto frmAeropuerto = new PnlAeropuerto();
+    PnlCompania frmCompania = new PnlCompania();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,43 +38,81 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PnlContenedor = new java.awt.Panel();
+        panel1 = new java.awt.Panel();
+        btnAeropuerto = new javax.swing.JButton();
+        btnCompania = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN");
         setBackground(new java.awt.Color(102, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(974, 608));
+        PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
+        PnlContenedor.setLayout(new javax.swing.BoxLayout(PnlContenedor, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+        btnAeropuerto.setBorderPainted(false);
+        btnAeropuerto.setContentAreaFilled(false);
+        btnAeropuerto.setLabel("Aeropuerto");
+        btnAeropuerto.setName(""); // NOI18N
+        btnAeropuerto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAeropuertoActionPerformed(evt);
+            }
+        });
+
+        btnCompania.setLabel("Compañia");
+        btnCompania.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompaniaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCompania, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnAeropuerto)
+                .addGap(61, 61, 61)
+                .addComponent(btnCompania)
+                .addContainerGap(541, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(PnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAeropuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAeropuertoActionPerformed
+       CmPanel.ModificarPanel(PnlContenedor, frmAeropuerto);
+    }//GEN-LAST:event_btnAeropuertoActionPerformed
+
+    private void btnCompaniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompaniaActionPerformed
+       CmPanel.ModificarPanel(PnlContenedor, frmCompania);
+    }//GEN-LAST:event_btnCompaniaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,6 +150,9 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private java.awt.Panel PnlContenedor;
+    private javax.swing.JButton btnAeropuerto;
+    private javax.swing.JButton btnCompania;
+    private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }

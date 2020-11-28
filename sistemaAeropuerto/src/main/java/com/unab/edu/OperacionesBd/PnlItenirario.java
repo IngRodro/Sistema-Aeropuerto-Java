@@ -7,25 +7,26 @@ package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.ClsItinerario;
 import com.unab.edu.DAO.Clsaeropuerto;
-import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Itinerario;
+import com.unab.edu.Entidades.Aeropuerto;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
 /**
  *
- * @author PREDATOR
+ * @author Usuario
  */
-public class CRUDItinerario extends javax.swing.JFrame {
+public class PnlItenirario extends javax.swing.JPanel {
 
     /**
-     * Creates new form CRUDItinerario
+     * Creates new form PnlItenirario
      */
-    public CRUDItinerario() {
+    public PnlItenirario() {
         initComponents();
         DisplayMember();
         DisplayMember2();
     }
+    
     String valueMember[];
     String valueMember2[];
     int contador = 1;
@@ -64,7 +65,6 @@ public class CRUDItinerario extends javax.swing.JFrame {
         }
         cbOrigen.setModel(cbdefaDefault);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,7 +74,6 @@ public class CRUDItinerario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -93,9 +92,7 @@ public class CRUDItinerario extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jDesktopPane1.setBackground(new java.awt.Color(51, 102, 255));
+        setBackground(new java.awt.Color(51, 102, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(0, 153, 204));
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
@@ -191,7 +188,7 @@ public class CRUDItinerario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(jLabel1)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +199,7 @@ public class CRUDItinerario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,41 +232,43 @@ public class CRUDItinerario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 942, Short.MAX_VALUE)
+            .addGap(0, 839, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGap(0, 509, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lista de Itinerarios", jPanel2);
 
-        jDesktopPane1.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClsItinerario itinerarios = new ClsItinerario();
+        Itinerario itinerario = new Itinerario();
+        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMember[cbDestino.getSelectedIndex()]));
+        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMember2[cbOrigen.getSelectedIndex()]));
+        itinerario.setFecha(jdcFecha.getDate());
+        itinerario.setHora(txtHora.getText());
+        itinerarios.AgregarItinerario(itinerario);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ClsItinerario itinerarios = new ClsItinerario();
+        Itinerario itinerario = new Itinerario();
+        itinerario.setIdItinerario(Integer.parseInt(txtId.getText()));
+        itinerarios.BorrarItinerario(itinerario);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ClsItinerario itinerarios = new ClsItinerario();
@@ -282,57 +281,6 @@ public class CRUDItinerario extends javax.swing.JFrame {
         itinerarios.ActualizarItinerario(itinerario);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ClsItinerario itinerarios = new ClsItinerario();
-        Itinerario itinerario = new Itinerario();
-        itinerario.setIdItinerario(Integer.parseInt(txtId.getText()));
-        itinerarios.BorrarItinerario(itinerario);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ClsItinerario itinerarios = new ClsItinerario();
-        Itinerario itinerario = new Itinerario();
-        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMember[cbDestino.getSelectedIndex()]));
-        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMember2[cbOrigen.getSelectedIndex()]));
-        itinerario.setFecha(jdcFecha.getDate());
-        itinerario.setHora(txtHora.getText());
-        itinerarios.AgregarItinerario(itinerario);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CRUDItinerario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CRUDItinerario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CRUDItinerario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CRUDItinerario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CRUDItinerario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbDestino;
@@ -340,7 +288,6 @@ public class CRUDItinerario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
