@@ -163,8 +163,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`tipos_vuelo` (
   `idTipos_vuelo` INT NOT NULL AUTO_INCREMENT,
-  `Tiposdevuelo` VARCHAR(45) NULL DEFAULT NULL,
+  `Tipo` VARCHAR(45) NULL DEFAULT NULL,
   `PorcentajeDesc` FLOAT NULL DEFAULT NULL,
+  `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipos_vuelo`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -180,8 +181,6 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`vuelo` (
   `idItinerario` INT NULL DEFAULT NULL,
   `idAvion` INT NULL DEFAULT NULL,
   `idTiposvuelo` INT NULL DEFAULT NULL,
-  `Capacidad` INT NULL DEFAULT NULL,
-  `Costos Extras` FLOAT NULL DEFAULT NULL,
   PRIMARY KEY (`idVuelo`),
   INDEX `FK_Vuelo_Avion_idx` (`idAvion` ASC) VISIBLE,
   INDEX `FK_Vuelo_Iterinario_idx` (`idItinerario` ASC) VISIBLE,
@@ -340,6 +339,19 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_D_Tipos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_D_Tipos`(PidTipos_vuelo int)
+BEGIN
+	Update tipos_vuelo  set estado = 'Inactivo' where idTipos_vuelo = PidTipos_vuelo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_I_Aeropuerto
 -- -----------------------------------------------------
 
@@ -401,6 +413,19 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_I_Tipos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_Tipos`(PTipo varchar(45), PDescuento float)
+BEGIN
+	INSERT INTO tipos_vuelo(Tipo, PorcentajeDescuento, estado) values (PTipo,PDescuento, 'Activo');
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_I_Usuario
 -- -----------------------------------------------------
 
@@ -430,6 +455,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Aeropuerto`(
 )
 BEGIN
 SELECT * FROM sistemaaeropuerto.aeropuerto where Estado = "Activo";
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_Avion
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Avion`(
+)
+BEGIN
+SELECT * FROM sistemaaeropuerto.avion where estado = "Activo";
 END$$
 
 DELIMITER ;
@@ -484,6 +523,40 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_LOGUINUSUARIO`(pUsuario varchar(50), pPass varchar(50))
 BEGIN
 select * from usuarios where nombreUsuario = pUsuario and password = sha2(pPass,512);
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_Tipos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Tipos`(
+)
+BEGIN
+SELECT * FROM sistemaaeropuerto.tipos_vuelo where estado = "Activo";
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_Vuelos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Vuelos`()
+BEGIN
+	SELECT vuelo.idVuelo Vuelo, company.nombre Compañia, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, avion.modelo Modelo_Avion, TV.Tipo Tipo_de_Vuelo
+	FROM sistemaaeropuerto.vuelo 
+	INNER JOIN company ON vuelo.idCompany = company.idCompany 
+	INNER JOIN itinerario ON vuelo.idItinerario = itinerario.idItinerario  
+	INNER JOIN aeropuerto A1 ON itinerario.idAeropuertoDestino = A1.idAeropuerto 
+	INNER JOIN aeropuerto A2 ON itinerario.idAeropuertoDestino = A2.idAeropuerto
+	INNER JOIN avion ON vuelo.idAvion = avion.idAvion
+	INNER JOIN tipos_vuelo TV ON vuelo.idTiposvuelo = TV.idTipos_vuelo;
 END$$
 
 DELIMITER ;
@@ -548,6 +621,19 @@ PHora time
 )
 BEGIN
 	Update iterinario set idAeropuertoDestino = PidAeropuertoDestino, idAeropuertoOrigen = PidAeropuertoOrigen, fecha = Pfecha, hora = PHora where idIterinario = PidItinerario;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_U_Tipos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Tipos`(PTipo varchar(45), PDescuento float, PidTipos_vuelo int)
+BEGIN
+	Update tipos_vuelo  set Tipo = PTipo, PorcentajeDesc = PDescuento where idTipos_vuelo = PidTipos_vuelo;
 END$$
 
 DELIMITER ;
