@@ -9,6 +9,8 @@ import com.unab.edu.OperacionesBd.PnlAeropuerto;
 import com.unab.edu.OperacionesBd.PnlAvion;
 import com.unab.edu.OperacionesBd.PnlCompania;
 import com.unab.edu.OperacionesBd.PnlItenirario;
+import com.unab.edu.OperacionesBd.PnlTiposdeVuelo;
+import com.unab.edu.OperacionesBd.PnlVuelos;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -32,6 +34,8 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     PnlCompania frmCompania = new PnlCompania();
     PnlAvion frmAvion = new PnlAvion();
     PnlItenirario frmItinerario = new PnlItenirario();
+    PnlVuelos frmVuelo = new PnlVuelos();
+    PnlTiposdeVuelo frmTipos = new PnlTiposdeVuelo();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,20 +46,18 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PnlContenedor = new java.awt.Panel();
         panel1 = new java.awt.Panel();
         btnCompania = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnTipos = new javax.swing.JButton();
+        PnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN");
         setBackground(new java.awt.Color(102, 255, 255));
-
-        PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
-        PnlContenedor.setLayout(new javax.swing.BoxLayout(PnlContenedor, javax.swing.BoxLayout.LINE_AXIS));
 
         panel1.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -88,7 +90,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(51, 102, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setText("Itinerario");
+        jButton3.setText("Vuelos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -96,6 +98,15 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight_30822 - Copy.png"))); // NOI18N
+
+        btnTipos.setBackground(new java.awt.Color(51, 102, 255));
+        btnTipos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTipos.setText("Tipos");
+        btnTipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiposActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -109,22 +120,31 @@ public class frmMenuAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnTipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(btnCompania, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(btnTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
+
+        PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
+        PnlContenedor.setLayout(new javax.swing.BoxLayout(PnlContenedor, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,8 +152,8 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(PnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(PnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,8 +177,12 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CmPanel.ModificarPanel(PnlContenedor, frmItinerario);
+        CmPanel.ModificarPanel(PnlContenedor, frmVuelo);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmTipos);
+    }//GEN-LAST:event_btnTiposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +220,9 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Panel PnlContenedor;
+    private javax.swing.JPanel PnlContenedor;
     private javax.swing.JButton btnCompania;
+    private javax.swing.JButton btnTipos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

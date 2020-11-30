@@ -5,12 +5,15 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author Milton
  */
+@Data
 public class Tipos_vuelo {
     private int idTipos_vuelo;
-    private String Tipos_vuelo;
-    private float PorcentajeDesc;
+    private String Tipo;
+    private Double PorcentajeDesc;
 }

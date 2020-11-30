@@ -90,22 +90,24 @@ public class PnlItenirario extends javax.swing.JPanel {
         cbOrigen = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 102, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(51, 102, 255));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Itinerario");
 
         jdcFecha.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +117,7 @@ public class PnlItenirario extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +127,7 @@ public class PnlItenirario extends javax.swing.JPanel {
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Actualizar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,17 +136,21 @@ public class PnlItenirario extends javax.swing.JPanel {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hora:");
 
         txtHora.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Destino:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Origen:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha:");
 
         cbDestino.setBackground(new java.awt.Color(0, 0, 0));
@@ -152,6 +160,7 @@ public class PnlItenirario extends javax.swing.JPanel {
         cbOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Id:");
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
@@ -165,7 +174,7 @@ public class PnlItenirario extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(131, 131, 131)
                         .addComponent(jButton2))
@@ -198,7 +207,7 @@ public class PnlItenirario extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,21 +234,6 @@ public class PnlItenirario extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Registro Itinerario", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Lista de Itinerarios", jPanel2);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,23 +246,6 @@ public class PnlItenirario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ClsItinerario itinerarios = new ClsItinerario();
-        Itinerario itinerario = new Itinerario();
-        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMember[cbDestino.getSelectedIndex()]));
-        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMember2[cbOrigen.getSelectedIndex()]));
-        itinerario.setFecha(jdcFecha.getDate());
-        itinerario.setHora(txtHora.getText());
-        itinerarios.AgregarItinerario(itinerario);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ClsItinerario itinerarios = new ClsItinerario();
-        Itinerario itinerario = new Itinerario();
-        itinerario.setIdItinerario(Integer.parseInt(txtId.getText()));
-        itinerarios.BorrarItinerario(itinerario);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ClsItinerario itinerarios = new ClsItinerario();
         Itinerario itinerario = new Itinerario();
@@ -279,6 +256,23 @@ public class PnlItenirario extends javax.swing.JPanel {
         itinerario.setHora(txtHora.getText());
         itinerarios.ActualizarItinerario(itinerario);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ClsItinerario itinerarios = new ClsItinerario();
+        Itinerario itinerario = new Itinerario();
+        itinerario.setIdItinerario(Integer.parseInt(txtId.getText()));
+        itinerarios.BorrarItinerario(itinerario);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClsItinerario itinerarios = new ClsItinerario();
+        Itinerario itinerario = new Itinerario();
+        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMember[cbDestino.getSelectedIndex()]));
+        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMember2[cbOrigen.getSelectedIndex()]));
+        itinerario.setFecha(jdcFecha.getDate());
+        itinerario.setHora(txtHora.getText());
+        itinerarios.AgregarItinerario(itinerario);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -294,7 +288,6 @@ public class PnlItenirario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTextField txtHora;

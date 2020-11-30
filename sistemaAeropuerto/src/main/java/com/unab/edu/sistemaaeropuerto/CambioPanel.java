@@ -13,10 +13,10 @@ import javax.swing.JPanel;
  * @author Usuario
  */
 public class CambioPanel {
-    private Panel contenedor;
+    private JPanel contenedor;
     private JPanel contenido;
     
-    public void ModificarPanel(Panel contenedor, JPanel contenido){
+    public void ModificarPanel(JPanel contenedor, JPanel contenido){
         
         this.contenedor = contenedor;
         this.contenido = contenido;
