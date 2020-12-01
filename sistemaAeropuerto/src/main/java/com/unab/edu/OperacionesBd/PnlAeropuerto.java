@@ -70,7 +70,6 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 102, 255));
 
         tbPAeropuerto.setBackground(new java.awt.Color(51, 102, 255));
-        tbPAeropuerto.setForeground(new java.awt.Color(255, 255, 255));
         tbPAeropuerto.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 204));
@@ -115,23 +114,18 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Registro Aeropuertos");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pais:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ciudad:");
 
         txtCiudad.setBackground(new java.awt.Color(0, 0, 0));
