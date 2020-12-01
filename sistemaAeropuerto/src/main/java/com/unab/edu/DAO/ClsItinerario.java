@@ -70,8 +70,8 @@ public class ClsItinerario {
             while (resultadoDeConsulta.next()) {
                 itinerario.setIdAeropuertoDestino(resultadoDeConsulta.getInt("idAeropuertoDestino"));
                 itinerario.setIdAeropuertoOrigen(resultadoDeConsulta.getInt("idAeropuertoOrigen"));
-//                itinerario.setFecha(resultadoDeConsulta.getTime("fecha"));
-//                itinerario.setFecha(resultadoDeConsulta.getDate("hora"));
+                itinerario.setFecha(resultadoDeConsulta.getDate("fecha"));
+                itinerario.setFecha(resultadoDeConsulta.getTime("hora"));
             }
         
             conexion.close();

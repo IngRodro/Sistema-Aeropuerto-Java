@@ -476,15 +476,16 @@ public class PnlVuelos extends javax.swing.JPanel {
             int idTipos = Integer.parseInt(valueMemberTipos[i]);
             if(vuelo.getIdTiposVuelo()== idTipos){cbTipo.setSelectedIndex(i);}
         }
-//        Date castfecha = new Date();
-//
-//        try {
-//            castfecha = formato.parse(String.valueOf(itinerario.getFecha()));
-//            jdcFecha.setDate(castfecha);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
-//            jdcFecha.setDate(null);
-//        }
+        Date castfecha = new Date();
+
+        try {
+            castfecha = formato.parse(String.valueOf(itinerario.getFecha()));
+            jdcFecha.setDate(castfecha);
+        } catch (ParseException ex) {
+            Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
+            jdcFecha.setDate(null);
+        }
+        txtHora.setText(String.valueOf(itinerario.getHora()));
         
     }//GEN-LAST:event_tbVuelosMouseClicked
 
