@@ -60,4 +60,25 @@ public class ClsVuelo {
         }
     }
     
+    public Vuelo SeleccionarVuelo(int idVuelo){
+        Vuelo vuelo = new Vuelo();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_1Vuelo(?)");
+            Statement.setInt("PidVuelo", idVuelo);
+            ResultSet resultadoDeConsulta = Statement.executeQuery();
+            while (resultadoDeConsulta.next()) {
+                vuelo.setIdVuelo(resultadoDeConsulta.getInt("idVuelo"));
+                vuelo.setIdCompany(resultadoDeConsulta.getInt("idCompany"));
+                vuelo.setIdIterinario(resultadoDeConsulta.getInt("idItinerario"));
+                vuelo.setIdTiposVuelo(resultadoDeConsulta.getInt("idAvion"));
+                vuelo.setIdAvion(resultadoDeConsulta.getInt("idTiposvuelo"));
+            }
+        
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return vuelo;
+    }
+    
 }

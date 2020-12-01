@@ -6,9 +6,11 @@
 package com.unab.edu.DAO;
 
 import com.unab.edu.Entidades.Itinerario;
+import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,5 +59,25 @@ public class ClsItinerario {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    public Itinerario SeleccionarIterinario(int idIterinario){
+        Itinerario itinerario = new Itinerario();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_1Itinerario(?)");
+            Statement.setInt("PidItinerario", idIterinario);
+            ResultSet resultadoDeConsulta = Statement.executeQuery();
+            while (resultadoDeConsulta.next()) {
+                itinerario.setIdAeropuertoDestino(resultadoDeConsulta.getInt("idAeropuertoDestino"));
+                itinerario.setIdAeropuertoOrigen(resultadoDeConsulta.getInt("idAeropuertoOrigen"));
+//                itinerario.setFecha(resultadoDeConsulta.getTime("fecha"));
+//                itinerario.setFecha(resultadoDeConsulta.getDate("hora"));
+            }
+        
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return itinerario;
     }
 }
