@@ -23,10 +23,10 @@ public class ClsItinerario {
     public void AgregarItinerario(Itinerario Iti){
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?,?)");
-            Statement.setInt("IidAeropuertoDestino", Iti.getIdAeropuertoDestino());
-            Statement.setInt("IidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
-            Statement.setDate("Ifecha", new java.sql.Date(Iti.getFecha().getTime()));
-            Statement.setString("IHora", Iti.getHora());
+            Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
+            Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
+            Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
+            Statement.setString("PHora", Iti.getHora());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();

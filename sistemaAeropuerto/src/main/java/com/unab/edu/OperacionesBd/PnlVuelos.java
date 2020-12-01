@@ -8,13 +8,19 @@ package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.ClsCompany;
 import com.unab.edu.DAO.ClsAvion;
+import com.unab.edu.DAO.ClsTiposVuelo;
+import com.unab.edu.DAO.ClsVuelo;
 import com.unab.edu.DAO.Clsaeropuerto;
 import com.unab.edu.Entidades.Aeropuerto;
+import com.unab.edu.Entidades.Tipos_vuelo;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.Entidades.Company;
 import com.unab.edu.Entidades.Avion;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import com.unab.edu.DAO.InnerJoinVuelo;
+import com.unab.edu.Entidades.Itinerario;
 
 /**
  *
@@ -31,17 +37,40 @@ public class PnlVuelos extends javax.swing.JPanel {
         DisplayMemberAvion();
         DisplayMemberDestino();
         DisplayMemberOrigen();
+        DisplayMemberTipos();
+        CargarTabla();
     }
 
     String valueMemberCompany[];
     String valueMemberAvion[];
     String valueMemberDestino[];
     String valueMemberOrigen[];
+    String valueMemberTipos[];
     int contadorCompany = 1;
     int contadorAvion = 1;
     int contadorDestino = 1;
     int contadorOrigen = 1;
+    int contadorTipos = 1;
 
+    
+    void CargarTabla() {
+        String Titulos[] = {"Vuelo", "Compañia", "Aeropuerto Origen", "AeropuertoDestino", "Modelo Avion", "Tipo de Vuelo"};
+        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
+        ClsVuelo clsVuelos = new ClsVuelo();
+        ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelos();
+        String filas[] = new String[7];
+        for (var IterarVuelo : Vuelos) {
+            filas[0] = String.valueOf(IterarVuelo.getVuelo());
+            filas[1] = IterarVuelo.getCompany();
+            filas[2] = IterarVuelo.getAeropuertoO();
+            filas[3] = IterarVuelo.getAeropuertoD();
+            filas[4] = IterarVuelo.getModelo();
+            filas[5] = IterarVuelo.getTipo();
+            ModeloT.addRow(filas);
+        }
+        tbVuelos.setModel(ModeloT);
+    }
+    
     void DisplayMemberDestino() {
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
@@ -51,7 +80,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         cbdefaDefault.addElement("");
         for (var IterarDatosAeropuerto : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
-            filas[2] = IterarDatosAeropuerto.getPais();
+            filas[1] = IterarDatosAeropuerto.getNombre();
             valueMemberDestino[contadorDestino] = filas[0];
             cbdefaDefault.addElement(filas[1]);
             contadorDestino++;
@@ -64,11 +93,11 @@ public class PnlVuelos extends javax.swing.JPanel {
         Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
         ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
         valueMemberOrigen = new String[aeropuertos.size() + 1];
-        String filas[] = new String[4];
+        String filas[] = new String[3];
         cbdefaDefault.addElement("");
         for (var IterarDatosAeropuerto : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
-            filas[2] = IterarDatosAeropuerto.getPais();
+            filas[1] = IterarDatosAeropuerto.getNombre();
             valueMemberOrigen[contadorOrigen] = filas[0];
             cbdefaDefault.addElement(filas[1]);
             contadorOrigen++;
@@ -109,6 +138,22 @@ public class PnlVuelos extends javax.swing.JPanel {
         }
         cbAvion.setModel(cbdefaDefault);
     }
+    void DisplayMemberTipos() {
+        DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
+        ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+        ArrayList<Tipos_vuelo> tipos = clsTipos.MostrarTipos();
+        valueMemberTipos = new String[tipos.size() + 1];
+        String filas[] = new String[3];
+        cbdefaDefault.addElement("");
+        for (var IterarDatostipos : tipos) {
+            filas[0] = String.valueOf(IterarDatostipos.getIdTipos_vuelo());
+            filas[1] = IterarDatostipos.getTipo();
+            valueMemberTipos[contadorTipos] = filas[0];
+            cbdefaDefault.addElement(filas[1]);
+            contadorTipos++;
+        }
+        cbTipo.setModel(cbdefaDefault);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,6 +182,9 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbVuelos = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 102, 255));
 
@@ -203,6 +251,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel2.setText("Destino:");
 
         txtHora.setBackground(new java.awt.Color(0, 0, 0));
+        txtHora.setForeground(new java.awt.Color(255, 255, 255));
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -295,6 +344,40 @@ public class PnlVuelos extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Registrar Vuelo", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+
+        tbVuelos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbVuelos);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Lista Vuelos", jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -308,7 +391,17 @@ public class PnlVuelos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
+        ClsVuelo vuelos = new ClsVuelo();
+        Itinerario itinerario = new Itinerario();
+        Vuelo vuelo = new Vuelo();
+        vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
+        vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
+        vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
+        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
+        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
+        itinerario.setFecha(jdcFecha.getDate());
+        itinerario.setHora(txtHora.getText());
+        vuelos.AgregarVuelo(vuelo, itinerario);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -328,8 +421,11 @@ public class PnlVuelos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private com.toedter.calendar.JDateChooser jdcFecha;
+    private javax.swing.JTable tbVuelos;
     private javax.swing.JTextField txtHora;
     // End of variables declaration//GEN-END:variables
 }

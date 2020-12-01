@@ -32,7 +32,7 @@ public class ClsTiposVuelo {
                 Tipos_vuelo tipo = new Tipos_vuelo();
                 tipo.setIdTipos_vuelo(rs.getInt("idTipos_vuelo"));
                 tipo.setTipo(rs.getString("Tipo"));
-                tipo.setPorcentajeDesc(rs.getInt("PorcentajeDesc"));
+                tipo.setPorcentajeDesc(rs.getDouble("PorcentajeDesc"));
                 companies.add(tipo);
             }
             conexion.close();

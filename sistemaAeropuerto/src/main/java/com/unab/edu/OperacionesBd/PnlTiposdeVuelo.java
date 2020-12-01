@@ -21,17 +21,18 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
      */
     public PnlTiposdeVuelo() {
         initComponents();
+        CargarTabla();
     }
     void CargarTabla() {
-        String Titulos[] = {"ID", "Nombre"};
+        String Titulos[] = {"Id", "Tipo de Vuelo"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsTiposVuelo clsTipos = new ClsTiposVuelo();
-        ArrayList<Tipos_vuelo> Companies = clsTipos.MostrarTipos();
+        ArrayList<Tipos_vuelo> tipos = clsTipos.MostrarTipos();
         String filas[] = new String[4];
-        for (var IterarCom : Companies) {
-            filas[0] = String.valueOf(IterarCom.getIdTipos_vuelo());
-            filas[1] = IterarCom.getTipo();
-            filas[2] = String.valueOf(IterarCom.getPorcentajeDesc());
+        for (var IterarTipo : tipos) {
+            filas[0] = String.valueOf(IterarTipo.getIdTipos_vuelo());
+            filas[1] = IterarTipo.getTipo();
+            filas[2] = String.valueOf(IterarTipo.getPorcentajeDesc());
             ModeloT.addRow(filas);
         }
         tbTipos.setModel(ModeloT);
@@ -78,12 +79,14 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         jLabel2.setText("Id:");
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
+        txtId.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo:");
 
         txtTipo.setBackground(new java.awt.Color(0, 0, 0));
+        txtTipo.setForeground(new java.awt.Color(255, 255, 255));
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -116,6 +119,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         });
 
         txtDescuento.setBackground(new java.awt.Color(0, 0, 0));
+        txtDescuento.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,7 +179,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
                 .addContainerGap(154, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Registro Compañias", jPanel1);
+        jTabbedPane1.addTab("Registro Tipos de Vuelo", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -209,7 +213,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lista Compañias", jPanel2);
+        jTabbedPane1.addTab("Lista Tipos de Vuelo", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

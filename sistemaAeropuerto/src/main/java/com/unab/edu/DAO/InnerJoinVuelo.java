@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.unab.edu.Entidades;
+package com.unab.edu.DAO;
 
 import lombok.Data;
 
 /**
  *
- * @author Milton
+ *
  */
 @Data
-public class Vuelo {
-    private int idVuelo;
-    private int idCompany;
-    private int idIterinario;
-    private int idAvion;
-    private int idTiposVuelo;
+public class InnerJoinVuelo {
+    int Vuelo;
+    String Company;
+    String AeropuertoO;
+    String AeropuertoD;
+    String Modelo;
+    String Tipo;
 }
