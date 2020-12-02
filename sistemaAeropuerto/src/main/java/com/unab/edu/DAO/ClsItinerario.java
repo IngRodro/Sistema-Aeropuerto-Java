@@ -24,11 +24,10 @@ public class ClsItinerario {
     
     public void AgregarItinerario(Itinerario Iti){
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?)");
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
             Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
-            Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
-            Statement.setString("PHora", Iti.getHora());
+            Statement.setDate("Pfechayhora", new java.sql.Date(Iti.getFechayhora().getTime()));
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
@@ -48,12 +47,11 @@ public class ClsItinerario {
     }
     public void ActualizarItinerario(Itinerario Iti) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?)");
             Statement.setInt("PidItinerario", Iti.getIdItinerario());
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
             Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
-            Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
-            Statement.setString("PHora", Iti.getHora());
+            Statement.setDate("Pfechayhora", new java.sql.Date(Iti.getFechayhora().getTime()));
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {

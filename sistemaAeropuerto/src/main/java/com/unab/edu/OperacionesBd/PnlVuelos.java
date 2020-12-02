@@ -180,7 +180,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cbTipo = new javax.swing.JComboBox<>();
         cbOrigen = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbDestino = new javax.swing.JComboBox<>();
@@ -190,7 +189,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtVuelo = new javax.swing.JTextField();
@@ -205,7 +203,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         cbCompany.setBackground(new java.awt.Color(0, 0, 0));
         cbCompany.setForeground(new java.awt.Color(255, 255, 255));
         cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCompany.setBorder(null);
         cbCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
@@ -215,20 +212,15 @@ public class PnlVuelos extends javax.swing.JPanel {
         cbTipo.setBackground(new java.awt.Color(0, 0, 0));
         cbTipo.setForeground(new java.awt.Color(255, 255, 255));
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbTipo.setBorder(null);
         cbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         cbOrigen.setBackground(new java.awt.Color(0, 0, 0));
         cbOrigen.setForeground(new java.awt.Color(255, 255, 255));
         cbOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Hora:");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Fecha:");
+        jLabel7.setText("Fecha/Hora:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -245,10 +237,10 @@ public class PnlVuelos extends javax.swing.JPanel {
         cbAvion.setBackground(new java.awt.Color(0, 0, 0));
         cbAvion.setForeground(new java.awt.Color(255, 255, 255));
         cbAvion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbAvion.setBorder(null);
         cbAvion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jdcFecha.setBackground(new java.awt.Color(0, 0, 0));
+        jdcFecha.setDateFormatString("yyyy/MM/dd HH:mm:ss");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,9 +253,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Destino:");
-
-        txtHora.setBackground(new java.awt.Color(0, 0, 0));
-        txtHora.setForeground(new java.awt.Color(255, 255, 255));
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -293,14 +282,12 @@ public class PnlVuelos extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
+                            .addComponent(jLabel7))
+                        .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jdcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                             .addComponent(cbDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +319,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -363,11 +350,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(66, 66, 66)
                 .addComponent(btnGuardar)
                 .addGap(12, 12, 12))
         );
@@ -435,7 +418,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
         itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
         itinerario.setFecha(jdcFecha.getDate());
-        itinerario.setHora(txtHora.getText());
         vuelos.AgregarVuelo(vuelo, itinerario);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -485,7 +467,6 @@ public class PnlVuelos extends javax.swing.JPanel {
             Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
             jdcFecha.setDate(null);
         }
-        txtHora.setText(String.valueOf(itinerario.getHora()));
         
     }//GEN-LAST:event_tbVuelosMouseClicked
 
@@ -504,7 +485,6 @@ public class PnlVuelos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -512,7 +492,6 @@ public class PnlVuelos extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTabbedPane tbPVuelos;
     private javax.swing.JTable tbVuelos;
-    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtVuelo;
     // End of variables declaration//GEN-END:variables
 }
