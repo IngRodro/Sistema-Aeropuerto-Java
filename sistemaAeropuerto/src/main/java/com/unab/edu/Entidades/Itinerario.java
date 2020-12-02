@@ -5,6 +5,7 @@
  */
 package com.unab.edu.Entidades;
 
+import java.sql.Time;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,5 +22,6 @@ public class Itinerario {
     private int idAeropuertoOrigen;
     private int idEscala;
     private Date fecha;
-    private String Hora;
+    private String hora;
+    private String minutos;
 }

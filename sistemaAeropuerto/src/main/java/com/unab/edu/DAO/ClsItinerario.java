@@ -11,6 +11,7 @@ import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Time;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,10 +25,12 @@ public class ClsItinerario {
     
     public void AgregarItinerario(Itinerario Iti){
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?,?,?)");
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
-            Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
-            Statement.setDate("Pfechayhora", new java.sql.Date(Iti.getFechayhora().getTime()));
+            Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());  
+            Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
+            Statement.setString("Phora", Iti.getHora());
+            Statement.setString("Pminutos", Iti.getMinutos());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
@@ -47,11 +50,13 @@ public class ClsItinerario {
     }
     public void ActualizarItinerario(Itinerario Iti) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?,?)");
             Statement.setInt("PidItinerario", Iti.getIdItinerario());
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
             Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
-            Statement.setDate("Pfechayhora", new java.sql.Date(Iti.getFechayhora().getTime()));
+            Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
+            Statement.setString("Phora", Iti.getHora());
+            Statement.setString("Pminutos", Iti.getMinutos());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
@@ -69,7 +74,8 @@ public class ClsItinerario {
                 itinerario.setIdAeropuertoDestino(resultadoDeConsulta.getInt("idAeropuertoDestino"));
                 itinerario.setIdAeropuertoOrigen(resultadoDeConsulta.getInt("idAeropuertoOrigen"));
                 itinerario.setFecha(resultadoDeConsulta.getDate("fecha"));
-                itinerario.setFecha(resultadoDeConsulta.getTime("hora"));
+                itinerario.setHora(resultadoDeConsulta.getString("hora"));
+                itinerario.setMinutos(resultadoDeConsulta.getString("minutos"));
             }
         
             conexion.close();

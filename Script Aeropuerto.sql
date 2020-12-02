@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`aeropuerto` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAeropuerto`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`avion` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAvion`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -72,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`company` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idCompany`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -85,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`itinerario` (
   `idAeropuertoDestino` INT NULL DEFAULT NULL,
   `idAeropuertoOrigen` INT NULL DEFAULT NULL,
   `fecha` DATE NULL DEFAULT NULL,
-  `hora` TIME NULL DEFAULT NULL,
+  `hora` VARCHAR(3) NULL DEFAULT NULL,
+  `minutos` VARCHAR(3) NULL DEFAULT NULL,
   PRIMARY KEY (`idItinerario`),
   INDEX `FK_Iterinario_Aeropuerto_O_idx` (`idAeropuertoOrigen` ASC) VISIBLE,
   INDEX `FK_Iterinario_Aeropuerto_D_idx` (`idAeropuertoDestino` ASC) VISIBLE,
@@ -96,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`itinerario` (
     FOREIGN KEY (`idAeropuertoOrigen`)
     REFERENCES `sistemaaeropuerto`.`aeropuerto` (`idAeropuerto`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -168,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`tipos_vuelo` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipos_vuelo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -199,6 +204,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`vuelo` (
     FOREIGN KEY (`idTiposvuelo`)
     REFERENCES `sistemaaeropuerto`.`tipos_vuelo` (`idTipos_vuelo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -404,10 +410,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_Itinerario`(
 PidAeropuertoDestino int(11),
 PidAeropuertoOrigen int(11),
 Pfecha date,
-PHora time
+Phora varchar(3),
+Pminutos varchar(3)
 )
 BEGIN
-INSERT INTO iterinario(idAeropuertoDestino,idAeropuertoOrigen,fecha,hora) value(PidAeropuertoDestino,PidAeropuertoOrigen,Pfecha,PHora);
+INSERT INTO itinerario(idAeropuertoDestino,idAeropuertoOrigen,fecha, hora, minutos) value(PidAeropuertoDestino,PidAeropuertoOrigen,Pfecha, Phora, Pminutos);
 END$$
 
 DELIMITER ;
@@ -441,6 +448,47 @@ pPassword varchar(45)
 )
 BEGIN
 INSERT INTO usuarios(nombreUsuario,nombres,apellidos,edad,telefono,Password) values (pNombreUsuario,pNombres,pApellidos,pEdad,pTelefono,sha2(pPassword,512));
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_I_Vuelos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_Vuelos`(PidCompany int, PidAvion int, PidTiposvuelo int)
+BEGIN
+	Declare PItinerio int;
+    Set @PIterinario = (Select max(idItinerario) FROM itinerario);
+	INSERT INTO vuelo(idCompany, idItinerario, idAvion, idTiposvuelo) values (PidCompany,@PIterinario,PidAvion,PidTiposvuelo);
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_1Itinerario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Itinerario`(PidItinerario int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.itinerario where idItinerario = PidItinerario;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_1Vuelo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Vuelo`(PidVuelo int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.vuelo where idVuelo = PidVuelo;
 END$$
 
 DELIMITER ;
@@ -549,7 +597,7 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Vuelos`()
 BEGIN
-	SELECT vuelo.idVuelo Vuelo, company.nombre Compañia, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, avion.modelo Modelo_Avion, TV.Tipo Tipo_de_Vuelo
+	SELECT vuelo.idVuelo Vuelo, company.nombre Compania, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, avion.modelo Modelo_Avion, TV.Tipo Tipo_de_Vuelo
 	FROM sistemaaeropuerto.vuelo 
 	INNER JOIN company ON vuelo.idCompany = company.idCompany 
 	INNER JOIN itinerario ON vuelo.idItinerario = itinerario.idItinerario  
@@ -617,10 +665,11 @@ PidItinerario int(11),
 PidAeropuertoDestino int(11),
 PidAeropuertoOrigen int(11),
 Pfecha date,
-PHora time
+Phora varchar(3),
+Pminutos varchar(3)
 )
 BEGIN
-	Update iterinario set idAeropuertoDestino = PidAeropuertoDestino, idAeropuertoOrigen = PidAeropuertoOrigen, fecha = Pfecha, hora = PHora where idIterinario = PidItinerario;
+	Update iterinario set idAeropuertoDestino = PidAeropuertoDestino, idAeropuertoOrigen = PidAeropuertoOrigen, fecha = Pfecha, hora = Phora, minutos = Pminutos where idIterinario = PidItinerario;
 END$$
 
 DELIMITER ;

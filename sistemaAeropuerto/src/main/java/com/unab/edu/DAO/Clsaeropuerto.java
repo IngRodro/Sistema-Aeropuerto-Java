@@ -55,9 +55,9 @@ public class Clsaeropuerto {
                 }
             } else {
                 CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?,?)");
-                Statement.setString("Anombre", Aero.getNombre());
-                Statement.setString("Apais", Aero.getPais());
-                Statement.setString("Aciudad", Aero.getCiudad());
+                Statement.setString("Pnombre", Aero.getNombre());
+                Statement.setString("Ppais", Aero.getPais());
+                Statement.setString("Pciudad", Aero.getCiudad());
                 JOptionPane.showMessageDialog(null, "Guardado");
                 conexion.close();
             }
@@ -69,10 +69,10 @@ public class Clsaeropuerto {
     public void ActualizarAeropuerto(Aeropuerto Aero) {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Aeropuerto(?,?,?,?,?)");
-            Statement.setInt("AidAeropuerto", Aero.getIdAeropuerto());
-            Statement.setString("Anombre", Aero.getNombre());
-            Statement.setString("Apais", Aero.getPais());
-            Statement.setString("Aciudad", Aero.getCiudad());
+            Statement.setInt("PidAeropuerto", Aero.getIdAeropuerto());
+            Statement.setString("Pnombre", Aero.getNombre());
+            Statement.setString("Ppais", Aero.getPais());
+            Statement.setString("Pciudad", Aero.getCiudad());
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
@@ -83,7 +83,7 @@ public class Clsaeropuerto {
     public void BorrarAeropuerto(Aeropuerto Aero) {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Aeropuerto(?)");
-            Statement.setInt("AidAeropuerto", Aero.getIdAeropuerto());
+            Statement.setInt("PidAeropuerto", Aero.getIdAeropuerto());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Eliminado");
         } catch (Exception e) {
