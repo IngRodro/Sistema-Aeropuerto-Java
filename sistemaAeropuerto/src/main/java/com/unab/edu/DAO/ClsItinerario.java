@@ -48,10 +48,13 @@ public class ClsItinerario {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    public void ActualizarItinerario(Itinerario Iti) {
+    public void ActualizarItinerario(Itinerario Iti, Vuelo vuelo) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?,?)");
-            Statement.setInt("PidItinerario", Iti.getIdItinerario());
+            ClsVuelo clsVuelo = new ClsVuelo();
+            Vuelo vueloIti = new Vuelo();
+            vueloIti = clsVuelo.SeleccionarVuelo(vuelo.getIdVuelo());
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Itinerario(?,?,?,?,?,?)");
+            Statement.setInt("PidItinerario", vueloIti.getIdIterinario());
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
             Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
             Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));

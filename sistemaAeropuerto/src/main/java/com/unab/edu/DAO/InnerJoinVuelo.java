@@ -5,6 +5,7 @@
  */
 package com.unab.edu.DAO;
 
+import java.util.Date;
 import lombok.Data;
 
 /**
@@ -19,4 +20,7 @@ public class InnerJoinVuelo {
     String AeropuertoD;
     String Modelo;
     String Tipo;
+    Date Fecha;
+    String hora;
+    String minutos;
 }

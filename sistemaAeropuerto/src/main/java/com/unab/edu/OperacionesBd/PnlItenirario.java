@@ -241,7 +241,6 @@ public class PnlItenirario extends javax.swing.JPanel {
         itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMember[cbDestino.getSelectedIndex()]));
         itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMember2[cbOrigen.getSelectedIndex()]));
         itinerario.setFecha(jdcFecha.getDate());
-        itinerarios.ActualizarItinerario(itinerario);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

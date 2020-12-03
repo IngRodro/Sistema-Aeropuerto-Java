@@ -24,7 +24,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         CargarTabla();
     }
     void CargarTabla() {
-        String Titulos[] = {"Id", "Tipo de Vuelo"};
+        String Titulos[] = {"Id", "Tipo de Vuelo", "Descuento"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsTiposVuelo clsTipos = new ClsTiposVuelo();
         ArrayList<Tipos_vuelo> tipos = clsTipos.MostrarTipos();
