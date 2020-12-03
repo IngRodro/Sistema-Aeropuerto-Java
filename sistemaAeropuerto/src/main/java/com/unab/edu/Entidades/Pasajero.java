@@ -5,10 +5,13 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author Milton
  */
+@Data
 public class Pasajero {
     private int idPasajero;
     private String nombres;
