@@ -5,17 +5,20 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author Milton
  */
+@Data
 public class Clases {
     private int idClase;
     private String nombreClase;
     private int nAsientos;
     private int nAsientosDisponibles;
     private int idAvion;
-    private int porcentajedelPrecio;
+    private int porcentajeEPrecio;
     
     
 }

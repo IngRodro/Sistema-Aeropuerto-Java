@@ -6,17 +6,19 @@
 package com.unab.edu.Entidades;
 
 import java.util.Date;
+import lombok.Data;
 
 /**
  *
  * @author Milton
  */
-public class Promociones_Vuelos {
+@Data
+public class Promociones {
     
-    private int idPromociones_Vuelos;
-    private Date FechaInicioPromo;
-    private Date FechaFinalPromo;
-    private float Descuento;
+    private int idPromociones;
+    private Date FechaInicio;
+    private Date FechaFinal;
+    private Double Descuento;
     private int idVuelo;
     
             

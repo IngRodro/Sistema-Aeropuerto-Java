@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.Entidades.Itinerario;
+import com.unab.edu.Entidades.Promociones;
 import java.sql.Date;
 /**
  *
@@ -39,6 +40,7 @@ public class ClsVuelo {
                 InJoin.setFecha(resultadoDeConsulta.getDate("Fecha"));
                 InJoin.setHora(resultadoDeConsulta.getString("Hora"));
                 InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
+                InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
                 Vuelos.add(InJoin);
             }
             conexion.close();
@@ -48,15 +50,17 @@ public class ClsVuelo {
         return Vuelos;
     }
     
-    public void AgregarVuelo(Vuelo vuelo, Itinerario itine){
+    public void AgregarVuelo(Vuelo vuelo, Itinerario itine, Promociones promo){
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
+            ClsPromocion clsPromo = new ClsPromocion();
             clsItinerario.AgregarItinerario(itine);
             CallableStatement Statement = conexion.prepareCall("call SP_I_Vuelos(?,?,?)");
             Statement.setInt("PidCompany", vuelo.getIdCompany());
             Statement.setInt("PidAvion", vuelo.getIdAvion());
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.execute();
+            clsPromo.AgregarPromo(promo);
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
@@ -95,7 +99,7 @@ public class ClsVuelo {
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.setInt("PidVuelo", vuelo.getIdVuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
+            JOptionPane.showMessageDialog(null, "Actualizado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

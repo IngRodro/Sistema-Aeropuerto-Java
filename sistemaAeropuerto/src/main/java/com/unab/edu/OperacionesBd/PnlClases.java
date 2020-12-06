@@ -5,69 +5,41 @@
  */
 package com.unab.edu.OperacionesBd;
 
-import com.unab.edu.DAO.ClsCompany;
-import com.unab.edu.DAO.ClsEscala;
-import com.unab.edu.DAO.ClsVuelo;
-import com.unab.edu.DAO.Clsaeropuerto;
-import com.unab.edu.DAO.InnerJoinVuelo;
-import com.unab.edu.Entidades.Aeropuerto;
-import com.unab.edu.Entidades.Escala;
+import com.unab.edu.DAO.ClsClase;
+import com.unab.edu.Entidades.Clases;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * 
+ * @author Usuario
  */
-public class PnlEscala extends javax.swing.JPanel {
+public class PnlClases extends javax.swing.JPanel {
 
     /**
-     * Creates new form PnlEscala
+     * Creates new form PnlClases
      */
-    public PnlEscala() {
+    public PnlClases() {
         initComponents();
-        DisplayMemberAero();
         CargarTabla();
     }
-    
-    String valueMemberAero[];
-    int contadorAero = 1;
-    
-    void DisplayMemberAero() {
-        DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
-        Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
-        ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
-        valueMemberAero = new String[aeropuertos.size() + 1];
-        String filas[] = new String[3];
-        cbdefaDefault.addElement("");
-        for (var IterarDatosAeropuerto : aeropuertos) {
-            filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
-            filas[1] = IterarDatosAeropuerto.getNombre();
-            valueMemberAero[contadorAero] = filas[0];
-            cbdefaDefault.addElement(filas[1]);
-            contadorAero++;
-        }
-        cbAeropuerto.setModel(cbdefaDefault);
-    }
-    
+
     void CargarTabla() {
-        String Titulos[] = {"Id", "Numero Escala", "Aeropuerto", "N Pasajeros Suben", "N Pasajeros Bajan", "Precio"};
+        String Titulos[] = {"Id", "Clase", "N Asientos", "Porcentaje Extra de Precio"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
-        ClsEscala clsEscala = new ClsEscala();
-        ArrayList<Escala> Escalas = clsEscala.MostrarEscala();
-        String filas[] = new String[7];
-        for (var IterarEscala : Escalas) {
-            filas[0] = String.valueOf(IterarEscala.getIdEscala());
-            filas[1] = String.valueOf(IterarEscala.getNumeroEscala());
-            filas[2] = String.valueOf(IterarEscala.getIdAerouerto());
-            filas[3] = String.valueOf(IterarEscala.getNPasajerosSuben());
-            filas[4] = String.valueOf(IterarEscala.getNpasajerosBajan());
-            filas[5] = String.valueOf(IterarEscala.getPrecio());
+        ClsClase ClsClase = new ClsClase();
+        ArrayList<Clases> clases = ClsClase.MostrarClase();
+        String filas[] = new String[5];
+        for (var IterarClase : clases) {
+            filas[0] = String.valueOf(IterarClase.getIdClase());
+            filas[1] = String.valueOf(IterarClase.getNombreClase());
+            filas[2] = String.valueOf(IterarClase.getNAsientos());
+            filas[3] = String.valueOf(IterarClase.getPorcentajeEPrecio());
             ModeloT.addRow(filas);
         }
-        tbEscalas.setModel(ModeloT);
+        tbClase.setModel(ModeloT);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,46 +49,41 @@ public class PnlEscala extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        TbPClase = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        cbAeropuerto = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
+        txtExtra = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        txtAsientos = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbEscalas = new javax.swing.JTable();
+        tbClase = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 102, 255));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 204));
-        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+        TbPClase.setBackground(new java.awt.Color(0, 153, 204));
+        TbPClase.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Aeropuerto:");
-
-        cbAeropuerto.setBackground(new java.awt.Color(0, 0, 0));
-        cbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Precio:");
+        jLabel7.setText("Porcentaje Extra:");
 
-        txtPrecio.setBackground(new java.awt.Color(0, 0, 0));
+        txtExtra.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Id:");
+        jLabel8.setText("Nombre:");
 
-        txtId.setBackground(new java.awt.Color(0, 0, 0));
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0));
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -127,6 +94,12 @@ public class PnlEscala extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
+
+        txtAsientos.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("N Asientos:");
 
         btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -148,6 +121,12 @@ public class PnlEscala extends javax.swing.JPanel {
             }
         });
 
+        txtId.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Id:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,52 +135,61 @@ public class PnlEscala extends javax.swing.JPanel {
                 .addGap(71, 71, 71)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecio)
-                            .addComponent(cbAeropuerto, 0, 515, Short.MAX_VALUE)
-                            .addComponent(txtId))
-                        .addGap(79, 79, 79))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(txtId))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(196, 196, 196)
+                        .addGap(183, 183, 183)
                         .addComponent(btnActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)
-                        .addGap(57, 57, 57))))
+                        .addComponent(btnEliminar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(txtNombre))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(36, 36, 36)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(txtAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(116, 116, 116)
+                .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar))
-                .addGap(45, 45, 45))
+                .addGap(33, 33, 33))
         );
 
-        jTabbedPane1.addTab("Registro Escala", jPanel1);
+        TbPClase.addTab("Registro Clases", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
-        tbEscalas.setModel(new javax.swing.table.DefaultTableModel(
+        tbClase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -212,7 +200,12 @@ public class PnlEscala extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbEscalas);
+        tbClase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbClaseMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbClase);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -231,7 +224,7 @@ public class PnlEscala extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lista Escala", jPanel2);
+        TbPClase.addTab("Lista Clases", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -239,54 +232,74 @@ public class PnlEscala extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TbPClase, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TbPClase, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClsEscala clsescala = new ClsEscala();
-        Escala escala = new Escala();
-        escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
-        escala.setIdAerouerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
-        clsescala.AgregarEscala(escala);
+        ClsClase clsClase = new ClsClase();
+        Clases clase = new Clases();
+        clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
+        clase.setNombreClase(txtNombre.getText());
+        clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
+        clsClase.AgregarClase(clase);
+        CargarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ClsEscala clsescala = new ClsEscala();
-        Escala escala = new Escala();
-        escala.setIdEscala(Integer.parseInt(txtId.getText()));
-        escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
-        escala.setIdAerouerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
-        clsescala.ActualizarEscala(escala);
+        ClsClase clsClase = new ClsClase();
+        Clases clase = new Clases();
+        clase.setIdClase(Integer.parseInt(txtId.getText()));
+        clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
+        clase.setNombreClase(txtNombre.getText());
+        clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
+        clsClase.ActualizarClase(clase);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void tbClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClaseMouseClicked
+        TbPClase.setSelectedIndex(TbPClase.indexOfComponent(jPanel1));
+        int fila = tbClase.getSelectedRow();
+
+        String ID = String.valueOf(tbClase.getValueAt(fila, 0));
+        String Clase = String.valueOf(tbClase.getValueAt(fila, 1));
+        String Asientos = String.valueOf(tbClase.getValueAt(fila, 2));
+        String Porcentaje = String.valueOf(tbClase.getValueAt(fila, 3));
+        txtId.setText(ID);
+        txtNombre.setText(Clase);
+        txtAsientos.setText(Asientos);
+        txtAsientos.setText(Porcentaje);
+    }//GEN-LAST:event_tbClaseMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane TbPClase;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cbAeropuerto;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable tbEscalas;
+    private javax.swing.JTable tbClase;
+    private javax.swing.JTextField txtAsientos;
+    private javax.swing.JTextField txtExtra;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
 }

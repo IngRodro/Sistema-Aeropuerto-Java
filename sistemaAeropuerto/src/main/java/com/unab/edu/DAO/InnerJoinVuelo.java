@@ -23,4 +23,5 @@ public class InnerJoinVuelo {
     Date Fecha;
     String hora;
     String minutos;
+    Double Descuento;
 }

@@ -5,10 +5,13 @@
  */
 package com.unab.edu.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author Milton
  */
+@Data
 public class Escala {
     private int idEscala;
     private int numeroEscala;
@@ -16,4 +19,5 @@ public class Escala {
     private int nPasajerosSuben;
     private int npasajerosBajan;
     private int idItinerario;
+    private double Precio;
 }

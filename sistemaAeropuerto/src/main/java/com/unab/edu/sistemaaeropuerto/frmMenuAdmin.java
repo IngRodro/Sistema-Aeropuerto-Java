@@ -7,7 +7,9 @@ package com.unab.edu.sistemaaeropuerto;
 
 import com.unab.edu.OperacionesBd.PnlAeropuerto;
 import com.unab.edu.OperacionesBd.PnlAvion;
+import com.unab.edu.OperacionesBd.PnlClases;
 import com.unab.edu.OperacionesBd.PnlCompania;
+import com.unab.edu.OperacionesBd.PnlEscala;
 import com.unab.edu.OperacionesBd.PnlItenirario;
 import com.unab.edu.OperacionesBd.PnlPasajero;
 import com.unab.edu.OperacionesBd.PnlTiposdeVuelo;
@@ -38,7 +40,11 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     PnlVuelos frmVuelo = new PnlVuelos();
     PnlTiposdeVuelo frmTipos = new PnlTiposdeVuelo();
     PnlPasajero frmPasa = new PnlPasajero();
-
+    PnlEscala frmEscala = new PnlEscala();
+    PnlClases frmClase = new PnlClases();
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +62,8 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTipos = new javax.swing.JButton();
         bttnPasajeros = new javax.swing.JButton();
+        btnEscala = new javax.swing.JButton();
+        btnVuelo = new javax.swing.JButton();
         PnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +128,25 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnEscala.setBackground(new java.awt.Color(51, 102, 255));
+        btnEscala.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEscala.setText("Escalas");
+        btnEscala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscalaActionPerformed(evt);
+            }
+        });
+
+        btnVuelo.setBackground(new java.awt.Color(51, 102, 255));
+        btnVuelo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVuelo.setText("Clase");
+        btnVuelo.setToolTipText("");
+        btnVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVueloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -134,6 +161,12 @@ public class frmMenuAdmin extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
             .addComponent(btnTipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(bttnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEscala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVuelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +185,11 @@ public class frmMenuAdmin extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bttnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEscala, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
@@ -200,6 +237,14 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         CmPanel.ModificarPanel(PnlContenedor, frmPasa);
     }//GEN-LAST:event_bttnPasajerosActionPerformed
 
+    private void btnEscalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalaActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmEscala);
+    }//GEN-LAST:event_btnEscalaActionPerformed
+
+    private void btnVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVueloActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmClase);
+    }//GEN-LAST:event_btnVueloActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,7 +283,9 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlContenedor;
     private javax.swing.JButton btnCompania;
+    private javax.swing.JButton btnEscala;
     private javax.swing.JButton btnTipos;
+    private javax.swing.JButton btnVuelo;
     private javax.swing.JButton bttnPasajeros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
