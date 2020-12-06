@@ -531,7 +531,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         if (a[0] == ' ' || a[1] == ' ' || a[2] == ' ' || a[3] == ' ' || a[4] == ' ' || Integer.parseInt(Horas) > 24 || Integer.parseInt(Minutos) > 59) {
             JOptionPane.showMessageDialog(null, "Introduzca la Hora correctamente");
         } else {
-            JOptionPane.showMessageDialog(null, Horas);
             itinerario.setHora(Horas);
             itinerario.setMinutos(Minutos);
         }
@@ -555,6 +554,7 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     private void tbVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVuelosMouseClicked
 
+        
         Vuelo vuelo = new Vuelo();
         Itinerario itinerario = new Itinerario();
         ClsVuelo clsVuelo = new ClsVuelo();
@@ -619,7 +619,8 @@ public class PnlVuelos extends javax.swing.JPanel {
         Date castfechaI = new Date();
         String FechaI = formato.format(promo.getFechaInicio());
         try {
-            castfecha = formato.parse(FechaI);
+            JOptionPane.showMessageDialog(null, promo.getFechaInicio());
+            castfechaI = formato.parse(FechaI);
             jdcFechaI.setDate(castfechaI);
         } catch (ParseException ex) {
             Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
@@ -633,7 +634,8 @@ public class PnlVuelos extends javax.swing.JPanel {
         Date castfechaF = new Date();
         String FechaF = formato.format(promo.getFechaFinal());
         try {
-            castfecha = formato.parse(FechaF);
+            JOptionPane.showMessageDialog(null, promo.getFechaFinal());
+            castfechaF = formato.parse(FechaF);
             jdcFechaF.setDate(castfechaF);
         } catch (ParseException ex) {
             Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
