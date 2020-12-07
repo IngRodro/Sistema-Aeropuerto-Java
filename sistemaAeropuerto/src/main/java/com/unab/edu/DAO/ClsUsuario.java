@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ClsUsuario {
-    
+
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
 
-  public boolean LoguinUser(String usuario, String Pass) {
+    public boolean LoguinUser(String usuario, String Pass) {
         ArrayList<Usuario> ListaUser = new ArrayList<>();
         ArrayList<Usuario> ListarContra = new ArrayList<>();
         try {
@@ -63,37 +63,53 @@ public class ClsUsuario {
                 Pass = passcrip;
 
             }
-           
-            
-            if(usuariodebasedatos!=null &&passdebasededatos!=null ){
-            if (usuariodebasedatos.equals(usuario) && passdebasededatos.equals(Pass)) {
-                return true;
-            }
+
+            if (usuariodebasedatos != null && passdebasededatos != null) {
+                if (usuariodebasedatos.equals(usuario) && passdebasededatos.equals(Pass)) {
+                    return true;
+                }
             }
             conexion.close();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return false;
-   }
-    
-  
-  public void AgregarUsuario(Usuario user) {
+    }
+
+    public void AgregarUsuario(Usuario user) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Usuario(?,?,?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_I_Usuario(?,?,?,?,?,?,?)");
             Statement.setString("pNombreUsuario", user.getNombreUsuario());
             Statement.setString("pNombres", user.getNombres());
             Statement.setString("pApellidos", user.getApellidos());
             Statement.setString("pTelefono", user.getTelefono());
             Statement.setInt("pEdad", user.getEdad());
             Statement.setString("pPassword", user.getPassword());
+            Statement.setInt("pTipoUser", user.getTipoUser());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Usuario Registrado con Exito");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+
+    }
+
+    public int TipoUser(String usuario) {
+        int Tipo;
+        Usuario user = new Usuario();
+        try {
+            CallableStatement Statement = conexion.prepareCall("Call SP_S_1Usuario(?)");
+            Statement.setString("PnombreUsuario", usuario);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+            user.setTipoUser(rs.getInt("TipoUsuario"));
+            }
+        } catch (Exception e) {
+        }
+        Tipo = user.getTipoUser();
+        return Tipo;
 
     }
 }

@@ -12,10 +12,9 @@ import lombok.Data;
  * @author Milton
  */
 @Data
-public class Escala {
+public class Escala extends Aeropuerto{
     private int idEscala;
     private int numeroEscala;
-    private int idAerouerto;
     private int nPasajerosSuben;
     private int npasajerosBajan;
     private int idItinerario;

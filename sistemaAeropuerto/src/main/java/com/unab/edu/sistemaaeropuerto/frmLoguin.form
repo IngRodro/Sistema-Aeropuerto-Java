@@ -76,9 +76,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel4" pref="344" max="32767" attributes="0"/>
+                              <Component id="jPanel4" pref="356" max="32767" attributes="0"/>
                               <Component id="txtUser" max="32767" attributes="0"/>
-                              <Component id="jPanel3" alignment="0" pref="344" max="32767" attributes="0"/>
+                              <Component id="jPanel3" alignment="0" pref="356" max="32767" attributes="0"/>
                               <Component id="txtPass" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -102,7 +102,7 @@
                       </Group>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="txtUser" min="-2" max="-2" attributes="0"/>

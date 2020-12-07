@@ -28,9 +28,10 @@ public class frmMenuAdmin extends javax.swing.JFrame {
      */
     public frmMenuAdmin() {
         initComponents();
-        Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((pantallaTamano.width / 2) - (this.getWidth() / 4), (pantallaTamano.height / 2) - (this.getHeight() / 2));
+        this.setLocationRelativeTo(null); 
     }
+    
+    public frmMenuAdmin menuAdmin;
 
     CambioPanel CmPanel = new CambioPanel();
     PnlAeropuerto frmAeropuerto = new PnlAeropuerto();
@@ -62,7 +63,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTipos = new javax.swing.JButton();
         bttnPasajeros = new javax.swing.JButton();
-        btnEscala = new javax.swing.JButton();
         btnVuelo = new javax.swing.JButton();
         PnlContenedor = new javax.swing.JPanel();
 
@@ -128,15 +128,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        btnEscala.setBackground(new java.awt.Color(51, 102, 255));
-        btnEscala.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEscala.setText("Escalas");
-        btnEscala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEscalaActionPerformed(evt);
-            }
-        });
-
         btnVuelo.setBackground(new java.awt.Color(51, 102, 255));
         btnVuelo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnVuelo.setText("Clase");
@@ -163,9 +154,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             .addComponent(bttnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEscala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVuelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
@@ -185,9 +174,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bttnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEscala, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addComponent(btnVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(264, Short.MAX_VALUE))
         );
@@ -227,6 +214,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmVuelo);
+        frmVuelo.menuAdmin = this.menuAdmin;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposActionPerformed
@@ -236,10 +224,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     private void bttnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajerosActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmPasa);
     }//GEN-LAST:event_bttnPasajerosActionPerformed
-
-    private void btnEscalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalaActionPerformed
-        CmPanel.ModificarPanel(PnlContenedor, frmEscala);
-    }//GEN-LAST:event_btnEscalaActionPerformed
 
     private void btnVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVueloActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmClase);
@@ -281,9 +265,8 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PnlContenedor;
+    public javax.swing.JPanel PnlContenedor;
     private javax.swing.JButton btnCompania;
-    private javax.swing.JButton btnEscala;
     private javax.swing.JButton btnTipos;
     private javax.swing.JButton btnVuelo;
     private javax.swing.JButton bttnPasajeros;

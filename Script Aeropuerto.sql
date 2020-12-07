@@ -114,19 +114,19 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`escala` (
   `idAeropuerto` INT NULL DEFAULT NULL,
   `nPasajerosSuben` INT NULL DEFAULT NULL,
   `nPasajerosBajan` INT NULL DEFAULT NULL,
-  `idIterinario` INT NULL DEFAULT NULL,
+  `idItinerario` INT NULL DEFAULT NULL,
   `Precio` FLOAT NULL DEFAULT NULL,
   PRIMARY KEY (`idEscala`),
   INDEX `FK_Escala_Aeropuerto_idx` (`idAeropuerto` ASC) VISIBLE,
-  INDEX `FK_Escala_Iterinario_idx` (`idIterinario` ASC) VISIBLE,
+  INDEX `FK_Escala_Iterinario_idx` (`idItinerario` ASC) VISIBLE,
   CONSTRAINT `FK_Escala_Aeropuerto`
     FOREIGN KEY (`idAeropuerto`)
     REFERENCES `sistemaaeropuerto`.`aeropuerto` (`idAeropuerto`),
   CONSTRAINT `FK_Escala_Iterinario`
-    FOREIGN KEY (`idIterinario`)
+    FOREIGN KEY (`idItinerario`)
     REFERENCES `sistemaaeropuerto`.`itinerario` (`idItinerario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -463,7 +463,7 @@ PidiIterinario int,
 PPrecio float
 )
 BEGIN
-	Insert into escala(numeroEscala,idAeropuerto, nPasajerosSuben, nPasajerosBajan,idIterinario, Precio) values(PnumeroEscala, PidAeropuerto, 0, 0, PidiIterinario, PPrecio);
+	Insert into escala(numeroEscala,idAeropuerto, nPasajerosSuben, nPasajerosBajan,idItinerario, Precio) values(PnumeroEscala, PidAeropuerto, 0, 0, PidiIterinario, PPrecio);
 END$$
 
 DELIMITER ;
@@ -551,10 +551,11 @@ pNombres varchar(45),
 pApellidos varchar(45),
 pEdad int(11),
 pTelefono varchar(45),
-pPassword varchar(45)
+pPassword varchar(45),
+pTipoUser int
 )
 BEGIN
-INSERT INTO usuarios(nombreUsuario,nombres,apellidos,edad,telefono,Password) values (pNombreUsuario,pNombres,pApellidos,pEdad,pTelefono,sha2(pPassword,512));
+INSERT INTO usuarios(nombreUsuario,nombres,apellidos,edad,telefono,Password, TipoUsuario) values (pNombreUsuario,pNombres,pApellidos,pEdad,pTelefono,sha2(pPassword,512), pTipoUser);
 END$$
 
 DELIMITER ;
@@ -570,6 +571,19 @@ BEGIN
 	Declare PItinerio int;
     Set @PIterinario = (Select max(idItinerario) FROM itinerario);
 	INSERT INTO vuelo(idCompany, idItinerario, idAvion, idTiposvuelo) values (PidCompany,@PIterinario,PidAvion,PidTiposvuelo);
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_1Escala
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Escala`(PidEscala int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.escala where idEscala = PidEscala;
 END$$
 
 DELIMITER ;
@@ -596,6 +610,19 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Promocion`(PidVuelo int)
 BEGIN
 	SELECT * FROM sistemaaeropuerto.promocionesvuelos where idVuelo = PidVuelo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_1Usuario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Usuario`(PnombreUsuario varchar(45))
+BEGIN
+	SELECT * FROM sistemaaeropuerto.usuarios where nombreUsuario = PnombreUsuario;
 END$$
 
 DELIMITER ;
@@ -689,7 +716,11 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Escala`(PidIterinario int)
 BEGIN
-	Select * from escala where idIterinario = PidIterinario;
+	Select E.idEscala, E.numeroEscala, A.nombre, E.nPasajerosSuben, E.nPasajerosBajan, E.Precio from escala E
+    INNER JOIN aeropuerto A ON E.idAeropuerto = A.idAeropuerto
+    where E.idItinerario = PidIterinario
+    order by E.numeroEscala;
+    
 END$$
 
 DELIMITER ;
@@ -831,6 +862,19 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Company`(PNombre varchar(45), PidCompany int(11))
 BEGIN
 	Update company set nombre = PNombre where idCompany = PidCompany;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_U_Escala
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Escala`(PidAeropuerto int, PidEscala int, PPrecio double)
+BEGIN
+	Update escala set idAeropuerto = PidAeropuerto, Precio = PPrecio where idEscala = PidEscala;
 END$$
 
 DELIMITER ;

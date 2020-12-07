@@ -6,7 +6,6 @@
 
 package com.unab.edu.sistemaaeropuerto;
 
-import com.unab.edu.OperacionesBd.CRUDAeropuerto;
 
 /**
  *

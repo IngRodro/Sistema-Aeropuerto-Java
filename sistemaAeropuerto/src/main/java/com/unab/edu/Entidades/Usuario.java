@@ -19,4 +19,5 @@ public class Usuario {
     private int Edad;
     private String telefono;
     private String password;
+    private int TipoUser;
 }

@@ -20,8 +20,9 @@ public class frmLoguin extends javax.swing.JFrame {
      */
     public frmLoguin() {
         initComponents();
+        this.setLocationRelativeTo(null); 
     }
-
+    public frmMenuAdmin frmAdmin = new frmMenuAdmin();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -266,7 +267,7 @@ public class frmLoguin extends javax.swing.JFrame {
     private void lblRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseClicked
        frmCrearUsuario nuevoUsuario = new frmCrearUsuario();
        nuevoUsuario.setVisible(true);
-       this.hide();
+       this.setVisible(false);
     }//GEN-LAST:event_lblRegistrarMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -275,7 +276,13 @@ public class frmLoguin extends javax.swing.JFrame {
         String pass = txtPass.getText();
         if(claseUsuario.LoguinUser(user, pass) == true)
         {
-            JOptionPane.showMessageDialog(null, "Bienvenido");
+           if(claseUsuario.TipoUser(user)==1){
+               frmAdmin.setVisible(true);
+               this.setVisible(false);
+               frmAdmin.menuAdmin = this.frmAdmin;
+               JOptionPane.showMessageDialog(null, "Bienvenido");
+               
+           }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

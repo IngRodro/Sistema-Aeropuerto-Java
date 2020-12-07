@@ -7,6 +7,7 @@ package com.unab.edu.DAO;
 
 import com.unab.edu.Entidades.Avion;
 import com.unab.edu.Entidades.Escala;
+import com.unab.edu.Entidades.Itinerario;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -25,37 +26,38 @@ public class ClsEscala {
     Connection conexion = cn.retornarConexion();
     
     
-    public ArrayList<Escala> MostrarEscala() {
-        ArrayList<Escala> companies = new ArrayList<>();
+    public ArrayList<Escala> MostrarEscala(int idIti) {
+        ArrayList<Escala> escalas = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Escala(?)");
-            Statement.setInt("PidIterinario", 1);
+            Statement.setInt("PidIterinario", idIti);
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
                 Escala esc = new Escala();
                 esc.setIdEscala(rs.getInt("idEscala"));
                 esc.setNumeroEscala(rs.getInt("numeroEscala"));
-                esc.setIdAerouerto(rs.getInt("idAeropuerto"));
+                esc.setNombre(rs.getString("nombre"));
                 esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
                 esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
                 esc.setPrecio(rs.getDouble("Precio"));
-                companies.add(esc);
+                escalas.add(esc);
             }
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return companies;
+        return escalas;
     }
     
-    public void AgregarEscala(Escala Esc){
+    public void AgregarEscala(Escala Esc, int idIti){
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Escala(?,?,?,?)");
-            Statement.setInt("PnumeroEscala", 1);
-            Statement.setInt("PidAeropuerto", Esc.getIdAerouerto());
-            Statement.setInt("PidiIterinario", 1);
+            Statement.setInt("PnumeroEscala", Esc.getNumeroEscala());
+            Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
+            Statement.setInt("PidiIterinario", idIti);
             Statement.setDouble("PPrecio", Esc.getPrecio());
             Statement.execute();
+            JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -63,7 +65,7 @@ public class ClsEscala {
     }
     public void BorrarEscala(Escala Esc) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_D_Avion(?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_D_Escala(?)");
             Statement.setInt("PidEscala", Esc.getIdEscala());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Eliminado");
@@ -73,15 +75,36 @@ public class ClsEscala {
     }
     public void ActualizarEscala(Escala Esc) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Avion(?,?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Escala(?,?,?)");
+            JOptionPane.showMessageDialog(null, Esc.getIdEscala() + "   " + Esc.getIdAeropuerto() + "    " +  "      " + Esc.getPrecio());
             Statement.setInt("PidEscala", Esc.getIdEscala());
-            Statement.setInt("PnumeroEscala", Esc.getNumeroEscala());
-            Statement.setInt("PidAeropuerto", Esc.getIdAerouerto());
-            Statement.setInt("PidiIterinario", Esc.getIdItinerario());
+            Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
             Statement.setDouble("PPrecio", Esc.getPrecio());
+            JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    public Escala SeleccionarEscala(int idEsc) {
+        Escala esc = new Escala();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_1Escala(?)");
+            Statement.setInt("PidEscala", idEsc);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                esc.setIdEscala(rs.getInt("idEscala"));
+                esc.setNumeroEscala(rs.getInt("numeroEscala"));
+                esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
+                esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
+                esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
+                esc.setPrecio(rs.getDouble("Precio"));
+            }
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return esc;
     }
     
 }
