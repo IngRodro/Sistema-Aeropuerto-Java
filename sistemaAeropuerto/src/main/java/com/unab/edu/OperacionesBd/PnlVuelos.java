@@ -217,6 +217,8 @@ public class PnlVuelos extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(51, 102, 255));
 
+        tbPVuelos.setForeground(new java.awt.Color(255, 255, 255));
+
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
         cbCompany.setBackground(new java.awt.Color(0, 0, 0));
@@ -394,28 +396,28 @@ public class PnlVuelos extends javax.swing.JPanel {
                                                     .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(cbAvion, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(txtVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(BtnActualizar)
+                                                        .addGap(254, 254, 254)
+                                                        .addComponent(btnEscala)))))
                                         .addGap(32, 32, 32))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(319, 319, 319))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(BtnActualizar)
-                                .addGap(222, 222, 222)
-                                .addComponent(btnEscala)
-                                .addGap(81, 81, 81)))))
-                .addGap(81, 81, 81))
+                        .addGap(319, 615, Short.MAX_VALUE)))
+                .addGap(46, 46, 46))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(424, 424, 424)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -499,7 +501,7 @@ public class PnlVuelos extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,40 +524,6 @@ public class PnlVuelos extends javax.swing.JPanel {
             .addComponent(tbPVuelos)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClsVuelo vuelos = new ClsVuelo();
-        Itinerario itinerario = new Itinerario();
-        Vuelo vuelo = new Vuelo();
-        Promociones promo = new Promociones();
-        String Hora = txtHora.getText();
-        char[] a = Hora.toCharArray();
-        String[] c = Hora.split(":");
-        String Horas = c[0];
-        String Minutos = c[1];
-        if (a[0] == ' ' || a[1] == ' ' || a[2] == ' ' || a[3] == ' ' || a[4] == ' ' || Integer.parseInt(Horas) > 24 || Integer.parseInt(Minutos) > 59) {
-            JOptionPane.showMessageDialog(null, "Introduzca la Hora correctamente");
-        } else {
-            itinerario.setHora(Horas);
-            itinerario.setMinutos(Minutos);
-        }
-        if(Double.parseDouble(txtDescuento.getText())== 0.0){
-         promo.setDescuento(0.0);
-         promo.setFechaInicio(null);
-         promo.setFechaFinal(null);
-        }else{
-         promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
-         promo.setFechaInicio(jdcFechaI.getDate());
-         promo.setFechaFinal(jdcFechaI.getDate());
-        }
-        vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
-        vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
-        vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
-        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
-        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
-        itinerario.setFecha(jdcFecha.getDate());
-        vuelos.AgregarVuelo(vuelo, itinerario, promo);
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tbVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVuelosMouseClicked
 
@@ -652,6 +620,26 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tbVuelosMouseClicked
 
+    private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
+        char caracter = evt.getKeyChar();
+
+        // Verificar si la tecla pulsada no es un digito
+        if(((caracter < '0') ||
+            (caracter > '9')) &&
+        (caracter != '.')&&
+        (caracter != '\b' /*corresponde a BACK_SPACE*/))
+        {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtDescuentoKeyTyped
+
+    private void btnEscalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalaActionPerformed
+        PnlEscala Escala = new PnlEscala();
+        cambio.ModificarPanel(menuAdmin.PnlContenedor, Escala);
+        Escala.idVuelo = Integer.parseInt(txtVuelo.getText());
+        Escala.CargarTabla();
+    }//GEN-LAST:event_btnEscalaActionPerformed
+
     private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
         ClsVuelo vuelos = new ClsVuelo();
         Itinerario itinerario = new Itinerario();
@@ -678,25 +666,39 @@ public class PnlVuelos extends javax.swing.JPanel {
         CargarTabla();
     }//GEN-LAST:event_BtnActualizarActionPerformed
 
-    private void btnEscalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalaActionPerformed
-        PnlEscala Escala = new PnlEscala();
-        cambio.ModificarPanel(menuAdmin.PnlContenedor, Escala);
-        Escala.idVuelo = Integer.parseInt(txtVuelo.getText());
-        Escala.CargarTabla();
-    }//GEN-LAST:event_btnEscalaActionPerformed
-
-    private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
-        char caracter = evt.getKeyChar();
-
-      // Verificar si la tecla pulsada no es un digito
-      if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '.')&&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume();  // ignorar el evento de teclado
-      }
-    }//GEN-LAST:event_txtDescuentoKeyTyped
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        ClsVuelo vuelos = new ClsVuelo();
+        Itinerario itinerario = new Itinerario();
+        Vuelo vuelo = new Vuelo();
+        Promociones promo = new Promociones();
+        String Hora = txtHora.getText();
+        char[] a = Hora.toCharArray();
+        String[] c = Hora.split(":");
+        String Horas = c[0];
+        String Minutos = c[1];
+        if (a[0] == ' ' || a[1] == ' ' || a[2] == ' ' || a[3] == ' ' || a[4] == ' ' || Integer.parseInt(Horas) > 24 || Integer.parseInt(Minutos) > 59) {
+            JOptionPane.showMessageDialog(null, "Introduzca la Hora correctamente");
+        } else {
+            itinerario.setHora(Horas);
+            itinerario.setMinutos(Minutos);
+        }
+        if(Double.parseDouble(txtDescuento.getText())== 0.0){
+            promo.setDescuento(0.0);
+            promo.setFechaInicio(null);
+            promo.setFechaFinal(null);
+        }else{
+            promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
+            promo.setFechaInicio(jdcFechaI.getDate());
+            promo.setFechaFinal(jdcFechaI.getDate());
+        }
+        vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
+        vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
+        vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
+        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
+        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
+        itinerario.setFecha(jdcFecha.getDate());
+        vuelos.AgregarVuelo(vuelo, itinerario, promo);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

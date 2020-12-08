@@ -19,15 +19,14 @@ import java.sql.Types;
  * @author Usuario
  */
 public class ClsClase {
-    ConexionBD cn = new ConexionBD();
-    Connection conexion = cn.retornarConexion();
-    
-    
-    public ArrayList<Clases> MostrarClase() {
+
+    public ArrayList<Clases> MostrarClase(int idAvion) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         ArrayList<Clases> companies = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
-            Statement.setInt("PidAvion", 1);
+            Statement.setInt("PidAvion", idAvion);
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
                 Clases esc = new Clases();
@@ -43,8 +42,10 @@ public class ClsClase {
         }
         return companies;
     }
-    
-    public void AgregarClase(Clases clase){
+
+    public void AgregarClase(Clases clase) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Clase(?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
@@ -57,7 +58,10 @@ public class ClsClase {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void BorrarClase(Clases clase) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Clase(?)");
             Statement.setInt("PidClase", clase.getIdClase());
@@ -65,10 +69,13 @@ public class ClsClase {
             JOptionPane.showMessageDialog(null, "Eliminado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            
+
         }
     }
+
     public void ActualizarClase(Clases clase) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Clase(?,?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
