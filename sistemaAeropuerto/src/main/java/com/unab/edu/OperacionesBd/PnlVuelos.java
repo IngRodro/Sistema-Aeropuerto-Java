@@ -68,6 +68,9 @@ public class PnlVuelos extends javax.swing.JPanel {
     int contadorOrigen = 1;
     int contadorTipos = 1;
 
+    void LimpiarCajasdeTexto(){
+    }
+    
     void CargarTabla() {
         String Titulos[] = {"Vuelo", "Compañia", "Aeropuerto Origen", "AeropuertoDestino", "Modelo Avion", "Tipo de Vuelo", "Fecha", "Hora", "Descuento"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);

@@ -83,6 +83,7 @@ public class ClsClase {
             Statement.setInt("PidAvion", clase.getIdAvion());
             Statement.setInt("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.setDouble("PidClase", clase.getIdClase());
+            Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

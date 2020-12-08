@@ -10,6 +10,7 @@ import com.unab.edu.Entidades.Avion;
 import com.unab.edu.sistemaaeropuerto.CambioPanel;
 import com.unab.edu.sistemaaeropuerto.frmMenuAdmin;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +30,12 @@ public class PnlAvion extends javax.swing.JPanel {
     PnlClases frmClase = new PnlClases();
     public frmMenuAdmin menuAdmin;
     CambioPanel cambio = new CambioPanel();
+    
+    void LimpiarCajasdeTexto(){
+        txtId.setText("");
+        txtCapacidad.setText("");
+        txtModelo.setText("");
+    }
     
     void CargarTabla() {
         String Titulos[] = {"ID", "Modelo", "Capacidad"};
@@ -62,10 +69,10 @@ public class PnlAvion extends javax.swing.JPanel {
         txtCapacidad = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnClase = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbAviones = new javax.swing.JTable();
@@ -102,44 +109,45 @@ public class PnlAvion extends javax.swing.JPanel {
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
         txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setEnabled(false);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Eliminar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Actualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Ver Clases");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnClase.setBackground(new java.awt.Color(0, 0, 0));
+        btnClase.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClase.setForeground(new java.awt.Color(255, 255, 255));
+        btnClase.setText("Ver Clases");
+        btnClase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnClaseActionPerformed(evt);
             }
         });
 
@@ -149,13 +157,13 @@ public class PnlAvion extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addComponent(jButton1)
+                .addComponent(btnGuardar)
                 .addGap(111, 111, 111)
-                .addComponent(jButton3)
+                .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnEliminar)
                 .addGap(117, 117, 117)
-                .addComponent(jButton4)
+                .addComponent(btnClase)
                 .addGap(100, 100, 100))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,10 +204,10 @@ public class PnlAvion extends javax.swing.JPanel {
                         .addComponent(jLabel4)))
                 .addGap(104, 104, 104)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnClase))
                 .addGap(195, 195, 195))
         );
 
@@ -256,29 +264,48 @@ public class PnlAvion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ClsAvion avion = new ClsAvion();
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+       if(txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true){
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+       }else{
+       ClsAvion avion = new ClsAvion();
         Avion aviones = new Avion();
         aviones.setModeloAvion(txtModelo.getText());
         aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
         avion.AgregarAvion(aviones);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        LimpiarCajasdeTexto();
+        CargarTabla();
+       }
+       
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(txtId.getText().isEmpty() == true){
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+       }else{
         ClsAvion avion = new ClsAvion();
         Avion aviones = new Avion();
         aviones.setIdAvion(Integer.parseInt(txtId.getText()));
         avion.BorrarAvion(aviones);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        LimpiarCajasdeTexto();
+        CargarTabla();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+         if(txtId.getText().isEmpty() == true || txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true){
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+       }else{
         ClsAvion avion = new ClsAvion();
         Avion aviones = new Avion();
         aviones.setIdAvion(Integer.parseInt(txtId.getText()));
         aviones.setModeloAvion(txtModelo.getText());
         aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
         avion.ActualizarAvion(aviones);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        LimpiarCajasdeTexto();
+        CargarTabla();
+         }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tbAvionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAvionesMouseClicked
         tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel2));
@@ -292,19 +319,25 @@ public class PnlAvion extends javax.swing.JPanel {
         txtCapacidad.setText(Capacidad);
     }//GEN-LAST:event_tbAvionesMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaseActionPerformed
+      if(txtId.getText().isEmpty() == true){
+            JOptionPane.showMessageDialog(null, "Seleccione un Avion para ver su Clase");
+             tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel3));
+        int fila = tbAviones.getSelectedRow();
+       }else{
        cambio.ModificarPanel(menuAdmin.PnlContenedor, frmClase);
        int idAvion = Integer.parseInt(txtId.getText());
        frmClase.idAvion = idAvion;
        frmClase.CargarTabla();
-    }//GEN-LAST:event_jButton4ActionPerformed
+      }
+    }//GEN-LAST:event_btnClaseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnClase;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

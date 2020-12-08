@@ -80,6 +80,7 @@ public class ClsEscala {
             Statement.setInt("PidEscala", Esc.getIdEscala());
             Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
             Statement.setDouble("PPrecio", Esc.getPrecio());
+            Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
