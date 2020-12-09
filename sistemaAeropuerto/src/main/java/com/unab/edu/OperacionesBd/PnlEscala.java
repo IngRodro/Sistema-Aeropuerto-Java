@@ -118,6 +118,7 @@ public class PnlEscala extends javax.swing.JPanel {
 
         txtPrecio.setBackground(new java.awt.Color(0, 0, 0));
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setText("0.0");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,6 +126,7 @@ public class PnlEscala extends javax.swing.JPanel {
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
         txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setEnabled(false);
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -258,6 +260,10 @@ public class PnlEscala extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if(txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        }
+        else{
         Vuelo vuelo = new Vuelo();
         ClsVuelo clsVuelo = new ClsVuelo();
         vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
@@ -268,21 +274,26 @@ public class PnlEscala extends javax.swing.JPanel {
         escala.setNumeroEscala(tbEscalas.getRowCount()+1);
         clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
         CargarTabla();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if(txtId.getText().isEmpty()||txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        }
+        else{
         ClsEscala clsescala = new ClsEscala();
         Escala escala = new Escala();
         escala.setIdEscala(Integer.parseInt(txtId.getText()));
         escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
         escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
-        JOptionPane.showMessageDialog(null, escala.getIdEscala() + "   " + escala.getIdAeropuerto() + "    " +  "      " + escala.getPrecio());
         clsescala.ActualizarEscala(escala);
         CargarTabla();
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbEscalasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEscalasMouseClicked
