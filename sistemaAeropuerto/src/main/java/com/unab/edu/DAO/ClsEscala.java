@@ -20,13 +20,10 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ClsEscala {
-    
-    
-    ConexionBD cn = new ConexionBD();
-    Connection conexion = cn.retornarConexion();
-    
-    
+
     public ArrayList<Escala> MostrarEscala(int idIti) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         ArrayList<Escala> escalas = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Escala(?)");
@@ -48,8 +45,10 @@ public class ClsEscala {
         }
         return escalas;
     }
-    
-    public void AgregarEscala(Escala Esc, int idIti){
+
+    public void AgregarEscala(Escala Esc, int idIti) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Escala(?,?,?,?)");
             Statement.setInt("PnumeroEscala", Esc.getNumeroEscala());
@@ -63,7 +62,10 @@ public class ClsEscala {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void BorrarEscala(Escala Esc) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Escala(?)");
             Statement.setInt("PidEscala", Esc.getIdEscala());
@@ -73,10 +75,13 @@ public class ClsEscala {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void ActualizarEscala(Escala Esc) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Escala(?,?,?)");
-            JOptionPane.showMessageDialog(null, Esc.getIdEscala() + "   " + Esc.getIdAeropuerto() + "    " +  "      " + Esc.getPrecio());
+            JOptionPane.showMessageDialog(null, Esc.getIdEscala() + "   " + Esc.getIdAeropuerto() + "    " + "      " + Esc.getPrecio());
             Statement.setInt("PidEscala", Esc.getIdEscala());
             Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
             Statement.setDouble("PPrecio", Esc.getPrecio());
@@ -86,8 +91,10 @@ public class ClsEscala {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public Escala SeleccionarEscala(int idEsc) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         Escala esc = new Escala();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Escala(?)");
@@ -107,5 +114,5 @@ public class ClsEscala {
         }
         return esc;
     }
-    
+
 }

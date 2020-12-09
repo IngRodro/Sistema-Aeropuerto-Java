@@ -34,6 +34,7 @@ public class ClsAvion {
                 com.setIdAvion(rs.getInt("idAvion"));
                 com.setModeloAvion(rs.getString("modelo"));
                 com.setCapacidad(rs.getInt("capacidad"));
+                com.setEstado(rs.getString("estado"));
                 companies.add(com);
             }
             conexion.close();
@@ -73,6 +74,16 @@ public class ClsAvion {
             Statement.setInt("PCapacidad", Avi.getCapacidad());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void AvionOcupado(int idAvion){
+    try {
+            CallableStatement Statement = conexion.prepareCall("call SP_U_AvionOcupado(?)");
+            Statement.setInt("PidAvion", idAvion);
+            Statement.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

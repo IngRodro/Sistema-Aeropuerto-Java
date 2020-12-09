@@ -16,4 +16,5 @@ public class Avion {
     private int idAvion;
     private String modeloAvion;
     private int capacidad;
+    String estado;
 }

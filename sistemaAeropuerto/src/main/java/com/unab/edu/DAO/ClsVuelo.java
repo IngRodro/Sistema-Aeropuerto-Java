@@ -15,16 +15,16 @@ import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.Entidades.Itinerario;
 import com.unab.edu.Entidades.Promociones;
 import java.sql.Date;
+
 /**
  *
- * 
+ *
  */
 public class ClsVuelo {
-    
-    ConexionBD cn = new ConexionBD();
-    Connection conexion = cn.retornarConexion();
-    
+
     public ArrayList<InnerJoinVuelo> MostrarVuelos() {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Vuelos()");
@@ -41,7 +41,10 @@ public class ClsVuelo {
                 InJoin.setHora(resultadoDeConsulta.getString("Hora"));
                 InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
                 InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
-                Vuelos.add(InJoin);
+                InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
+                if (InJoin.getEstado() > 0) {
+                    Vuelos.add(InJoin);
+                }
             }
             conexion.close();
         } catch (Exception e) {
@@ -49,8 +52,10 @@ public class ClsVuelo {
         }
         return Vuelos;
     }
-    
-    public void AgregarVuelo(Vuelo vuelo, Itinerario itine, Promociones promo){
+
+    public void AgregarVuelo(Vuelo vuelo, Itinerario itine, Promociones promo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
             ClsPromocion clsPromo = new ClsPromocion();
@@ -67,8 +72,10 @@ public class ClsVuelo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public Vuelo SeleccionarVuelo(int idVuelo){
+
+    public Vuelo SeleccionarVuelo(int idVuelo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         Vuelo vuelo = new Vuelo();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Vuelo(?)");
@@ -81,15 +88,17 @@ public class ClsVuelo {
                 vuelo.setIdTiposVuelo(resultadoDeConsulta.getInt("idAvion"));
                 vuelo.setIdAvion(resultadoDeConsulta.getInt("idTiposvuelo"));
             }
-        
+
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return vuelo;
     }
-    
-    public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti){
+
+    public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
             clsItinerario.ActualizarItinerario(Iti, vuelo);
@@ -104,6 +113,39 @@ public class ClsVuelo {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    public ArrayList<InnerJoinVuelo> MostrarVuelosOrigen(int idAeropuerto) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_VuelosOrigen(?)");
+            Statement.setInt("PidCompany", idAeropuerto);
+            ResultSet resultadoDeConsulta = Statement.executeQuery();
+            while (resultadoDeConsulta.next()) {
+                InnerJoinVuelo InJoin = new InnerJoinVuelo();
+                InJoin.setVuelo(resultadoDeConsulta.getInt("Vuelo"));
+                InJoin.setCompany(resultadoDeConsulta.getString("Compania"));
+                InJoin.setAeropuertoO(resultadoDeConsulta.getString("Aeropuerto_Origen"));
+                InJoin.setAeropuertoD(resultadoDeConsulta.getString("Aeropuerto_Destino"));
+                InJoin.setModelo(resultadoDeConsulta.getString("Modelo_Avion"));
+                InJoin.setTipo(resultadoDeConsulta.getString("Tipo_de_Vuelo"));
+                InJoin.setFecha(resultadoDeConsulta.getDate("Fecha"));
+                InJoin.setHora(resultadoDeConsulta.getString("Hora"));
+                InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
+                InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
+                InJoin.setFechaDesc(resultadoDeConsulta.getDate("FechaMax"));
+                InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
+                if (InJoin.getEstado() > 0) {
+                    Vuelos.add(InJoin);
+                }
+            }
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Vuelos;
     }
     
 }

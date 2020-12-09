@@ -44,17 +44,13 @@ public class PnlVuelos extends javax.swing.JPanel {
      */
     public PnlVuelos() {
         initComponents();
+        CargarDatos();
         DisplayMemberCompany();
-        DisplayMemberAvion();
-        DisplayMemberDestino();
-        DisplayMemberOrigen();
-        DisplayMemberTipos();
-        CargarTabla();
     }
 
     public frmMenuAdmin menuAdmin;
     CambioPanel cambio = new CambioPanel();
-    
+
     SimpleDateFormat formato = new SimpleDateFormat("d MMM y");
 
     String valueMemberCompany[];
@@ -68,15 +64,23 @@ public class PnlVuelos extends javax.swing.JPanel {
     int contadorOrigen = 1;
     int contadorTipos = 1;
 
-    void LimpiarCajasdeTexto(){
+    void LimpiarCajasdeTexto() {
+    }
+
+    void CargarDatos(){
+        DisplayMemberAvion();
+        DisplayMemberDestino();
+        DisplayMemberOrigen();
+        DisplayMemberTipos();
+        CargarTabla();
     }
     
     void CargarTabla() {
-        String Titulos[] = {"Vuelo", "Compañia", "Aeropuerto Origen", "AeropuertoDestino", "Modelo Avion", "Tipo de Vuelo", "Fecha", "Hora", "Descuento"};
+        String Titulos[] = {"Vuelo", "Compañia", "Aeropuerto Origen", "AeropuertoDestino", "Modelo Avion", "Tipo de Vuelo", "Fecha", "Hora", "Descuento", "Estado"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsVuelo clsVuelos = new ClsVuelo();
         ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelos();
-        String filas[] = new String[9];
+        String filas[] = new String[10];
         for (var IterarVuelo : Vuelos) {
             filas[0] = String.valueOf(IterarVuelo.getVuelo());
             filas[1] = IterarVuelo.getCompany();
@@ -87,6 +91,13 @@ public class PnlVuelos extends javax.swing.JPanel {
             filas[6] = String.valueOf(IterarVuelo.getFecha());
             filas[7] = IterarVuelo.getHora() + ":" + IterarVuelo.getMinutos();
             filas[8] = String.valueOf(IterarVuelo.getDescuento()) + "%";
+            if (IterarVuelo.getEstado() == 1) {
+                filas[9] = "Activo";
+            } else if (IterarVuelo.getEstado() == 2) {
+                filas[9] = "Retrasado";
+            } else if (IterarVuelo.getEstado() == 3) {
+                filas[9] = "Suspendido";
+            }
             ModeloT.addRow(filas);
         }
         tbVuelos.setModel(ModeloT);
@@ -98,7 +109,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
         valueMemberDestino = new String[aeropuertos.size() + 1];
         String filas[] = new String[4];
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosAeropuerto : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
             filas[1] = IterarDatosAeropuerto.getNombre();
@@ -115,7 +126,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
         valueMemberOrigen = new String[aeropuertos.size() + 1];
         String filas[] = new String[3];
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosAeropuerto : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
             filas[1] = IterarDatosAeropuerto.getNombre();
@@ -131,8 +142,8 @@ public class PnlVuelos extends javax.swing.JPanel {
         ClsCompany clsCompany = new ClsCompany();
         ArrayList<Company> aeropuertos = clsCompany.MostrarCompany();
         valueMemberCompany = new String[aeropuertos.size() + 1];
-        String filas[] = new String[3];
-        cbdefaDefault.addElement("");
+        String filas[] = new String[4];
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosCompany : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosCompany.getIdCompany());
             filas[1] = IterarDatosCompany.getNombre();
@@ -149,13 +160,15 @@ public class PnlVuelos extends javax.swing.JPanel {
         ArrayList<Avion> aeropuertos = clsAvion.MostrarAvion();
         valueMemberAvion = new String[aeropuertos.size() + 1];
         String filas[] = new String[3];
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosAeropuerto : aeropuertos) {
-            filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAvion());
-            filas[1] = IterarDatosAeropuerto.getModeloAvion();
-            valueMemberAvion[contadorAvion] = filas[0];
-            cbdefaDefault.addElement(filas[1]);
-            contadorAvion++;
+            if (IterarDatosAeropuerto.getEstado().equals("Activo")) {
+                filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAvion());
+                filas[1] = IterarDatosAeropuerto.getModeloAvion();
+                valueMemberAvion[contadorAvion] = filas[0];
+                cbdefaDefault.addElement(filas[1]);
+                contadorAvion++;
+            }
         }
         cbAvion.setModel(cbdefaDefault);
     }
@@ -175,6 +188,7 @@ public class PnlVuelos extends javax.swing.JPanel {
             contadorTipos++;
         }
         cbTipo.setModel(cbdefaDefault);
+        
     }
 
     /**
@@ -530,14 +544,13 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     private void tbVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVuelosMouseClicked
 
-        
         Vuelo vuelo = new Vuelo();
         Itinerario itinerario = new Itinerario();
         ClsVuelo clsVuelo = new ClsVuelo();
         ClsItinerario clsItinerario = new ClsItinerario();
         ClsPromocion clsPromo = new ClsPromocion();
         Promociones promo = new Promociones();
-        
+
         tbPVuelos.setSelectedIndex(tbPVuelos.indexOfComponent(jPanel1));
         int fila = tbVuelos.getSelectedRow();
         int ID = Integer.parseInt(String.valueOf(tbVuelos.getValueAt(fila, 0)));
@@ -588,50 +601,50 @@ public class PnlVuelos extends javax.swing.JPanel {
             Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
             jdcFecha.setDate(null);
         }
-        
+
         //Fecha Inicio Promocion
-        if(promo.getFechaInicio() == null){ jdcFechaI.setDate(null);}
-        else{
-        Date castfechaI = new Date();
-        String FechaI = formato.format(promo.getFechaInicio());
-        try {
-            JOptionPane.showMessageDialog(null, promo.getFechaInicio());
-            castfechaI = formato.parse(FechaI);
-            jdcFechaI.setDate(castfechaI);
-        } catch (ParseException ex) {
-            Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
+        if (promo.getFechaInicio() == null) {
             jdcFechaI.setDate(null);
+        } else {
+            Date castfechaI = new Date();
+            String FechaI = formato.format(promo.getFechaInicio());
+            try {
+                JOptionPane.showMessageDialog(null, promo.getFechaInicio());
+                castfechaI = formato.parse(FechaI);
+                jdcFechaI.setDate(castfechaI);
+            } catch (ParseException ex) {
+                Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
+                jdcFechaI.setDate(null);
+            }
         }
-        }
-        
+
         //Fecha Final Promocion
-         if(promo.getFechaInicio() == null){ jdcFechaF.setDate(null);}
-        else{
-        Date castfechaF = new Date();
-        String FechaF = formato.format(promo.getFechaFinal());
-        try {
-            JOptionPane.showMessageDialog(null, promo.getFechaFinal());
-            castfechaF = formato.parse(FechaF);
-            jdcFechaF.setDate(castfechaF);
-        } catch (ParseException ex) {
-            Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
+        if (promo.getFechaInicio() == null) {
             jdcFechaF.setDate(null);
-        }
+        } else {
+            Date castfechaF = new Date();
+            String FechaF = formato.format(promo.getFechaFinal());
+            try {
+                JOptionPane.showMessageDialog(null, promo.getFechaFinal());
+                castfechaF = formato.parse(FechaF);
+                jdcFechaF.setDate(castfechaF);
+            } catch (ParseException ex) {
+                Logger.getLogger(PnlVuelos.class.getName()).log(Level.SEVERE, null, ex);
+                jdcFechaF.setDate(null);
+            }
         }
         txtDescuento.setText(promo.getDescuento().toString());
         txtHora.setText(itinerario.getHora() + itinerario.getMinutos());
-
     }//GEN-LAST:event_tbVuelosMouseClicked
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
         char caracter = evt.getKeyChar();
 
         // Verificar si la tecla pulsada no es un digito
-        if(((caracter < '0') ||
-            (caracter > '9')) &&
-        (caracter != '.')&&
-        (caracter != '\b' /*corresponde a BACK_SPACE*/))
-        {
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '.')
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
             evt.consume();  // ignorar el evento de teclado
         }
     }//GEN-LAST:event_txtDescuentoKeyTyped
@@ -671,6 +684,7 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         ClsVuelo vuelos = new ClsVuelo();
+        ClsAvion clsAvion = new ClsAvion();
         Itinerario itinerario = new Itinerario();
         Vuelo vuelo = new Vuelo();
         Promociones promo = new Promociones();
@@ -685,11 +699,11 @@ public class PnlVuelos extends javax.swing.JPanel {
             itinerario.setHora(Horas);
             itinerario.setMinutos(Minutos);
         }
-        if(Double.parseDouble(txtDescuento.getText())== 0.0){
+        if (Double.parseDouble(txtDescuento.getText()) == 0.0) {
             promo.setDescuento(0.0);
             promo.setFechaInicio(null);
             promo.setFechaFinal(null);
-        }else{
+        } else {
             promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
             promo.setFechaInicio(jdcFechaI.getDate());
             promo.setFechaFinal(jdcFechaI.getDate());
@@ -701,6 +715,8 @@ public class PnlVuelos extends javax.swing.JPanel {
         itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
         itinerario.setFecha(jdcFecha.getDate());
         vuelos.AgregarVuelo(vuelo, itinerario, promo);
+        clsAvion.AvionOcupado(vuelo.getIdAvion());
+        CargarDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 

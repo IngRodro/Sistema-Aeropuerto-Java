@@ -23,6 +23,7 @@ public class frmLoguin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); 
     }
     public frmMenuAdmin frmAdmin = new frmMenuAdmin();
+    public frmMenuUser frmMenu = new frmMenuUser();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -282,6 +283,11 @@ public class frmLoguin extends javax.swing.JFrame {
                frmAdmin.menuAdmin = this.frmAdmin;
                JOptionPane.showMessageDialog(null, "Bienvenido");
                
+           }else{
+               frmMenu.setVisible(true);
+               this.setVisible(false);
+               frmMenu.menuUsuario = this.frmMenu;
+               JOptionPane.showMessageDialog(null, "Bienvenido");
            }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
