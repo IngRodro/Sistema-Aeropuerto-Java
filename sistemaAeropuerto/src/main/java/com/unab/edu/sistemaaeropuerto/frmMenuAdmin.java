@@ -36,7 +36,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     PnlAvion frmAvion = new PnlAvion();
     PnlVuelos frmVuelo = new PnlVuelos();
     PnlTiposdeVuelo frmTipos = new PnlTiposdeVuelo();
-    PnlPasajero frmPasa = new PnlPasajero();
     PnlEscala frmEscala = new PnlEscala();
     PnlClases frmClase = new PnlClases();
     
@@ -58,7 +57,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         btnVuelo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnTipos = new javax.swing.JButton();
-        bttnPasajeros = new javax.swing.JButton();
         PnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,15 +112,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        bttnPasajeros.setBackground(new java.awt.Color(51, 102, 255));
-        bttnPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bttnPasajeros.setText("Pasajeros");
-        bttnPasajeros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnPasajerosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -131,18 +120,17 @@ public class frmMenuAdmin extends javax.swing.JFrame {
             .addComponent(btnCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnAvion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
             .addComponent(btnTipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(bttnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,9 +141,7 @@ public class frmMenuAdmin extends javax.swing.JFrame {
                 .addComponent(btnTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bttnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(401, Short.MAX_VALUE))
         );
 
         PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
@@ -201,10 +187,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         CmPanel.ModificarPanel(PnlContenedor, frmTipos);
     }//GEN-LAST:event_btnTiposActionPerformed
 
-    private void bttnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajerosActionPerformed
-        CmPanel.ModificarPanel(PnlContenedor, frmPasa);
-    }//GEN-LAST:event_bttnPasajerosActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -247,7 +229,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnCompany;
     private javax.swing.JButton btnTipos;
     private javax.swing.JButton btnVuelo;
-    private javax.swing.JButton bttnPasajeros;
     private javax.swing.JLabel jLabel1;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables

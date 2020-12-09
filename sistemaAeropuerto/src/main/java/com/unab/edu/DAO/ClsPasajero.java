@@ -9,6 +9,8 @@ import com.unab.edu.Entidades.Pasajero;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +21,28 @@ public class ClsPasajero {
     
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
+    
+    public ArrayList<Pasajero> MostraPasajeros(){
+    ArrayList<Pasajero> pasajeros = new ArrayList<>();
+        try {
+            CallableStatement statement = conexion.prepareCall("call SP_S_Pasajero");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {                
+                Pasajero psjr = new Pasajero();
+                psjr.setIdPasajero(rs.getInt("idPasajero"));
+                psjr.setNombres(rs.getString("nombres"));
+                psjr.setApellidos(rs.getString("apellidos"));
+                psjr.setEdad(rs.getInt("edad"));
+                psjr.setSexo(rs.getString("sexo"));
+                psjr.setDocumentoIdentidad(rs.getString("documentoIdentidad"));
+                psjr.setPasaporte(rs.getString("pasaporte"));
+                pasajeros.add(psjr);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return pasajeros;
+    }
     
     public void AgregarPasajero(Pasajero Pasa){
         try {

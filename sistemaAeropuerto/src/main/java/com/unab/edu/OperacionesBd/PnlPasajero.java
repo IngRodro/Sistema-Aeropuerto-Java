@@ -7,6 +7,8 @@ package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.ClsPasajero;
 import com.unab.edu.Entidades.Pasajero;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +21,26 @@ public class PnlPasajero extends javax.swing.JPanel {
      */
     public PnlPasajero() {
         initComponents();
+        CargarTabla();
+    }
+    
+    void CargarTabla() {
+        String Titulos[] = {"idPasajero", "nombres", "apellidos", "edad", "sexo", "documentoIdentidad", "pasaporte"};
+        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
+        ClsPasajero clsPasajero = new ClsPasajero();
+        ArrayList<Pasajero> pasajeros = clsPasajero.MostraPasajeros();
+        String filas[] = new String[8];
+        for (var Iterar : pasajeros) {
+            filas[0] = String.valueOf(Iterar.getIdPasajero());
+            filas[1] = String.valueOf(Iterar.getNombres());
+            filas[2] = String.valueOf(Iterar.getApellidos());
+            filas[3] = String.valueOf(Iterar.getEdad());
+            filas[4] = String.valueOf(Iterar.getSexo());
+            filas[5] = String.valueOf(Iterar.getDocumentoIdentidad());
+            filas[6] = String.valueOf(Iterar.getIdPasajero());
+            ModeloT.addRow(filas);
+        }
+        tbPasajero.setModel(ModeloT);
     }
 
     /**
@@ -30,7 +52,7 @@ public class PnlPasajero extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jtpPasajero = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,12 +74,12 @@ public class PnlPasajero extends javax.swing.JPanel {
         bttnActualizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbPasajero = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 102, 255));
 
-        jTabbedPane1.setBackground(new java.awt.Color(51, 102, 255));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
+        jtpPasajero.setBackground(new java.awt.Color(51, 102, 255));
+        jtpPasajero.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -204,11 +226,11 @@ public class PnlPasajero extends javax.swing.JPanel {
                 .addGap(47, 47, 47))
         );
 
-        jTabbedPane1.addTab("Registro Pasajeros", jPanel1);
+        jtpPasajero.addTab("Registro Pasajeros", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -219,7 +241,12 @@ public class PnlPasajero extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tbPasajero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPasajeroMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbPasajero);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -238,7 +265,7 @@ public class PnlPasajero extends javax.swing.JPanel {
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lista Pasajeros", jPanel2);
+        jtpPasajero.addTab("Lista Pasajeros", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -246,13 +273,13 @@ public class PnlPasajero extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 872, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPane1))
+                .addComponent(jtpPasajero))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 602, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPane1))
+                .addComponent(jtpPasajero))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -266,6 +293,7 @@ public class PnlPasajero extends javax.swing.JPanel {
         pasajeros.setDocumentoIdentidad(txtDui.getText());
         pasajeros.setPasaporte(txtPasapote.getText());
         pasajero.AgregarPasajero(pasajeros);
+        CargarTabla();
     }//GEN-LAST:event_bttnGuardarActionPerformed
 
     private void bttnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActualizarActionPerformed
@@ -279,6 +307,7 @@ public class PnlPasajero extends javax.swing.JPanel {
         pasajeros.setDocumentoIdentidad(txtDui.getText());
         pasajeros.setPasaporte(txtPasapote.getText());
         pasajero.ActualizarPasajero(pasajeros);
+        CargarTabla();
     }//GEN-LAST:event_bttnActualizarActionPerformed
 
     private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
@@ -286,7 +315,29 @@ public class PnlPasajero extends javax.swing.JPanel {
         Pasajero pasajeros = new Pasajero();
         pasajeros.setIdPasajero(Integer.parseInt(txtId.getText()));
         pasajero.BorrarPasajero(pasajeros);
+        CargarTabla();
     }//GEN-LAST:event_bttnEliminarActionPerformed
+
+    private void tbPasajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasajeroMouseClicked
+        jtpPasajero.setSelectedIndex(jtpPasajero.indexOfComponent(jPanel1));
+        int fila = tbPasajero.getSelectedRow();
+        
+        String idPasajero = String.valueOf(tbPasajero.getValueAt(fila, 0));
+        String nombres = String.valueOf(tbPasajero.getValueAt(fila, 1));
+        String apellidos = String.valueOf(tbPasajero.getValueAt(fila, 2));
+        String edad = String.valueOf(tbPasajero.getValueAt(fila, 3));
+        String sexo = String.valueOf(tbPasajero.getValueAt(fila, 4));
+        String documentoIdentidad = String.valueOf(tbPasajero.getValueAt(fila, 5));
+        String pasaporte = String.valueOf(tbPasajero.getValueAt(fila, 6));
+        
+        txtId.setText(idPasajero);
+        txtNombre.setText(nombres);
+        txtApellido.setText(apellidos);
+        txtEdad.setText(edad);
+        txtSexo.setText(sexo);
+        txtDui.setText(documentoIdentidad);
+        txtPasapote.setText(pasaporte);
+    }//GEN-LAST:event_tbPasajeroMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -304,8 +355,8 @@ public class PnlPasajero extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane jtpPasajero;
+    private javax.swing.JTable tbPasajero;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDui;
     private javax.swing.JTextField txtEdad;

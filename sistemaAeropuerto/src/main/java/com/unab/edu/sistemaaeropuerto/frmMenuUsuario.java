@@ -6,6 +6,9 @@
 
 package com.unab.edu.sistemaaeropuerto;
 
+import com.unab.edu.OperacionesBd.PnlPasaje;
+import com.unab.edu.OperacionesBd.PnlPasajero;
+
 
 /**
  *
@@ -17,6 +20,12 @@ public class frmMenuUsuario extends javax.swing.JFrame {
     public frmMenuUsuario() {
         initComponents();
     }
+    
+    public frmMenuUsuario menuUsuario;
+    
+    CambioPanel CmPanel = new CambioPanel();
+    PnlPasajero frmPasajero = new PnlPasajero();
+    PnlPasaje frmPasaje = new PnlPasaje();
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -27,48 +36,101 @@ public class frmMenuUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DkpUsuario = new javax.swing.JDesktopPane();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        bttnPasajeros = new javax.swing.JButton();
+        bttnPasaje = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        PnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        DkpUsuario.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
-        jLabel2.setText("Vuelos");
+        bttnPasajeros.setBackground(new java.awt.Color(51, 102, 255));
+        bttnPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bttnPasajeros.setText("Pasajeros");
+        bttnPasajeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnPasajerosActionPerformed(evt);
+            }
+        });
 
-        DkpUsuario.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        bttnPasaje.setBackground(new java.awt.Color(51, 102, 255));
+        bttnPasaje.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bttnPasaje.setText("Pasaje");
+        bttnPasaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnPasajeActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout DkpUsuarioLayout = new javax.swing.GroupLayout(DkpUsuario);
-        DkpUsuario.setLayout(DkpUsuarioLayout);
-        DkpUsuarioLayout.setHorizontalGroup(
-            DkpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DkpUsuarioLayout.createSequentialGroup()
-                .addContainerGap(437, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(435, 435, 435))
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight_30822 - Copy.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bttnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bttnPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
-        DkpUsuarioLayout.setVerticalGroup(
-            DkpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DkpUsuarioLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel2)
-                .addContainerGap(481, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bttnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bttnPasaje, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(360, Short.MAX_VALUE))
+        );
+
+        PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout PnlContenedorLayout = new javax.swing.GroupLayout(PnlContenedor);
+        PnlContenedor.setLayout(PnlContenedorLayout);
+        PnlContenedorLayout.setHorizontalGroup(
+            PnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 875, Short.MAX_VALUE)
+        );
+        PnlContenedorLayout.setVerticalGroup(
+            PnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DkpUsuario)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 176, Short.MAX_VALUE)
+                .addComponent(PnlContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 876, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DkpUsuario)
+            .addComponent(PnlContenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajerosActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmPasajero);
+    }//GEN-LAST:event_bttnPasajerosActionPerformed
+
+    private void bttnPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajeActionPerformed
+        CmPanel.ModificarPanel(PnlContenedor, frmPasaje);
+    }//GEN-LAST:event_bttnPasajeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,8 +169,11 @@ public class frmMenuUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane DkpUsuario;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel PnlContenedor;
+    private javax.swing.JButton bttnPasaje;
+    private javax.swing.JButton bttnPasajeros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
 }
