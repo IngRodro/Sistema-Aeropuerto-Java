@@ -48,8 +48,8 @@ public class ClsPasaje {
             Statement.setInt("PidPasajero", pasa.getIdPasajero());
             Statement.setInt("PidVuelo", pasa.getIdVuelo());
             Statement.setInt("PidClase", pasa.getIdClase());
-            Statement.setInt("NAsiento",pasa.getNAsiento());
-            Statement.setFloat("precioTotal", pasa.getPrecionTotal());
+            Statement.setInt("PNAsiento",pasa.getNAsiento());
+            Statement.setFloat("PprecioTotal", pasa.getPrecionTotal());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
@@ -76,8 +76,8 @@ public class ClsPasaje {
             Statement.setInt("PidPasajero", pasa.getIdPasajero());
             Statement.setInt("PidVuelo", pasa.getIdVuelo());
             Statement.setInt("PidClase", pasa.getIdClase());
-            Statement.setInt("NAsiento",pasa.getNAsiento());
-            Statement.setFloat("precioTotal", pasa.getPrecionTotal());
+            Statement.setInt("PNAsiento",pasa.getNAsiento());
+            Statement.setFloat("PprecioTotal", pasa.getPrecionTotal());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
