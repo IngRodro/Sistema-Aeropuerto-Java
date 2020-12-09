@@ -6,13 +6,16 @@
 package com.unab.edu.OperacionesBd;
 
 import com.unab.edu.DAO.ClsClase;
+import com.unab.edu.DAO.ClsEscala;
 import com.unab.edu.DAO.ClsPasaje;
 import com.unab.edu.DAO.ClsPasajero;
 import com.unab.edu.DAO.ClsVuelo;
 import com.unab.edu.DAO.InnerJoinVuelo;
 import com.unab.edu.Entidades.Clases;
+import com.unab.edu.Entidades.Escala;
 import com.unab.edu.Entidades.Pasaje;
 import com.unab.edu.Entidades.Pasajero;
+import com.unab.edu.Entidades.Vuelo;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -30,8 +33,8 @@ public class PnlPasaje extends javax.swing.JPanel {
         initComponents();
         CargarTabla();
         CargarTablaVuelo();
-        DisplayMemberPasajero();
         DisplayMemberClase();
+        CargarTablaVuelos();
     }
     
     String valueMemberPasajero[];
@@ -39,22 +42,6 @@ public class PnlPasaje extends javax.swing.JPanel {
     int contadorPasajero = 1;
     int contadorClase = 1;
     
-    void DisplayMemberPasajero(){
-        DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
-        ClsPasajero clasePasajero = new ClsPasajero();
-        ArrayList<Pasajero> pasajeros = clasePasajero.MostraPasajeros();
-        valueMemberPasajero = new String[pasajeros.size() + 1];
-        String filas[] = new String[4];
-        cbdefaDefault.addElement("");
-        for (var IterarDatospasajeros :pasajeros){
-            filas[0] = String.valueOf(IterarDatospasajeros.getIdPasajero());
-            filas[1] = String.valueOf(IterarDatospasajeros.getNombres());
-            valueMemberPasajero[contadorPasajero] = filas[0];
-            cbdefaDefault.addElement(filas[1]);
-            contadorPasajero++;
-        }
-        cbPasajero.setModel(cbdefaDefault);
-    }
     
     void DisplayMemberClase() {
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
@@ -71,6 +58,42 @@ public class PnlPasaje extends javax.swing.JPanel {
             contadorClase++;
         }
         cbClase.setModel(cbdefaDefault);
+    }
+    
+      ClsEscala clsEscala = new ClsEscala();
+
+    void CargarTablaVuelos() {
+        String Titulos[] = {"Vuelo", "Compañia", "AeropuertoDestino", "Precio", "Tipo de Vuelo", "Fecha", "Hora", "Descuento", "Fecha Max Descuento"};
+        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
+        ClsVuelo clsVuelos = new ClsVuelo();
+        ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelosOrigen(1);
+        String filas[] = new String[10];
+        Vuelo vuelo = new Vuelo();
+
+        for (var IterarVuelo : Vuelos) {
+            vuelo = clsVuelos.SeleccionarVuelo(IterarVuelo.getVuelo());
+            ArrayList<Escala> Escalas = clsEscala.MostrarEscala(vuelo.getIdIterinario());
+            if (Escalas.size() >= 1) {
+                for (var IterarEscala : Escalas) {
+                    filas[0] = String.valueOf(IterarVuelo.getVuelo());
+                    filas[1] = IterarVuelo.getCompany();
+                    filas[2] = IterarEscala.getNombre();
+                    filas[3] = String.valueOf(IterarEscala.getPrecio());
+                    filas[4] = IterarVuelo.getTipo();
+                    filas[5] = String.valueOf(IterarVuelo.getFecha());
+                    filas[6] = IterarVuelo.getHora() + ":" + IterarVuelo.getMinutos();
+                    filas[7] = String.valueOf(IterarVuelo.getDescuento()) + "%";
+                    if (IterarVuelo.getFechaDesc() == null) {
+                    filas[8] = "";
+                    } else {
+                        filas[8] = String.valueOf(IterarVuelo.getFechaDesc());
+                    }
+                    ModeloT.addRow(filas);
+                }
+            }
+
+        }
+        tbVuelos.setModel(ModeloT);
     }
     
     void CargarTabla() {
@@ -128,7 +151,6 @@ public class PnlPasaje extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtIdPasaje = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cbPasajero = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtVuelo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -140,6 +162,7 @@ public class PnlPasaje extends javax.swing.JPanel {
         bttnGuardar = new javax.swing.JButton();
         bttnActualizar = new javax.swing.JButton();
         bttnEliminar = new javax.swing.JButton();
+        txtxPasajero = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbVuelos = new javax.swing.JTable();
@@ -150,47 +173,55 @@ public class PnlPasaje extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
         jtpPasaje.setBackground(new java.awt.Color(51, 102, 255));
+        jtpPasaje.setForeground(new java.awt.Color(255, 255, 255));
         jtpPasaje.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel2.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pasaje");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id:");
 
         txtIdPasaje.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Pasajero:");
-
-        cbPasajero.setBackground(new java.awt.Color(0, 0, 0));
-        cbPasajero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("DUI:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Vuelo:");
 
         txtVuelo.setBackground(new java.awt.Color(0, 0, 0));
+        txtVuelo.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Clase:");
 
         cbClase.setBackground(new java.awt.Color(0, 0, 0));
         cbClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Asiento:");
 
         txtAsiento.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio:");
 
         txtPrecio.setBackground(new java.awt.Color(0, 0, 0));
 
         bttnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         bttnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bttnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         bttnGuardar.setText("Guardar");
         bttnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +231,7 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         bttnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         bttnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bttnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         bttnActualizar.setText("Actualizar");
         bttnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,12 +241,16 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         bttnEliminar.setBackground(new java.awt.Color(0, 0, 0));
         bttnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bttnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         bttnEliminar.setText("Eliminar");
         bttnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnEliminarActionPerformed(evt);
             }
         });
+
+        txtxPasajero.setBackground(new java.awt.Color(0, 0, 0));
+        txtxPasajero.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,18 +275,18 @@ public class PnlPasaje extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtIdPasaje)
-                                    .addComponent(cbPasajero, 0, 351, Short.MAX_VALUE)
                                     .addComponent(txtVuelo)
-                                    .addComponent(cbClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbClase, 0, 351, Short.MAX_VALUE)
                                     .addComponent(txtAsiento)
-                                    .addComponent(txtPrecio)))
+                                    .addComponent(txtPrecio)
+                                    .addComponent(txtxPasajero)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(bttnGuardar)
                                 .addGap(59, 59, 59)
                                 .addComponent(bttnActualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                                 .addComponent(bttnEliminar)))))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,8 +300,8 @@ public class PnlPasaje extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(txtxPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -286,7 +322,7 @@ public class PnlPasaje extends javax.swing.JPanel {
                     .addComponent(bttnGuardar)
                     .addComponent(bttnActualizar)
                     .addComponent(bttnEliminar))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jtpPasaje.addTab("Registro Pasaje", jPanel2);
@@ -317,14 +353,14 @@ public class PnlPasaje extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 843, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -356,14 +392,14 @@ public class PnlPasaje extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 843, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -373,13 +409,13 @@ public class PnlPasaje extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 872, Short.MAX_VALUE)
+            .addGap(0, 881, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jtpPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGap(0, 605, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jtpPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
         );
@@ -388,13 +424,13 @@ public class PnlPasaje extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 872, Short.MAX_VALUE)
+            .addGap(0, 881, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGap(0, 605, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -403,7 +439,6 @@ public class PnlPasaje extends javax.swing.JPanel {
     private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
         ClsPasaje pasajes = new ClsPasaje();
         Pasaje pasaje = new Pasaje();
-        pasaje.setIdPasajero(Integer.parseInt(valueMemberPasajero[cbPasajero.getSelectedIndex()]));
         pasaje.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
         pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
         pasaje.setNAsiento(Integer.parseInt(txtAsiento.getText()));
@@ -416,7 +451,6 @@ public class PnlPasaje extends javax.swing.JPanel {
         ClsPasaje pasajes = new ClsPasaje();
         Pasaje pasaje = new Pasaje();
         pasaje.setIdPasaje(Integer.parseInt(txtIdPasaje.getText()));
-        pasaje.setIdPasajero(Integer.parseInt(valueMemberPasajero[cbPasajero.getSelectedIndex()]));
         pasaje.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
         pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
         pasaje.setNAsiento(Integer.parseInt(txtAsiento.getText()));
@@ -461,7 +495,6 @@ public class PnlPasaje extends javax.swing.JPanel {
         int seleccionadordevista = 0;
         for (var iterar : valueMemberPasajero){
             if (idPasajero.equals(iterar)) {
-                cbPasajero.setSelectedIndex(seleccionadordevista);
             }
             seleccionadordevista += 1;
         }
@@ -483,7 +516,6 @@ public class PnlPasaje extends javax.swing.JPanel {
     private javax.swing.JButton bttnEliminar;
     private javax.swing.JButton bttnGuardar;
     private javax.swing.JComboBox<String> cbClase;
-    private javax.swing.JComboBox<String> cbPasajero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -504,5 +536,6 @@ public class PnlPasaje extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdPasaje;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtVuelo;
+    private javax.swing.JTextField txtxPasajero;
     // End of variables declaration//GEN-END:variables
 }

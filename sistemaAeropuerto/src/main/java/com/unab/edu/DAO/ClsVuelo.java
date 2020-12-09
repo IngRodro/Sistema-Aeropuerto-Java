@@ -121,7 +121,7 @@ public class ClsVuelo {
         ArrayList<InnerJoinVuelo> Vuelos = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_VuelosOrigen(?)");
-            Statement.setInt("PidCompany", idAeropuerto);
+            Statement.setInt("PidAeropuerto", idAeropuerto);
             ResultSet resultadoDeConsulta = Statement.executeQuery();
             while (resultadoDeConsulta.next()) {
                 InnerJoinVuelo InJoin = new InnerJoinVuelo();

@@ -5,7 +5,6 @@
  */
 package com.unab.edu.sistemaaeropuerto;
 
-import com.unab.edu.OperacionesBd.PnlListaVuelos;
 import com.unab.edu.OperacionesBd.PnlPasaje;
 import com.unab.edu.OperacionesBd.PnlPasajero;
 
@@ -27,7 +26,6 @@ public class frmMenuUser extends javax.swing.JFrame {
     CambioPanel CmPanel = new CambioPanel();
     PnlPasajero frmPasajero = new PnlPasajero();
     PnlPasaje frmPasaje = new PnlPasaje();
-    PnlListaVuelos frmVuelos = new PnlListaVuelos();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,12 +115,12 @@ public class frmMenuUser extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnPasajerosActionPerformed
 
     private void bttnPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajeActionPerformed
-        CmPanel.ModificarPanel(PnlContenedor, frmVuelos);
+        CmPanel.ModificarPanel(PnlContenedor, frmPasaje);
     }//GEN-LAST:event_bttnPasajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PnlContenedor;
+    public javax.swing.JPanel PnlContenedor;
     private javax.swing.JButton bttnPasaje;
     private javax.swing.JButton bttnPasajeros;
     private javax.swing.JLabel jLabel1;
