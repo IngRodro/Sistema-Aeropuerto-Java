@@ -13,16 +13,12 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name= "aeropuerto")
-public class aeropuerto implements Serializable{
+public class Aeropuerto implements Serializable{
 
-	public static final long serialVersionUID=1;
+	private static final long serialVersionUID=1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idAeropuerto;
-	private String nombre;
-	private String pais;
-	private String ciudad;
-	private float PresioEstimVuelo;
 	
 	public long getIdAeropuerto()
 	{
@@ -55,9 +51,9 @@ public class aeropuerto implements Serializable{
 	public void setPresioEstimVuelo(float presioEstimVuelo) {
 		PresioEstimVuelo = presioEstimVuelo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
+	private String nombre;
+	private String pais;
+	private String ciudad;
+	private float PresioEstimVuelo;
 	
 }

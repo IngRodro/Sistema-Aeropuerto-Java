@@ -2,9 +2,8 @@ package Sistema_Aeropuerto.DAO;
 
 import org.springframework.data.repository.CrudRepository;
 
-import Sistema_Aeropuerto.Entidades.aeropuerto;
+import Sistema_Aeropuerto.Entidades.Aeropuerto;
 
-public interface AeropuertoDao extends CrudRepository<aeropuerto, Long> {
+public interface AeropuertoDao extends CrudRepository<Aeropuerto, Long> {
 
-	
 }

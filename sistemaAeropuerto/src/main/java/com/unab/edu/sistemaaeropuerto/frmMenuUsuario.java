@@ -6,8 +6,8 @@
 
 package com.unab.edu.sistemaaeropuerto;
 
-import com.unab.edu.OperacionesBd.PnlPasaje;
-import com.unab.edu.OperacionesBd.PnlPasajero;
+import com.unab.edu.vistas.PnlPasaje;
+import com.unab.edu.vistas.PnlPasajero;
 
 
 /**

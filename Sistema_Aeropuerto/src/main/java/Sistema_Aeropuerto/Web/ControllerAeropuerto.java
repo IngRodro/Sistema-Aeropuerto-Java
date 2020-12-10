@@ -16,9 +16,9 @@ public class ControllerAeropuerto {
 	
 	@GetMapping("/")
 	public String inicio(Model m) {
-		var aeropuerto = aeropuertoDao.findAll();
+		var aeropuertos = aeropuertoDao.findAll();
 		
-		m.addAttribute("aeropuerto", aeropuerto);
+		m.addAttribute("aeropuertos", aeropuertos);
 		return"index";
 		}
 	

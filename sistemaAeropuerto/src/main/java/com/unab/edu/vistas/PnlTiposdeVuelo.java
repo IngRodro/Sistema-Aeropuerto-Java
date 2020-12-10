@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.unab.edu.OperacionesBd;
+package com.unab.edu.vistas;
 
 import com.unab.edu.DAO.ClsTiposVuelo;
 import java.util.ArrayList;

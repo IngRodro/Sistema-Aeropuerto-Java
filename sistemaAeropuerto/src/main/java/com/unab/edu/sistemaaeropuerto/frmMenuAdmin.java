@@ -5,14 +5,14 @@
  */
 package com.unab.edu.sistemaaeropuerto;
 
-import com.unab.edu.OperacionesBd.PnlAeropuerto;
-import com.unab.edu.OperacionesBd.PnlAvion;
-import com.unab.edu.OperacionesBd.PnlClases;
-import com.unab.edu.OperacionesBd.PnlCompania;
-import com.unab.edu.OperacionesBd.PnlEscala;
-import com.unab.edu.OperacionesBd.PnlPasajero;
-import com.unab.edu.OperacionesBd.PnlTiposdeVuelo;
-import com.unab.edu.OperacionesBd.PnlVuelos;
+import com.unab.edu.vistas.PnlAeropuerto;
+import com.unab.edu.vistas.PnlAvion;
+import com.unab.edu.vistas.PnlClases;
+import com.unab.edu.vistas.PnlCompania;
+import com.unab.edu.vistas.PnlEscala;
+import com.unab.edu.vistas.PnlPasajero;
+import com.unab.edu.vistas.PnlTiposdeVuelo;
+import com.unab.edu.vistas.PnlVuelos;
 
 /**
  *

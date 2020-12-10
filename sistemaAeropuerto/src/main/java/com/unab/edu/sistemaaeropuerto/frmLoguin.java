@@ -6,7 +6,7 @@
 package com.unab.edu.sistemaaeropuerto;
 
 import com.unab.edu.DAO.ClsUsuario;
-import com.unab.edu.OperacionesBd.frmCrearUsuario;
+import com.unab.edu.vistas.frmCrearUsuario;
 import javax.swing.JOptionPane;
 
 /**

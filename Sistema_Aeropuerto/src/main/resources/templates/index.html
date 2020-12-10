@@ -15,11 +15,11 @@
 			
 		</thead>
 		<tbody>
-			<tr th:each="aeropuerto : ${aeropuerto}">
+			<tr th:each="aeropuerto : ${aeropuertos}">
 				<td th:text="${aeropuerto.idAeropuerto}"></td>
 				<td th:text="${aeropuerto.nombre}"></td>
 				<td th:text="${aeropuerto.pais}"></td>
-				<td th:text="${Personaaeropuerto.ciudad}"></td>
+				<td th:text="${aeropuerto.ciudad}"></td>
 			</tr>
 		</tbody>
 
