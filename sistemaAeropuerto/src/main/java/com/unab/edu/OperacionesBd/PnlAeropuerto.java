@@ -269,10 +269,12 @@ public class PnlAeropuerto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(txtId.getText().isEmpty()){JOptionPane.showMessageDialog(null, "Rellene todos los campos");}
+        else{
         Clsaeropuerto aeropuertos = new Clsaeropuerto();
         Aeropuerto aeropuerto = new Aeropuerto();
         aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
-        aeropuertos.BorrarAeropuerto(aeropuerto);
+        aeropuertos.BorrarAeropuerto(aeropuerto);}
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed

@@ -8,6 +8,7 @@ package com.unab.edu.OperacionesBd;
 import com.unab.edu.DAO.ClsClase;
 import com.unab.edu.Entidades.Clases;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -246,23 +247,29 @@ public class PnlClases extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClsClase clsClase = new ClsClase();
+        if(txtExtra.getText().isEmpty() == true||txtNombre.getText().isEmpty() == true||txtAsientos.getText().isEmpty() == true){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
+        else{ClsClase clsClase = new ClsClase();
         Clases clase = new Clases();
         clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
         clase.setNombreClase(txtNombre.getText());
         clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
         clsClase.AgregarClase(clase);
-        CargarTabla();
+        CargarTabla();}
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ClsClase clsClase = new ClsClase();
+       if(txtId.getText().isEmpty() == true||txtExtra.getText().isEmpty() == true||txtNombre.getText().isEmpty() == true||txtAsientos.getText().isEmpty() == true){
+       JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
+       else{ClsClase clsClase = new ClsClase();
         Clases clase = new Clases();
         clase.setIdClase(Integer.parseInt(txtId.getText()));
         clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
         clase.setNombreClase(txtNombre.getText());
         clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
-        clsClase.ActualizarClase(clase);
+        clsClase.ActualizarClase(clase);}
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
