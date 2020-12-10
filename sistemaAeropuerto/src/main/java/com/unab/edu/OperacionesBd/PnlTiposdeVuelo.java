@@ -9,6 +9,7 @@ import com.unab.edu.DAO.ClsTiposVuelo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import com.unab.edu.Entidades.Tipos_vuelo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -236,30 +237,38 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+        if(txtTipo.getText().isEmpty()==true ||txtDescuento.getText().isEmpty() ==true){
+         JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
+        else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
         Tipos_vuelo tipo = new Tipos_vuelo();
         tipo.setTipo(txtTipo.getText());
         tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
         clsTipos.AgregarTipo(tipo);
-        CargarTabla();
+        CargarTabla();}
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+       if(txtId.getText().isEmpty()==true ||txtTipo.getText().isEmpty()==true ||txtDescuento.getText().isEmpty()==true){
+       JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
+       else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
         Tipos_vuelo tipo = new Tipos_vuelo();
         tipo.setIdTipos_vuelo(Integer.parseInt(txtId.getText()));
         tipo.setTipo(txtTipo.getText());
         tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
         clsTipos.ActualizarTipo(tipo);
-        CargarTabla();
+        CargarTabla();}
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+        if(txtId.getText().isEmpty()==true){JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
+        else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
         Tipos_vuelo tipo = new Tipos_vuelo();
         tipo.setIdTipos_vuelo(Integer.parseInt(txtId.getText()));
         clsTipos.BorrarTipo(tipo);
-        CargarTabla();
+        CargarTabla();}
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTiposMouseClicked
