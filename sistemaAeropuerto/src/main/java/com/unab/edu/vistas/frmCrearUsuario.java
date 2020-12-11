@@ -9,6 +9,7 @@ import com.unab.edu.DAO.ClsUsuario;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.Connection;
 import com.unab.edu.Entidades.Usuario;
+import com.unab.edu.sistemaaeropuerto.frmLoguin;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +22,8 @@ public class frmCrearUsuario extends javax.swing.JFrame {
      * Creates new form frmCrearUsuario
      */
     public frmCrearUsuario() {
-
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -58,6 +59,7 @@ public class frmCrearUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setOpacity(0.9F);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -111,7 +113,7 @@ public class frmCrearUsuario extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Registrarme");
-        btnGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGuardar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -130,7 +132,7 @@ public class frmCrearUsuario extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Registrate Ya!!!");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar(3).png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/closed (1).png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -178,7 +180,7 @@ public class frmCrearUsuario extends javax.swing.JFrame {
                             .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
+                        .addGap(196, 196, 196)
                         .addComponent(jLabel6)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -186,9 +188,9 @@ public class frmCrearUsuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel8)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(56, 56, 56)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,9 +223,9 @@ public class frmCrearUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAdminPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(30, 30, 30))
         );
 
         jLabel4.getAccessibleContext().setAccessibleDescription("");
@@ -269,6 +271,9 @@ public class frmCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombresActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        frmLoguin Login = new frmLoguin();
+       Login.setVisible(true);
+       this.setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
