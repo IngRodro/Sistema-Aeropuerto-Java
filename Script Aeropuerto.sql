@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`aeropuerto` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAeropuerto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`clases` (
     FOREIGN KEY (`idAvion`)
     REFERENCES `sistemaaeropuerto`.`avion` (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`escala` (
     FOREIGN KEY (`idItinerario`)
     REFERENCES `sistemaaeropuerto`.`itinerario` (`idItinerario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 22
+AUTO_INCREMENT = 16
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -417,7 +417,7 @@ Ppais varchar(45),
 Pciudad varchar(45)
 )
 BEGIN
-INSERT INTO aeropuerto(nombre,pais,ciudad,Estado) value(Pnombre,Ppais,Pciudad,'Activo');
+INSERT INTO aeropuerto(nombre,pais,ciudad,Estado) value(Anombre,Apais,Aciudad,'Activo');
 END$$
 
 DELIMITER ;
@@ -612,19 +612,6 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure SP_S_1Avion
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `sistemaaeropuerto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Avion`(PidAvion int)
-BEGIN
-	SELECT * FROM sistemaaeropuerto.avion where idAvion = PidAvion;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
 -- procedure SP_S_1Escala
 -- -----------------------------------------------------
 
@@ -712,7 +699,7 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Avion`(
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.avion where estado = "Activo" or estado = "Ocupado";
+SELECT * FROM sistemaaeropuerto.avion where estado = "Activo";
 END$$
 
 DELIMITER ;
@@ -765,7 +752,7 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Escala`(PidIterinario int)
 BEGIN
-	Select E.idEscala, E.numeroEscala, A.nombre, E.nPasajerosSuben, E.nPasajerosBajan, E.Precio, E.idItinerario from escala E
+	Select E.idEscala, E.numeroEscala, A.nombre, E.nPasajerosSuben, E.nPasajerosBajan, E.Precio from escala E
     INNER JOIN aeropuerto A ON E.idAeropuerto = A.idAeropuerto
     where E.idItinerario = PidIterinario
     order by E.numeroEscala;
@@ -994,19 +981,6 @@ Pminutos varchar(3)
 )
 BEGIN
 	Update sistemaaeropuerto.itinerario set idAeropuertoDestino = PidAeropuertoDestino, idAeropuertoOrigen = PidAeropuertoOrigen, fecha = Pfecha, hora = Phora, minutos = Pminutos where idItinerario = PidItinerario;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure SP_U_NEscala
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `sistemaaeropuerto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_NEscala`(PidItinerario int, PNEscala int)
-BEGIN
-	Update escala set numeroEscala = PNEscala - 1 where idItinerario = PidItinerario and numeroEscala = PNEscala;
 END$$
 
 DELIMITER ;
