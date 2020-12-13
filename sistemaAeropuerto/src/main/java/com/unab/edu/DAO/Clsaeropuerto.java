@@ -24,7 +24,7 @@ public class ClsAeropuerto {
 
     public ArrayList<Aeropuerto> MostrAeropuerto() {
         ArrayList<Aeropuerto> aeropuertos = new ArrayList<>();
-        try {
+        try { 
             CallableStatement Statement = conexion.prepareCall("call SP_S_Aeropuerto()");
             ResultSet resultadoDeConsulta = Statement.executeQuery();
             while (resultadoDeConsulta.next()) {
