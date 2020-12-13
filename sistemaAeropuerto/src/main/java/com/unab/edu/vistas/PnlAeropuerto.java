@@ -5,7 +5,7 @@
  */
 package com.unab.edu.vistas;
 
-import com.unab.edu.DAO.Clsaeropuerto;
+import com.unab.edu.DAO.ClsAeropuerto;
 import com.unab.edu.Entidades.Aeropuerto;
 import java.awt.Color;
 import java.awt.Font;
@@ -37,7 +37,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
     void CargarTabla() {
         String Titulos[] = {"ID", "Nombre", "Pais", "Ciudad"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
-        Clsaeropuerto clsAeropuerto = new Clsaeropuerto();
+        ClsAeropuerto clsAeropuerto = new ClsAeropuerto();
         ArrayList<Aeropuerto> Companies = clsAeropuerto.MostrAeropuerto();
         String filas[] = new String[5];
         for (var IterarCom : Companies) {
@@ -269,7 +269,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         if (txtNombre.getText().isEmpty() == true || txtPais.getText().isEmpty() == true || txtCiudad.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
         } else {
-            Clsaeropuerto aeropuertos = new Clsaeropuerto();
+            ClsAeropuerto aeropuertos = new ClsAeropuerto();
             Aeropuerto aeropuerto = new Aeropuerto();
             aeropuerto.setNombre(txtNombre.getText());
             aeropuerto.setPais(txtPais.getText());
@@ -281,7 +281,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(txtId.getText().isEmpty()){JOptionPane.showMessageDialog(null, "Rellene todos los campos");}
         else{
-        Clsaeropuerto aeropuertos = new Clsaeropuerto();
+        ClsAeropuerto aeropuertos = new ClsAeropuerto();
         Aeropuerto aeropuerto = new Aeropuerto();
         aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
         aeropuertos.BorrarAeropuerto(aeropuerto);}
@@ -291,7 +291,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         if (txtId.getText().isEmpty() == true || txtNombre.getText().isEmpty() == true || txtPais.getText().isEmpty() == true || txtCiudad.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
         } else {
-            Clsaeropuerto aeropuertos = new Clsaeropuerto();
+            ClsAeropuerto aeropuertos = new ClsAeropuerto();
             Aeropuerto aeropuerto = new Aeropuerto();
             aeropuerto.setIdAeropuerto(Integer.parseInt(txtId.getText()));
             aeropuerto.setNombre(txtNombre.getText());
