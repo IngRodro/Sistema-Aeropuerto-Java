@@ -27,25 +27,18 @@ public class PnlAvion extends javax.swing.JPanel {
     public PnlAvion() {
         initComponents();
         CargarTabla();
-        tbAviones.setBackground(new Color(0,0,0,0));
-        
-        tbAviones.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbAviones.getTableHeader().setOpaque(false);
-        tbAviones.getTableHeader().setBackground(new Color(0,153,204));
-        tbAviones.getTableHeader().setForeground(new Color(0,0,0));
-        tbAviones.setRowHeight(25);
     }
-    
+
     PnlClases frmClase = new PnlClases();
     public frmMenuAdmin menuAdmin;
     CambioPanel cambio = new CambioPanel();
-    
-    void LimpiarCajasdeTexto(){
+
+    void LimpiarCajasdeTexto() {
         txtId.setText("");
         txtCapacidad.setText("");
         txtModelo.setText("");
     }
-    
+
     void CargarTabla() {
         String Titulos[] = {"ID", "Modelo", "Capacidad"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
@@ -60,6 +53,7 @@ public class PnlAvion extends javax.swing.JPanel {
         }
         tbAviones.setModel(ModeloT);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -276,46 +270,46 @@ public class PnlAvion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       if(txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true){
+        if (txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
-       }else{
-       ClsAvion avion = new ClsAvion();
-        Avion aviones = new Avion();
-        aviones.setModeloAvion(txtModelo.getText());
-        aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
-        avion.AgregarAvion(aviones);
-        LimpiarCajasdeTexto();
-        CargarTabla();
-       }
-       
+        } else {
+            ClsAvion avion = new ClsAvion();
+            Avion aviones = new Avion();
+            aviones.setModeloAvion(txtModelo.getText());
+            aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
+            avion.AgregarAvion(aviones);
+            LimpiarCajasdeTexto();
+            CargarTabla();
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(txtId.getText().isEmpty() == true){
+        if (txtId.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
-       }else{
-        ClsAvion avion = new ClsAvion();
-        Avion aviones = new Avion();
-        aviones.setIdAvion(Integer.parseInt(txtId.getText()));
-        avion.BorrarAvion(aviones);
-        LimpiarCajasdeTexto();
-        CargarTabla();
+        } else {
+            ClsAvion avion = new ClsAvion();
+            Avion aviones = new Avion();
+            aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+            avion.BorrarAvion(aviones);
+            LimpiarCajasdeTexto();
+            CargarTabla();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-         if(txtId.getText().isEmpty() == true || txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true){
+        if (txtId.getText().isEmpty() == true || txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
-       }else{
-        ClsAvion avion = new ClsAvion();
-        Avion aviones = new Avion();
-        aviones.setIdAvion(Integer.parseInt(txtId.getText()));
-        aviones.setModeloAvion(txtModelo.getText());
-        aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
-        avion.ActualizarAvion(aviones);
-        LimpiarCajasdeTexto();
-        CargarTabla();
-         }
+        } else {
+            ClsAvion avion = new ClsAvion();
+            Avion aviones = new Avion();
+            aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+            aviones.setModeloAvion(txtModelo.getText());
+            aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
+            avion.ActualizarAvion(aviones);
+            LimpiarCajasdeTexto();
+            CargarTabla();
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tbAvionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAvionesMouseClicked
@@ -331,16 +325,15 @@ public class PnlAvion extends javax.swing.JPanel {
     }//GEN-LAST:event_tbAvionesMouseClicked
 
     private void btnClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaseActionPerformed
-      if(txtId.getText().isEmpty() == true){
+        if (txtId.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Seleccione un Avion para ver su Clase");
-             tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel3));
-        int fila = tbAviones.getSelectedRow();
-       }else{
-       cambio.ModificarPanel(menuAdmin.PnlContenedor, frmClase);
-       int idAvion = Integer.parseInt(txtId.getText());
-       frmClase.idAvion = idAvion;
-       frmClase.CargarTabla();
-      }
+            tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel3));
+        } else {
+            cambio.ModificarPanel(menuAdmin.PnlContenedor, frmClase);
+            int idAvion = Integer.parseInt(txtId.getText());
+            frmClase.idAvion = idAvion;
+            frmClase.CargarTabla();
+        }
     }//GEN-LAST:event_btnClaseActionPerformed
 
 

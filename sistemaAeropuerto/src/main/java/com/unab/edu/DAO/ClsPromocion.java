@@ -46,7 +46,6 @@ public class ClsPromocion {
             Statement.setDate("PfechaFinal", new java.sql.Date(Promo.getFechaFinal().getTime()));
             Statement.setDouble("PDescuento", Promo.getDescuento());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

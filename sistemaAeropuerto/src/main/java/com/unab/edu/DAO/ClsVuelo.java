@@ -96,19 +96,21 @@ public class ClsVuelo {
         return vuelo;
     }
 
-    public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti) {
+    public void ActualizarVuelo(Vuelo vuelo, Itinerario Iti, Promociones promo) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
             clsItinerario.ActualizarItinerario(Iti, vuelo);
+            ClsPromocion clsPromo = new ClsPromocion();
+            clsPromo.ActualizarPromo(promo, vuelo);
             CallableStatement Statement = conexion.prepareCall("call SP_U_Vuelos(?,?,?,?)");
             Statement.setInt("PidCompany", vuelo.getIdCompany());
             Statement.setInt("PidAvion", vuelo.getIdAvion());
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.setInt("PidVuelo", vuelo.getIdVuelo());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            JOptionPane.showMessageDialog(null, "Vuelo Actualizado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
