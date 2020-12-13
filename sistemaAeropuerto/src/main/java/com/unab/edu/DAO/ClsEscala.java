@@ -5,7 +5,9 @@
  */
 package com.unab.edu.DAO;
 
+import com.unab.edu.Entidades.Avion;
 import com.unab.edu.Entidades.Escala;
+import com.unab.edu.Entidades.Itinerario;
 import com.unab.edu.conexionmysql.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -79,6 +81,7 @@ public class ClsEscala {
         Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Escala(?,?,?)");
+            JOptionPane.showMessageDialog(null, Esc.getIdEscala() + "   " + Esc.getIdAeropuerto() + "    " + "      " + Esc.getPrecio());
             Statement.setInt("PidEscala", Esc.getIdEscala());
             Statement.setInt("PidAeropuerto", Esc.getIdAeropuerto());
             Statement.setDouble("PPrecio", Esc.getPrecio());
@@ -110,46 +113,6 @@ public class ClsEscala {
             JOptionPane.showMessageDialog(null, e);
         }
         return esc;
-    }
-    
-    public ArrayList<Escala> EscalasSuperiores(int idIti, int NEscala) {
-        ConexionBD cn = new ConexionBD();
-        Connection conexion = cn.retornarConexion();
-        ArrayList<Escala> escalas = new ArrayList<>();
-        try {
-            CallableStatement Statement = conexion.prepareCall("call SP_S_Escala(?)");
-            Statement.setInt("PidIterinario", idIti);
-            ResultSet rs = Statement.executeQuery();
-            while (rs.next()) {
-                Escala esc = new Escala();
-                esc.setIdEscala(rs.getInt("idEscala"));
-                esc.setNumeroEscala(rs.getInt("numeroEscala"));
-                esc.setNombre(rs.getString("nombre"));
-                esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
-                esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
-                esc.setIdItinerario(rs.getInt("idItinerario"));
-                if(esc.getNumeroEscala() > NEscala){
-                    escalas.add(esc);
-                }
-            }
-            conexion.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return escalas;
-    }
-    
-     public void ActualizarNEscala(int idItinerario, int NEscala) {
-        ConexionBD cn = new ConexionBD();
-        Connection conexion = cn.retornarConexion();
-        try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_NEscala(?,?)");
-            Statement.setInt("PidItinerario", idItinerario);
-            Statement.setInt("PNEscala", NEscala);
-            Statement.execute();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
     }
 
 }

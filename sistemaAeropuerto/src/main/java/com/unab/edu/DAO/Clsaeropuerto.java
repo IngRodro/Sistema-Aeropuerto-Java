@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author PREDATOR
  */
-public class ClsAeropuerto {
+public class Clsaeropuerto {
 
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
@@ -51,15 +51,14 @@ public class ClsAeropuerto {
                     CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
                     Statement.setString("PNombre", Aero.getNombre());
                     Statement.execute();
-                    JOptionPane.showMessageDialog(null, "Aeropuerto Registrado");
+                    JOptionPane.showMessageDialog(null, "Guardado");
                 }
             } else {
-                CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?)");
+                CallableStatement Statement = conexion.prepareCall("call SP_I_Aeropuerto(?,?,?,?)");
                 Statement.setString("Pnombre", Aero.getNombre());
                 Statement.setString("Ppais", Aero.getPais());
                 Statement.setString("Pciudad", Aero.getCiudad());
-                Statement.execute();
-                JOptionPane.showMessageDialog(null, "Aeropuerto Registrado");
+                JOptionPane.showMessageDialog(null, "Guardado");
                 conexion.close();
             }
         } catch (Exception e) {
@@ -69,12 +68,11 @@ public class ClsAeropuerto {
 
     public void ActualizarAeropuerto(Aeropuerto Aero) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Aeropuerto(?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_Aeropuerto(?,?,?,?,?)");
             Statement.setInt("PidAeropuerto", Aero.getIdAeropuerto());
             Statement.setString("Pnombre", Aero.getNombre());
             Statement.setString("Ppais", Aero.getPais());
             Statement.setString("Pciudad", Aero.getCiudad());
-            Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {

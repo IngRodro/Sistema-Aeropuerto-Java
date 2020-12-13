@@ -38,6 +38,16 @@ public class ClsItinerario {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    public void BorrarItinerario(Itinerario Iti) {
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_D_Itinerario(?)");
+            Statement.setInt("IidItinerario", Iti.getIdItinerario());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Eliminado");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     public void ActualizarItinerario(Itinerario Iti, Vuelo vuelo) {
         try {
             ClsVuelo clsVuelo = new ClsVuelo();
@@ -51,6 +61,7 @@ public class ClsItinerario {
             Statement.setString("Phora", Iti.getHora());
             Statement.setString("Pminutos", Iti.getMinutos());
             Statement.execute();
+            JOptionPane.showMessageDialog(null, "Actualizado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

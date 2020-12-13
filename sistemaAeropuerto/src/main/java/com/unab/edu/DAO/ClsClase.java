@@ -34,7 +34,6 @@ public class ClsClase {
                 esc.setNAsientos(rs.getInt("nAsientos"));
                 esc.setNombreClase(rs.getString("nombreClase"));
                 esc.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
-                esc.setIdAvion(rs.getInt("idAvion"));
                 companies.add(esc);
             }
             conexion.close();
@@ -51,10 +50,9 @@ public class ClsClase {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Clase(?,?,?,?)");
             Statement.setString("PnombreClase", clase.getNombreClase());
             Statement.setInt("PnAsientos", clase.getNAsientos());
-            Statement.setInt("PidAvion", clase.getIdAvion());
+            Statement.setInt("PidAvion", 1);
             Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

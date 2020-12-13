@@ -9,7 +9,7 @@ import com.unab.edu.DAO.ClsCompany;
 import com.unab.edu.DAO.ClsEscala;
 import com.unab.edu.DAO.ClsItinerario;
 import com.unab.edu.DAO.ClsVuelo;
-import com.unab.edu.DAO.ClsAeropuerto;
+import com.unab.edu.DAO.Clsaeropuerto;
 import com.unab.edu.DAO.InnerJoinVuelo;
 import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Vuelo;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- *
+ * 
  */
 public class PnlEscala extends javax.swing.JPanel {
 
@@ -32,14 +32,14 @@ public class PnlEscala extends javax.swing.JPanel {
         initComponents();
         DisplayMemberAero();
     }
-
+    
     public int idVuelo;
     String valueMemberAero[];
     int contadorAero = 1;
-
+    
     void DisplayMemberAero() {
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
-        ClsAeropuerto claseAeropuerto = new ClsAeropuerto();
+        Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
         ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
         valueMemberAero = new String[aeropuertos.size() + 1];
         String filas[] = new String[3];
@@ -53,7 +53,7 @@ public class PnlEscala extends javax.swing.JPanel {
         }
         cbAeropuerto.setModel(cbdefaDefault);
     }
-
+    
     void CargarTabla() {
         Vuelo vuelo = new Vuelo();
         ClsVuelo clsVuelo = new ClsVuelo();
@@ -74,7 +74,6 @@ public class PnlEscala extends javax.swing.JPanel {
         }
         tbEscalas.setModel(ModeloT);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,8 +94,6 @@ public class PnlEscala extends javax.swing.JPanel {
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbEscalas = new javax.swing.JTable();
@@ -119,21 +116,19 @@ public class PnlEscala extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio:");
 
-        txtPrecio.setBackground(new java.awt.Color(0, 153, 204));
+        txtPrecio.setBackground(new java.awt.Color(0, 0, 0));
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
         txtPrecio.setText("0.0");
-        txtPrecio.setBorder(null);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Id:");
 
-        txtId.setBackground(new java.awt.Color(0, 153, 204));
+        txtId.setBackground(new java.awt.Color(0, 0, 0));
         txtId.setForeground(new java.awt.Color(255, 255, 255));
-        txtId.setBorder(null);
         txtId.setEnabled(false);
 
-        btnGuardar.setBackground(new java.awt.Color(51, 102, 255));
+        btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
@@ -143,7 +138,7 @@ public class PnlEscala extends javax.swing.JPanel {
             }
         });
 
-        btnActualizar.setBackground(new java.awt.Color(51, 102, 255));
+        btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
@@ -153,7 +148,7 @@ public class PnlEscala extends javax.swing.JPanel {
             }
         });
 
-        btnEliminar.setBackground(new java.awt.Color(51, 102, 255));
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
@@ -162,32 +157,6 @@ public class PnlEscala extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,45 +171,39 @@ public class PnlEscala extends javax.swing.JPanel {
                         .addComponent(btnActualizar)
                         .addGap(177, 177, 177)
                         .addComponent(btnEliminar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPrecio)
                             .addComponent(cbAeropuerto, 0, 498, Short.MAX_VALUE)
-                            .addComponent(txtId)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtId))))
                 .addGap(150, 150, 150))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(296, 296, 296)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(2, 2, 2)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(2, 2, 2)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnActualizar)
                     .addComponent(btnGuardar))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         tbPEscala.addTab("Registro Escala", jPanel1);
@@ -278,8 +241,8 @@ public class PnlEscala extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         tbPEscala.addTab("Lista Escala", jPanel2);
@@ -292,60 +255,45 @@ public class PnlEscala extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbPEscala, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tbPEscala)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Rellene todos los campos");
-        } else {
-            Vuelo vuelo = new Vuelo();
-            ClsVuelo clsVuelo = new ClsVuelo();
-            vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
-            ClsEscala clsescala = new ClsEscala();
-            Escala escala = new Escala();
-            escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
-            escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
-            escala.setNumeroEscala(tbEscalas.getRowCount() + 1);
-            clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
+        if(txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
         }
+        else{
+        Vuelo vuelo = new Vuelo();
+        ClsVuelo clsVuelo = new ClsVuelo();
+        vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
+        ClsEscala clsescala = new ClsEscala();
+        Escala escala = new Escala();
+        escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
+        escala.setNumeroEscala(tbEscalas.getRowCount()+1);
+        clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
         CargarTabla();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtId.getText().isEmpty() || txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Rellene todos los campos");
-        } else {
-            ClsEscala clsescala = new ClsEscala();
-            Escala escala = new Escala();
-            escala.setIdEscala(Integer.parseInt(txtId.getText()));
-            escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
-            escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
-            clsescala.ActualizarEscala(escala);
-            CargarTabla();
+        if(txtId.getText().isEmpty()||txtPrecio.getText().isEmpty() || cbAeropuerto.getSelectedIndex() == 0){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        }
+        else{
+        ClsEscala clsescala = new ClsEscala();
+        Escala escala = new Escala();
+        escala.setIdEscala(Integer.parseInt(txtId.getText()));
+        escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
+        escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
+        clsescala.ActualizarEscala(escala);
+        CargarTabla();
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Rellene todos los campos");
-        } else {
-            Vuelo vuelo = new Vuelo();
-            ClsVuelo clsVuelo = new ClsVuelo();
-            vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
-            ClsEscala clsescala = new ClsEscala();
-            Escala escala = new Escala();
-            escala.setIdEscala(Integer.parseInt(txtId.getText()));
-            escala = clsescala.SeleccionarEscala(escala.getIdEscala());
-            clsescala.BorrarEscala(escala);
-            
-            ArrayList<Escala> Escalas = clsescala.EscalasSuperiores(vuelo.getIdIterinario(), escala.getNumeroEscala());
-            for(var iterarescala : Escalas){
-             clsescala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
-            }
-        }
-        CargarTabla();
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbEscalasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEscalasMouseClicked
@@ -359,7 +307,7 @@ public class PnlEscala extends javax.swing.JPanel {
         txtPrecio.setText(String.valueOf(esc.getPrecio()));
         for (int i = 1; i < valueMemberAero.length; i++) {
             int idAero = Integer.parseInt(valueMemberAero[i]);
-            if (esc.getIdAeropuerto() == idAero) {
+            if (esc.getIdAeropuerto()== idAero) {
                 cbAeropuerto.setSelectedIndex(i);
             }
         }
@@ -376,10 +324,6 @@ public class PnlEscala extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbEscalas;
     private javax.swing.JTabbedPane tbPEscala;
