@@ -20,5 +20,6 @@ public class Pasaje {
     private int NAsiento;
     private String nombreUsuario;
     private float precionTotal;
+    private int NEscala;
             
 }

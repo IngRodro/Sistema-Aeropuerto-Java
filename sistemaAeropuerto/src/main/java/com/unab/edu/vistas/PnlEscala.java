@@ -225,11 +225,11 @@ public class PnlEscala extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addGap(2, 2, 2)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -308,7 +308,12 @@ public class PnlEscala extends javax.swing.JPanel {
             escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
             escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
             escala.setNumeroEscala(tbEscalas.getRowCount() + 1);
-            clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
+            if (clsescala.ComprobarEscala(vuelo.getIdIterinario(), escala.getIdAeropuerto())== true) {
+                JOptionPane.showMessageDialog(null, "La escala de ese Aeropuerto ya esta Registrada");
+            }else
+            {
+                clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
+            }
         }
         CargarTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -339,10 +344,10 @@ public class PnlEscala extends javax.swing.JPanel {
             escala.setIdEscala(Integer.parseInt(txtId.getText()));
             escala = clsescala.SeleccionarEscala(escala.getIdEscala());
             clsescala.BorrarEscala(escala);
-            
+
             ArrayList<Escala> Escalas = clsescala.EscalasSuperiores(vuelo.getIdIterinario(), escala.getNumeroEscala());
-            for(var iterarescala : Escalas){
-             clsescala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
+            for (var iterarescala : Escalas) {
+                clsescala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
             }
         }
         CargarTabla();
@@ -377,8 +382,6 @@ public class PnlEscala extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbEscalas;

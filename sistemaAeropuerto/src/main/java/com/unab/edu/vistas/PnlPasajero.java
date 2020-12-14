@@ -77,6 +77,7 @@ public class PnlPasajero extends javax.swing.JPanel {
         tbPasajero = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 102, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         jtpPasajero.setBackground(new java.awt.Color(51, 102, 255));
         jtpPasajero.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,18 +118,25 @@ public class PnlPasajero extends javax.swing.JPanel {
         jLabel8.setText("Id:");
 
         txtNombre.setBackground(new java.awt.Color(0, 0, 0));
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
 
         txtApellido.setBackground(new java.awt.Color(0, 0, 0));
+        txtApellido.setForeground(new java.awt.Color(255, 255, 255));
 
         txtId.setBackground(new java.awt.Color(0, 0, 0));
+        txtId.setForeground(new java.awt.Color(255, 255, 255));
 
         txtEdad.setBackground(new java.awt.Color(0, 0, 0));
+        txtEdad.setForeground(new java.awt.Color(255, 255, 255));
 
         txtSexo.setBackground(new java.awt.Color(0, 0, 0));
+        txtSexo.setForeground(new java.awt.Color(255, 255, 255));
 
         txtDui.setBackground(new java.awt.Color(0, 0, 0));
+        txtDui.setForeground(new java.awt.Color(255, 255, 255));
 
         txtPasapote.setBackground(new java.awt.Color(0, 0, 0));
+        txtPasapote.setForeground(new java.awt.Color(255, 255, 255));
 
         bttnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         bttnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

@@ -34,6 +34,7 @@ public class ClsPasaje {
                 psj.setIdClase(rs.getInt("idClase"));
                 psj.setNAsiento(rs.getInt("NAsiento"));
                 psj.setPrecionTotal(rs.getFloat("precioTotal"));
+                psj.setNEscala(rs.getInt("NPasaje"));
                 pasajes.add(psj);
             }
         } catch (Exception e) {
@@ -50,6 +51,7 @@ public class ClsPasaje {
             Statement.setInt("PidClase", pasa.getIdClase());
             Statement.setInt("PNAsiento",pasa.getNAsiento());
             Statement.setFloat("PprecioTotal", pasa.getPrecionTotal());
+            Statement.setInt("PNEscala", pasa.getNEscala());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
@@ -58,30 +60,4 @@ public class ClsPasaje {
         }
     }
     
-    public void BorrarPasaje(Pasaje pasa){
-        try {
-            CallableStatement Statement = conexion.prepareCall("call SP_D_Pasaje(?)");
-            Statement.setInt("PidPasaje", pasa.getIdPasaje());
-            Statement.execute();
-            JOptionPane.showMessageDialog(null, "Eliminado");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-    public void ActualizarPasaje(Pasaje pasa){
-        try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_Pasaje(?,?,?,?,?,?)");
-            Statement.setInt("PidPasaje", pasa.getIdPasaje());
-            Statement.setInt("PidPasajero", pasa.getIdPasajero());
-            Statement.setInt("PidVuelo", pasa.getIdVuelo());
-            Statement.setInt("PidClase", pasa.getIdClase());
-            Statement.setInt("PNAsiento",pasa.getNAsiento());
-            Statement.setFloat("PprecioTotal", pasa.getPrecionTotal());
-            Statement.execute();
-            JOptionPane.showMessageDialog(null, "Actualizado");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
 }

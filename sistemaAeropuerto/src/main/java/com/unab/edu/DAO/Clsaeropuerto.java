@@ -24,7 +24,7 @@ public class Clsaeropuerto {
 
     public ArrayList<Aeropuerto> MostrAeropuerto() {
         ArrayList<Aeropuerto> aeropuertos = new ArrayList<>();
-        try { 
+        try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Aeropuerto()");
             ResultSet resultadoDeConsulta = Statement.executeQuery();
             while (resultadoDeConsulta.next()) {
@@ -47,7 +47,7 @@ public class Clsaeropuerto {
             if (ComprobarExistenciaAeroP(Aero) == true) {
                 if (ComprobarEstadoAeroP(Aero) == true) {
                     JOptionPane.showMessageDialog(null, "La Compañia ya se encuentra registrada");
-                }else{
+                } else {
                     CallableStatement Statement = conexion.prepareCall("call SP_A_Aeropuerto(?)");
                     Statement.setString("PNombre", Aero.getNombre());
                     Statement.execute();

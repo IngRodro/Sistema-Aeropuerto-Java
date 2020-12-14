@@ -111,7 +111,7 @@ public class ClsEscala {
         }
         return esc;
     }
-    
+
     public ArrayList<Escala> EscalasSuperiores(int idIti, int NEscala) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
@@ -128,7 +128,7 @@ public class ClsEscala {
                 esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
                 esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
                 esc.setIdItinerario(rs.getInt("idItinerario"));
-                if(esc.getNumeroEscala() > NEscala){
+                if (esc.getNumeroEscala() > NEscala) {
                     escalas.add(esc);
                 }
             }
@@ -138,8 +138,8 @@ public class ClsEscala {
         }
         return escalas;
     }
-    
-     public void ActualizarNEscala(int idItinerario, int NEscala) {
+
+    public void ActualizarNEscala(int idItinerario, int NEscala) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
         try {
@@ -150,6 +150,32 @@ public class ClsEscala {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public Boolean ComprobarEscala(int idIti, int idAero) {
+        Boolean Existencia = false;
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        ArrayList<Escala> escalas = new ArrayList<>();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_Escala(?)");
+            Statement.setInt("PidIterinario", idIti);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                Escala esc = new Escala();
+                esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
+                escalas.add(esc);
+            }
+            conexion.close();
+            for (var iteraridAeropuerto : escalas) {
+                if (iteraridAeropuerto.getIdAeropuerto() == idAero) {
+                    Existencia = true;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Existencia;
     }
 
 }

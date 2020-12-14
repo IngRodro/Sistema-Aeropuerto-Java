@@ -5,7 +5,7 @@
  */
 package com.unab.edu.sistemaaeropuerto;
 
-import com.unab.edu.vistas.PnlPasaje;
+import com.unab.edu.vistas.PnlListaVuelos;
 import com.unab.edu.vistas.PnlPasajero;
 
 /**
@@ -25,7 +25,7 @@ public class frmMenuUser extends javax.swing.JFrame {
 
     CambioPanel CmPanel = new CambioPanel();
     PnlPasajero frmPasajero = new PnlPasajero();
-    PnlPasaje frmPasaje = new PnlPasaje();
+    PnlListaVuelos frmListaVuelos = new PnlListaVuelos();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +57,7 @@ public class frmMenuUser extends javax.swing.JFrame {
 
         bttnPasaje.setBackground(new java.awt.Color(51, 102, 255));
         bttnPasaje.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bttnPasaje.setText("Pasaje");
+        bttnPasaje.setText("Vuelos");
         bttnPasaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnPasajeActionPerformed(evt);
@@ -115,7 +115,8 @@ public class frmMenuUser extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnPasajerosActionPerformed
 
     private void bttnPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajeActionPerformed
-        CmPanel.ModificarPanel(PnlContenedor, frmPasaje);
+        CmPanel.ModificarPanel(PnlContenedor, frmListaVuelos);
+        frmListaVuelos.menuUser = menuUsuario;
     }//GEN-LAST:event_bttnPasajeActionPerformed
 
 
