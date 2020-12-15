@@ -119,7 +119,6 @@ public class frmMenuAdmin extends javax.swing.JFrame {
         btnTipos.setForeground(new java.awt.Color(255, 255, 255));
         btnTipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/payment.png"))); // NOI18N
         btnTipos.setText("Tipo de Vuelo");
-        btnTipos.setActionCommand("Tipo de Vuelo");
         btnTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTiposActionPerformed(evt);

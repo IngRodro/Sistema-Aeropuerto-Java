@@ -192,7 +192,6 @@
               <Image iconType="3" name="/img/payment.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tipo de Vuelo"/>
-            <Property name="actionCommand" type="java.lang.String" value="Tipo de Vuelo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTiposActionPerformed"/>
