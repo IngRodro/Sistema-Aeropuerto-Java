@@ -116,7 +116,7 @@ public class ClsVuelo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public ArrayList<InnerJoinVuelo> MostrarVuelosOrigen(int idAeropuerto) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
@@ -149,5 +149,18 @@ public class ClsVuelo {
         }
         return Vuelos;
     }
-    
+
+    public void VueloFinalizado(Vuelo vuelo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_U_VueloFinalizado(?)");
+            Statement.setInt("PidVuelo", vuelo.getIdVuelo());
+            Statement.execute();
+            JOptionPane.showMessageDialog(null, "Vuelo Marcado como Finalizado");
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 }

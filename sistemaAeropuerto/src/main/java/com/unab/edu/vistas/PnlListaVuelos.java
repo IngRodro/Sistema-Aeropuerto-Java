@@ -13,10 +13,9 @@ import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Escala;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.sistemaaeropuerto.CambioPanel;
-import com.unab.edu.sistemaaeropuerto.frmMenuUser;
+import com.unab.edu.sistemaaeropuerto.frmMenuUsuario;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,7 +32,7 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         CargarTablaVuelos();
         DisplayMemberAero();
     }
-    public frmMenuUser menuUser;
+    public frmMenuUsuario menuUser;
     CambioPanel CmPanel = new CambioPanel();
 
     String valueMemberAero[];
@@ -204,6 +203,8 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         frmPasaje.NVuelo = Integer.parseInt(idVuelo);
         frmPasaje.DisplayMemberClase();
         frmPasaje.DisplayAsientos();
+        frmPasaje.menuUser = menuUser;
+        frmPasaje.Precio = PrecioVuelo;
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void cbAeropuertoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAeropuertoItemStateChanged

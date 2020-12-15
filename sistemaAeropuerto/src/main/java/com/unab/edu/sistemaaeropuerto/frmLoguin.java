@@ -20,10 +20,11 @@ public class frmLoguin extends javax.swing.JFrame {
      */
     public frmLoguin() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
     }
     public frmMenuAdmin frmAdmin = new frmMenuAdmin();
-    public frmMenuUser frmMenu = new frmMenuUser();
+    public frmMenuUsuario frmMenu = new frmMenuUsuario();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,57 +242,52 @@ public class frmLoguin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-        if(txtUser.getText().equals("Ingrese Usuario"))
-        {
+        if (txtUser.getText().equals("Ingrese Usuario")) {
             txtUser.setText("");
         }
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-        if(txtUser.getText().isEmpty())
-        {
+        if (txtUser.getText().isEmpty()) {
             txtUser.setText("Ingrese Usuario");
         }
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-        if(txtPass.getText().equals("Ingrese Contraseña"))
-        {
+        if (txtPass.getText().equals("Ingrese Contraseña")) {
             txtPass.setText("");
         }
     }//GEN-LAST:event_txtPassFocusGained
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
-        if(txtPass.getText().isEmpty())
-        {
+        if (txtPass.getText().isEmpty()) {
             txtPass.setText("Ingrese Contraseña");
         }
     }//GEN-LAST:event_txtPassFocusLost
 
     private void lblRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseClicked
-       frmCrearUsuario nuevoUsuario = new frmCrearUsuario();
-       nuevoUsuario.setVisible(true);
-       this.setVisible(false);
+        frmCrearUsuario nuevoUsuario = new frmCrearUsuario();
+        nuevoUsuario.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_lblRegistrarMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         ClsUsuario claseUsuario = new ClsUsuario();
         String user = txtUser.getText();
         String pass = txtPass.getText();
-        if(claseUsuario.LoguinUser(user, pass) == true)
-        {
-           if(claseUsuario.TipoUser(user)==1){
-               frmAdmin.setVisible(true);
-               this.setVisible(false);
-               frmAdmin.menuAdmin = this.frmAdmin;
-               JOptionPane.showMessageDialog(null, "Bienvenido");
-               
-           }else{
-               frmMenu.setVisible(true);
-               this.setVisible(false);
-               frmMenu.menuUsuario = this.frmMenu;
-               JOptionPane.showMessageDialog(null, "Bienvenido");
-           }
+        if (claseUsuario.LoguinUser(user, pass) == true) {
+            if (claseUsuario.TipoUser(user) == 1) {
+                frmAdmin.setVisible(true);
+                this.setVisible(false);
+                frmAdmin.menuAdmin = this.frmAdmin;
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+            } else {
+                frmMenu.setVisible(true);
+                this.setVisible(false);
+                frmMenu.menuUsuario = this.frmMenu;
+                frmMenu.Usuario = txtUser.getText();
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+            }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

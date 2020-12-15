@@ -23,25 +23,25 @@ public class ClsClase {
     public ArrayList<Clases> MostrarClase(int idAvion) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
-        ArrayList<Clases> companies = new ArrayList<>();
+        ArrayList<Clases> clases = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Clase(?)");
             Statement.setInt("PidAvion", idAvion);
             ResultSet rs = Statement.executeQuery();
             while (rs.next()) {
-                Clases esc = new Clases();
-                esc.setIdClase(rs.getInt("idClases"));
-                esc.setNAsientos(rs.getInt("nAsientos"));
-                esc.setNombreClase(rs.getString("nombreClase"));
-                esc.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
-                esc.setIdAvion(rs.getInt("idAvion"));
-                companies.add(esc);
+                Clases clase = new Clases();
+                clase.setIdClase(rs.getInt("idClases"));
+                clase.setNAsientos(rs.getInt("nAsientos"));
+                clase.setNombreClase(rs.getString("nombreClase"));
+                clase.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
+                clase.setIdAvion(rs.getInt("idAvion"));
+                clases.add(clase);
             }
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return companies;
+        return clases;
     }
 
     public void AgregarClase(Clases clase) {
@@ -90,5 +90,27 @@ public class ClsClase {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    public Clases SeleccionarClas(int idClase) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+       Clases clase = new Clases();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_1Clase(?)");
+            Statement.setInt("PidClases", idClase);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                clase.setIdClase(rs.getInt("idClases"));
+                clase.setNAsientos(rs.getInt("nAsientos"));
+                clase.setNombreClase(rs.getString("nombreClase"));
+                clase.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
+                clase.setIdAvion(rs.getInt("idAvion"));
+            }
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return clase;
     }
 }

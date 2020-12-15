@@ -5,20 +5,18 @@
  */
 package com.unab.edu.vistas;
 
-import com.unab.edu.DAO.ClsAvion;
 import com.unab.edu.DAO.ClsClase;
 import com.unab.edu.DAO.ClsEscala;
 import com.unab.edu.DAO.ClsPasaje;
 import com.unab.edu.DAO.ClsPasajero;
 import com.unab.edu.DAO.ClsVuelo;
 import com.unab.edu.Entidades.Clases;
-import com.unab.edu.Entidades.Avion;
 import com.unab.edu.Entidades.Pasaje;
 import com.unab.edu.Entidades.Vuelo;
+import com.unab.edu.sistemaaeropuerto.frmMenuUsuario;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,7 +29,6 @@ public class PnlPasaje extends javax.swing.JPanel {
      */
     public PnlPasaje() {
         initComponents();
-        CargarTabla();
     }
 
     public int NVuelo;
@@ -41,65 +38,72 @@ public class PnlPasaje extends javax.swing.JPanel {
     int contadorClase;
     ClsVuelo clsvuelo = new ClsVuelo();
     Vuelo vuelo = new Vuelo();
+    int idClase;
+    public frmMenuUsuario menuUser;
+    public double Precio;
 
     void DisplayMemberClase() {
         ClsVuelo clsVuelo = new ClsVuelo();
         Vuelo vuelo = new Vuelo();
         vuelo = clsVuelo.SeleccionarVuelo(NVuelo);
-        
+
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         ClsClase clase = new ClsClase();
-        ArrayList<Clases> claseses = clase.MostrarClase(vuelo.getIdAvion());
-        valueMemberClase = new String[claseses.size() + 1];
+        ArrayList<Clases> clases = clase.MostrarClase(vuelo.getIdAvion());
+        valueMemberClase = new String[clases.size() + 1];
         String filas[] = new String[4];
         contadorClase = 1;
         cbdefaDefault.addElement("");
-        for (var IterarDatosClase : claseses) {
-                filas[0] = String.valueOf(IterarDatosClase.getIdAvion());
-                filas[1] = String.valueOf(IterarDatosClase.getNombreClase());
-                valueMemberClase[contadorClase] = filas[0];
-                cbdefaDefault.addElement(filas[1]);
-                contadorClase++;
+        for (var IterarDatosClase : clases) {
+            filas[0] = String.valueOf(IterarDatosClase.getIdClase());
+            filas[1] = String.valueOf(IterarDatosClase.getNombreClase());
+            valueMemberClase[contadorClase] = filas[0];
+            cbdefaDefault.addElement(filas[1]);
+            contadorClase++;
         }
         cbClase.setModel(cbdefaDefault);
     }
 
-    
-    void DisplayAsientos(){
+    void DisplayAsientos() {
+        ClsPasaje clsPasaje = new ClsPasaje();
         ClsVuelo clsVuelo = new ClsVuelo();
         Vuelo vuelo = new Vuelo();
         vuelo = clsVuelo.SeleccionarVuelo(NVuelo);
-        ClsAvion clsAvion = new ClsAvion();
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
-        Avion avion = new Avion();
+        ClsClase clsclase = new ClsClase();
+        ArrayList<Clases> clases = clsclase.MostrarClase(vuelo.getIdAvion());
+        cbdefaDefault.removeAllElements();
         cbdefaDefault.addElement("");
-        avion = clsAvion.SeleccionarAvion(vuelo.getIdAvion());
-        for(int i=0;i<avion.getCapacidad();i++){
-            int Asiento = i+1;
+        Clases clase = new Clases();
+        int Asiento = 0;
+        ArrayList<Pasaje> AsientosOcupados = clsPasaje.MostrarPasajes(NVuelo, idClase);
+        for (var iterarclases : clases) {
+            if (iterarclases.getIdClase() == idClase) {
+                clase.setNAsientos(iterarclases.getNAsientos());
+                break;
+            } else {
+                Asiento = Asiento + iterarclases.getNAsientos();
+            }
+        }
+        for (int i = 0; i < clase.getNAsientos(); i++) {
+
+            Asiento = Asiento + 1;
             String add = String.valueOf(Asiento);
-            cbdefaDefault.addElement(add);
+            boolean ComprobarAsiento = false;
+            for (var iterarAsientos : AsientosOcupados) {
+                if (iterarAsientos.getNAsiento() == Asiento) {
+                    ComprobarAsiento = true;
+                    break;
+                }
+            }
+            if (ComprobarAsiento == false) {
+                cbdefaDefault.addElement(add);
+            }
+
         }
         cbAsientos.setModel(cbdefaDefault);
     }
     ClsEscala clsEscala = new ClsEscala();
-
-    void CargarTabla() {
-        String Titulos[] = {"idPasaje", "idPasajero", "idVuelo", "idClase", "NAsiento", "precioTotal"};
-        DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
-        ClsPasaje clasePasaje = new ClsPasaje();
-        ArrayList<Pasaje> pasajes = clasePasaje.MostrarPasajes();
-        String filas[] = new String[7];
-        for (var Iterar : pasajes) {
-            filas[0] = String.valueOf(Iterar.getIdPasaje());
-            filas[1] = String.valueOf(Iterar.getIdPasajero());
-            filas[2] = String.valueOf(Iterar.getIdVuelo());
-            filas[3] = String.valueOf(Iterar.getIdClase());
-            filas[4] = String.valueOf(Iterar.getNAsiento());
-            filas[5] = String.valueOf(Iterar.getPrecionTotal());
-            ModeloT.addRow(filas);
-        }
-        tbPasajes.setModel(ModeloT);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,8 +132,6 @@ public class PnlPasaje extends javax.swing.JPanel {
         txtNEscala = new javax.swing.JTextField();
         cbAsientos = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbPasajes = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -154,6 +156,7 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         txtVuelo.setBackground(new java.awt.Color(0, 0, 0));
         txtVuelo.setForeground(new java.awt.Color(255, 255, 255));
+        txtVuelo.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,6 +164,11 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         cbClase.setBackground(new java.awt.Color(0, 0, 0));
         cbClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbClase.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbClaseItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,6 +180,7 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         txtPrecio.setBackground(new java.awt.Color(0, 0, 0));
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setEnabled(false);
 
         bttnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         bttnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -197,6 +206,7 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         txtNEscala.setBackground(new java.awt.Color(0, 0, 0));
         txtNEscala.setForeground(new java.awt.Color(255, 255, 255));
+        txtNEscala.setEnabled(false);
 
         cbAsientos.setBackground(new java.awt.Color(0, 0, 0));
         cbAsientos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -272,33 +282,15 @@ public class PnlPasaje extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 204));
 
-        tbPasajes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tbPasajes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbPasajesMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tbPasajes);
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
+            .addGap(0, 928, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
 
         jtpPasaje.addTab("Lista Pasajes", jPanel4);
@@ -343,45 +335,39 @@ public class PnlPasaje extends javax.swing.JPanel {
         pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
         pasaje.setNAsiento(Integer.parseInt(String.valueOf(cbAsientos.getSelectedItem())));
         pasaje.setPrecionTotal(Float.parseFloat(txtPrecio.getText()));
+        String usuario = menuUser.Usuario;
+        pasaje.setNombreUsuario(usuario);
         pasaje.setNEscala(Integer.parseInt(txtNEscala.getText()));
         pasajes.AgregarPasaje(pasaje);
+        
     }//GEN-LAST:event_bttnGuardarActionPerformed
-
-    private void tbPasajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasajesMouseClicked
-        jtpPasaje.setSelectedIndex(jtpPasaje.indexOfComponent(jPanel2));
-        int fila = tbPasajes.getSelectedRow();
-
-        String idPasaje = String.valueOf(tbPasajes.getValueAt(fila, 0));
-        String idVuelo = String.valueOf(tbPasajes.getValueAt(fila, 2));
-        String idClase = String.valueOf(tbPasajes.getValueAt(fila, 3));
-        String NAsiento = String.valueOf(tbPasajes.getValueAt(fila, 4));
-        String precioTotal = String.valueOf(tbPasajes.getValueAt(fila, 5));
-
-        txtVuelo.setText(idVuelo);
-//        txtAsiento.setText(NAsiento);
-        txtPrecio.setText(precioTotal);
-        int seleccionadordevista2 = 0;
-        for (var iterar : valueMemberClase) {
-            if (idClase.equals(iterar)) {
-                cbClase.setSelectedIndex(seleccionadordevista2);
-            }
-            seleccionadordevista2 += 1;
-        }
-
-    }//GEN-LAST:event_tbPasajesMouseClicked
 
     private void txtxPasajeroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtxPasajeroFocusLost
         String Documento = txtxPasajero.getText();
         ClsPasajero clsPasajero = new ClsPasajero();
         if (clsPasajero.ExistenciaPasajero(Documento) == false) {
-            int resp = JOptionPane.showConfirmDialog(null, "Pasajero no encontrado, ¿Desea Registrar Pasajero?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            int resp = JOptionPane.showConfirmDialog(null, "Pasajero no encontrado, ¿Desea Registrar Pasajero?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (resp == 0) {
-                
+                menuUser.btnPasajeros.doClick();
             } else {
                 txtxPasajero.setText("");
             }
         }
     }//GEN-LAST:event_txtxPasajeroFocusLost
+
+    private void cbClaseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClaseItemStateChanged
+        idClase = (Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
+        DisplayAsientos();
+        ClsClase clsClase = new ClsClase();
+        Clases clase = new Clases();
+        clase = clsClase.SeleccionarClas(idClase);
+        double PrecioClase = Precio;
+        double PorcentajeExtra = (clase.getPorcentajeEPrecio());
+        PrecioClase = PrecioClase + (PrecioClase * (PorcentajeExtra / 100.0));
+        if (Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]) > 0) {
+            txtPrecio.setText(String.valueOf(PrecioClase));
+        }
+    }//GEN-LAST:event_cbClaseItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,9 +384,7 @@ public class PnlPasaje extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jtpPasaje;
-    private javax.swing.JTable tbPasajes;
     public javax.swing.JTextField txtNEscala;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtVuelo;

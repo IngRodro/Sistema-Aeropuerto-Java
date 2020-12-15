@@ -12,20 +12,21 @@ import com.unab.edu.vistas.PnlPasajero;
  *
  * @author Usuario
  */
-public class frmMenuUser extends javax.swing.JFrame {
+public class frmMenuUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmMenuUser
+     * Creates new form frmMenuUsuario
      */
-    public frmMenuUser() {
+    public frmMenuUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    public frmMenuUser menuUsuario;
+    public frmMenuUsuario menuUsuario;
 
     CambioPanel CmPanel = new CambioPanel();
     PnlPasajero frmPasajero = new PnlPasajero();
     PnlListaVuelos frmListaVuelos = new PnlListaVuelos();
+    public String Usuario;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,25 +38,23 @@ public class frmMenuUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        bttnPasajeros = new javax.swing.JButton();
+        btnPasajeros = new javax.swing.JButton();
         bttnPasaje = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         PnlContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1056, 695));
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(175, 695));
 
-        bttnPasajeros.setBackground(new java.awt.Color(51, 102, 255));
-        bttnPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bttnPasajeros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/viajero(1).png"))); // NOI18N
-        bttnPasajeros.setText("Pasajeros");
-        bttnPasajeros.addActionListener(new java.awt.event.ActionListener() {
+        btnPasajeros.setBackground(new java.awt.Color(51, 102, 255));
+        btnPasajeros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPasajeros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/viajero(1).png"))); // NOI18N
+        btnPasajeros.setText("Pasajeros");
+        btnPasajeros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnPasajerosActionPerformed(evt);
+                btnPasajerosActionPerformed(evt);
             }
         });
 
@@ -75,7 +74,7 @@ public class frmMenuUser extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bttnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+            .addComponent(btnPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
             .addComponent(bttnPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -88,10 +87,10 @@ public class frmMenuUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bttnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bttnPasaje, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
         );
 
         PnlContenedor.setBackground(new java.awt.Color(0, 153, 204));
@@ -108,27 +107,61 @@ public class frmMenuUser extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
             .addComponent(PnlContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajerosActionPerformed
+    private void btnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasajerosActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmPasajero);
-    }//GEN-LAST:event_bttnPasajerosActionPerformed
+    }//GEN-LAST:event_btnPasajerosActionPerformed
 
     private void bttnPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajeActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmListaVuelos);
         frmListaVuelos.menuUser = menuUsuario;
     }//GEN-LAST:event_bttnPasajeActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmMenuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmMenuUsuario().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PnlContenedor;
+    public javax.swing.JButton btnPasajeros;
     private javax.swing.JButton bttnPasaje;
-    private javax.swing.JButton bttnPasajeros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

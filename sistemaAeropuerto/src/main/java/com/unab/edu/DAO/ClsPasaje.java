@@ -21,10 +21,12 @@ public class ClsPasaje {
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
     
-    public ArrayList<Pasaje> MostrarPasajes(){
+    public ArrayList<Pasaje> MostrarPasajes(int idVuelo, int idClase){
     ArrayList<Pasaje> pasajes = new ArrayList<>();
         try {
-            CallableStatement statement = conexion.prepareCall("call SP_S_Pasaje");
+            CallableStatement statement = conexion.prepareCall("call SP_S_AsientosPasaje(?,?)");
+            statement.setInt("PidVuelo", idVuelo);
+            statement.setInt("PidClase", idClase);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {                
                 Pasaje psj = new Pasaje();
@@ -34,7 +36,7 @@ public class ClsPasaje {
                 psj.setIdClase(rs.getInt("idClase"));
                 psj.setNAsiento(rs.getInt("NAsiento"));
                 psj.setPrecionTotal(rs.getFloat("precioTotal"));
-                psj.setNEscala(rs.getInt("NPasaje"));
+                psj.setNEscala(rs.getInt("NEscala"));
                 pasajes.add(psj);
             }
         } catch (Exception e) {

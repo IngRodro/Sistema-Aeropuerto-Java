@@ -244,6 +244,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`pasaje` (
     FOREIGN KEY (`idVuelo`)
     REFERENCES `sistemaaeropuerto`.`vuelo` (`idVuelo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -628,6 +629,19 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_S_1Clase
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Clase`(PidClases int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.clases where idClases = PidClases;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_S_1Escala
 -- -----------------------------------------------------
 
@@ -702,6 +716,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Aeropuerto`(
 )
 BEGIN
 SELECT * FROM sistemaaeropuerto.aeropuerto where Estado = "Activo";
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_AsientosPasaje
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_AsientosPasaje`(PidVuelo int, PidClase int)
+BEGIN
+	SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = PidVuelo and idClase = PidClase;
 END$$
 
 DELIMITER ;
@@ -1083,6 +1110,21 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Tipos`(PTipo varchar(45), PDescuento float, PidTipos_vuelo int)
 BEGIN
 	Update tipos_vuelo  set Tipo = PTipo, PorcentajeDesc = PDescuento where idTipos_vuelo = PidTipos_vuelo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_U_VueloFinalizado
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_VueloFinalizado`(
+PidVuelo int
+)
+BEGIN
+    Update sistemaaeropuerto.vuelo set estado = 0 where idVuelo = PidVuelo;
 END$$
 
 DELIMITER ;
