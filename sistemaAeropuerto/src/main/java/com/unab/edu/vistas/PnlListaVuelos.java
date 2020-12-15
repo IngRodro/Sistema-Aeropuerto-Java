@@ -7,12 +7,15 @@ package com.unab.edu.vistas;
 
 import com.unab.edu.DAO.ClsEscala;
 import com.unab.edu.DAO.ClsVuelo;
+import com.unab.edu.DAO.Clsaeropuerto;
 import com.unab.edu.DAO.InnerJoinVuelo;
+import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Escala;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.sistemaaeropuerto.CambioPanel;
 import com.unab.edu.sistemaaeropuerto.frmMenuUser;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,16 +31,41 @@ public class PnlListaVuelos extends javax.swing.JPanel {
     public PnlListaVuelos() {
         initComponents();
         CargarTablaVuelos();
+        DisplayMemberAero();
     }
     public frmMenuUser menuUser;
     CambioPanel CmPanel = new CambioPanel();
+
+    String valueMemberAero[];
+    int contadorAero = 1;
+
+    void DisplayMemberAero() {
+        DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
+        Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
+        ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
+        valueMemberAero = new String[aeropuertos.size() + 1];
+        String filas[] = new String[3];
+        cbdefaDefault.addElement("");
+        for (var IterarDatosAeropuerto : aeropuertos) {
+            filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
+            filas[1] = IterarDatosAeropuerto.getNombre();
+            valueMemberAero[contadorAero] = filas[0];
+            cbdefaDefault.addElement(filas[1]);
+            contadorAero++;
+        }
+        cbAeropuerto.setModel(cbdefaDefault);
+    }
 
     void CargarTablaVuelos() {
         ClsEscala clsEscala = new ClsEscala();
         String Titulos[] = {"Vuelo", "N Escala", "AeropuertoDestino", "Precio", "Tipo de Vuelo", "Fecha", "Hora", "Descuento", "Fecha Max Descuento"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsVuelo clsVuelos = new ClsVuelo();
-        ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelosOrigen(1);
+        int idAeroO = 0;
+        if (cbAeropuerto.getSelectedIndex() > 0) {
+            idAeroO = (Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
+        }
+        ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelosOrigen(idAeroO);
         String filas[] = new String[10];
         Vuelo vuelo = new Vuelo();
 
@@ -79,6 +107,9 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbVuelos = new javax.swing.JTable();
         btnNuevo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbAeropuerto = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 204));
 
@@ -102,6 +133,22 @@ public class PnlListaVuelos extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Lista de Vuelos");
+
+        cbAeropuerto.setBackground(new java.awt.Color(0, 0, 0));
+        cbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAeropuertoItemStateChanged(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Seleccione Aeropuerto:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,20 +156,33 @@ public class PnlListaVuelos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel2)
+                                .addGap(26, 26, 26)
+                                .addComponent(cbAeropuerto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnNuevo)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(392, 392, 392)
+                        .addComponent(jLabel1)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnNuevo)
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -137,25 +197,27 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         String[] c = Descuento.split("%");
         double PorcentajeDescuento = Double.parseDouble(c[0]);
         PrecioVuelo = PrecioVuelo - (PrecioVuelo * (PorcentajeDescuento / 100));
-        ClsVuelo clsVuelo = new ClsVuelo();
-        Vuelo vuelo = new Vuelo();
-        int NVuelo = Integer.parseInt(idVuelo);
-        vuelo = clsVuelo.SeleccionarVuelo(NVuelo);
-        JOptionPane.showMessageDialog(null, NVuelo);
 
         PnlPasaje frmPasaje = new PnlPasaje();
         CmPanel.ModificarPanel(menuUser.PnlContenedor, frmPasaje);
         frmPasaje.txtVuelo.setText(idVuelo);
         frmPasaje.txtNEscala.setText(NEscala);
         frmPasaje.txtPrecio.setText(String.valueOf(PrecioVuelo));
-        frmPasaje.idAvion = vuelo.getIdAvion();
+        frmPasaje.NVuelo = Integer.parseInt(idVuelo);
         frmPasaje.DisplayMemberClase();
-
+        frmPasaje.DisplayAsientos();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void cbAeropuertoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAeropuertoItemStateChanged
+        CargarTablaVuelos();
+    }//GEN-LAST:event_cbAeropuertoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> cbAeropuerto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbVuelos;
     // End of variables declaration//GEN-END:variables

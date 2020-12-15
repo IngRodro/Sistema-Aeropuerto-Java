@@ -80,13 +80,13 @@ public class ClsVuelo {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Vuelo(?)");
             Statement.setInt("PidVuelo", idVuelo);
-            ResultSet resultadoDeConsulta = Statement.executeQuery();
-            while (resultadoDeConsulta.next()) {
-                vuelo.setIdVuelo(resultadoDeConsulta.getInt("idVuelo"));
-                vuelo.setIdCompany(resultadoDeConsulta.getInt("idCompany"));
-                vuelo.setIdIterinario(resultadoDeConsulta.getInt("idItinerario"));
-                vuelo.setIdTiposVuelo(resultadoDeConsulta.getInt("idAvion"));
-                vuelo.setIdAvion(resultadoDeConsulta.getInt("idTiposvuelo"));
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                vuelo.setIdVuelo(rs.getInt("idVuelo"));
+                vuelo.setIdCompany(rs.getInt("idCompany"));
+                vuelo.setIdIterinario(rs.getInt("idItinerario"));
+                vuelo.setIdTiposVuelo(rs.getInt("idTiposvuelo"));
+                vuelo.setIdAvion(rs.getInt("idAvion"));
             }
 
             conexion.close();

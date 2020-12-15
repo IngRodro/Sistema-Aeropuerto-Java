@@ -116,4 +116,32 @@ public class ClsPasajero {
         }
         return existencia;
     }
+    
+    public int IdPasajero(String Document) {
+        int idP = 0;
+        ArrayList<Pasajero> pasajeros = new ArrayList<>();
+        try {
+            CallableStatement statement = conexion.prepareCall("call SP_S_Pasajero");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Pasajero psjr = new Pasajero();
+                psjr.setIdPasajero(rs.getInt("idPasajero"));
+                psjr.setNombres(rs.getString("nombres"));
+                psjr.setApellidos(rs.getString("apellidos"));
+                psjr.setEdad(rs.getInt("edad"));
+                psjr.setSexo(rs.getString("sexo"));
+                psjr.setDocumentoIdentidad(rs.getString("documentoIdentidad"));
+                psjr.setPasaporte(rs.getString("pasaporte"));
+                pasajeros.add(psjr);
+            }
+            for (var iterarPasajero : pasajeros) {
+                if (iterarPasajero.getDocumentoIdentidad().equals(Document)) {
+                    idP = iterarPasajero.getIdPasajero();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return idP;
+    }
 }

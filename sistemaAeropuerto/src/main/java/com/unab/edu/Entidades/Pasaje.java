@@ -21,5 +21,6 @@ public class Pasaje {
     private String nombreUsuario;
     private float precionTotal;
     private int NEscala;
-            
+
+ 
 }

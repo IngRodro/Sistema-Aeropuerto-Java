@@ -45,13 +45,14 @@ public class ClsPasaje {
     
     public void AgregarPasaje(Pasaje pasa){
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_I_Pasaje(?,?,?,?,?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_I_Pasaje(?,?,?,?,?,?,?)");
             Statement.setInt("PidPasajero", pasa.getIdPasajero());
             Statement.setInt("PidVuelo", pasa.getIdVuelo());
             Statement.setInt("PidClase", pasa.getIdClase());
             Statement.setInt("PNAsiento",pasa.getNAsiento());
             Statement.setFloat("PprecioTotal", pasa.getPrecionTotal());
             Statement.setInt("PNEscala", pasa.getNEscala());
+            Statement.setString("PnombreUsuario", "RodroUser");
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();

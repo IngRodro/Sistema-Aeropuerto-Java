@@ -5,16 +5,15 @@
  */
 package com.unab.edu.vistas;
 
+import com.unab.edu.DAO.ClsAvion;
 import com.unab.edu.DAO.ClsClase;
 import com.unab.edu.DAO.ClsEscala;
 import com.unab.edu.DAO.ClsPasaje;
 import com.unab.edu.DAO.ClsPasajero;
 import com.unab.edu.DAO.ClsVuelo;
-import com.unab.edu.DAO.InnerJoinVuelo;
 import com.unab.edu.Entidades.Clases;
-import com.unab.edu.Entidades.Escala;
+import com.unab.edu.Entidades.Avion;
 import com.unab.edu.Entidades.Pasaje;
-import com.unab.edu.Entidades.Pasajero;
 import com.unab.edu.Entidades.Vuelo;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -35,7 +34,7 @@ public class PnlPasaje extends javax.swing.JPanel {
         CargarTabla();
     }
 
-    public int idAvion;
+    public int NVuelo;
     String valueMemberPasajero;
     String valueMemberClase[];
     int contadorPasajero = 1;
@@ -44,10 +43,13 @@ public class PnlPasaje extends javax.swing.JPanel {
     Vuelo vuelo = new Vuelo();
 
     void DisplayMemberClase() {
-        JOptionPane.showMessageDialog(null, idAvion);
+        ClsVuelo clsVuelo = new ClsVuelo();
+        Vuelo vuelo = new Vuelo();
+        vuelo = clsVuelo.SeleccionarVuelo(NVuelo);
+        
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         ClsClase clase = new ClsClase();
-        ArrayList<Clases> claseses = clase.MostrarClase(idAvion);
+        ArrayList<Clases> claseses = clase.MostrarClase(vuelo.getIdAvion());
         valueMemberClase = new String[claseses.size() + 1];
         String filas[] = new String[4];
         contadorClase = 1;
@@ -62,6 +64,23 @@ public class PnlPasaje extends javax.swing.JPanel {
         cbClase.setModel(cbdefaDefault);
     }
 
+    
+    void DisplayAsientos(){
+        ClsVuelo clsVuelo = new ClsVuelo();
+        Vuelo vuelo = new Vuelo();
+        vuelo = clsVuelo.SeleccionarVuelo(NVuelo);
+        ClsAvion clsAvion = new ClsAvion();
+        DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
+        Avion avion = new Avion();
+        cbdefaDefault.addElement("");
+        avion = clsAvion.SeleccionarAvion(vuelo.getIdAvion());
+        for(int i=0;i<avion.getCapacidad();i++){
+            int Asiento = i+1;
+            String add = String.valueOf(Asiento);
+            cbdefaDefault.addElement(add);
+        }
+        cbAsientos.setModel(cbdefaDefault);
+    }
     ClsEscala clsEscala = new ClsEscala();
 
     void CargarTabla() {
@@ -101,13 +120,13 @@ public class PnlPasaje extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         cbClase = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtAsiento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         bttnGuardar = new javax.swing.JButton();
         txtxPasajero = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNEscala = new javax.swing.JTextField();
+        cbAsientos = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPasajes = new javax.swing.JTable();
@@ -147,9 +166,6 @@ public class PnlPasaje extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Asiento:");
 
-        txtAsiento.setBackground(new java.awt.Color(0, 0, 0));
-        txtAsiento.setForeground(new java.awt.Color(255, 255, 255));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio:");
@@ -182,6 +198,9 @@ public class PnlPasaje extends javax.swing.JPanel {
         txtNEscala.setBackground(new java.awt.Color(0, 0, 0));
         txtNEscala.setForeground(new java.awt.Color(255, 255, 255));
 
+        cbAsientos.setBackground(new java.awt.Color(0, 0, 0));
+        cbAsientos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -192,9 +211,9 @@ public class PnlPasaje extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtVuelo)
                         .addComponent(cbClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtAsiento)
                         .addComponent(txtPrecio)
-                        .addComponent(txtxPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtxPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbAsientos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel8)
@@ -237,8 +256,8 @@ public class PnlPasaje extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(cbAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,13 +344,15 @@ public class PnlPasaje extends javax.swing.JPanel {
 
     private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
         ClsPasaje pasajes = new ClsPasaje();
+        ClsPasajero clsPasajero = new ClsPasajero();
         Pasaje pasaje = new Pasaje();
+        pasaje.setIdPasajero((clsPasajero.IdPasajero(txtxPasajero.getText())));
         pasaje.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
         pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
-        pasaje.setNAsiento(Integer.parseInt(txtAsiento.getText()));
+        pasaje.setNAsiento(Integer.parseInt(String.valueOf(cbAsientos.getSelectedItem())));
         pasaje.setPrecionTotal(Float.parseFloat(txtPrecio.getText()));
+        pasaje.setNEscala(Integer.parseInt(txtNEscala.getText()));
         pasajes.AgregarPasaje(pasaje);
-        CargarTabla();
     }//GEN-LAST:event_bttnGuardarActionPerformed
 
     private void tbPasajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasajesMouseClicked
@@ -345,7 +366,7 @@ public class PnlPasaje extends javax.swing.JPanel {
         String precioTotal = String.valueOf(tbPasajes.getValueAt(fila, 5));
 
         txtVuelo.setText(idVuelo);
-        txtAsiento.setText(NAsiento);
+//        txtAsiento.setText(NAsiento);
         txtPrecio.setText(precioTotal);
         int seleccionadordevista2 = 0;
         for (var iterar : valueMemberClase) {
@@ -373,6 +394,7 @@ public class PnlPasaje extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnGuardar;
+    private javax.swing.JComboBox<String> cbAsientos;
     private javax.swing.JComboBox<String> cbClase;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -387,10 +409,10 @@ public class PnlPasaje extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jtpPasaje;
     private javax.swing.JTable tbPasajes;
-    private javax.swing.JTextField txtAsiento;
     public javax.swing.JTextField txtNEscala;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtVuelo;
     private javax.swing.JTextField txtxPasajero;
     // End of variables declaration//GEN-END:variables
+
 }
