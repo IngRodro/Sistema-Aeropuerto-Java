@@ -27,13 +27,6 @@ public class PnlClases extends javax.swing.JPanel {
     public PnlClases() {
         initComponents();
         CargarTabla();
-        tbClase.setBackground(new Color(0,0,0,0));
-        
-        tbClase.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbClase.getTableHeader().setOpaque(false);
-        tbClase.getTableHeader().setBackground(new Color(0,153,204));
-        tbClase.getTableHeader().setForeground(new Color(0,0,0));
-        tbClase.setRowHeight(25);
     }
 
     public int idAvion;

@@ -28,13 +28,6 @@ public class PnlAeropuerto extends javax.swing.JPanel {
     public PnlAeropuerto() {
         initComponents();
         CargarTabla();
-        tbAeropuerto.setBackground(new Color(0, 0, 0, 0));
-
-        tbAeropuerto.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbAeropuerto.getTableHeader().setOpaque(false);
-        tbAeropuerto.getTableHeader().setBackground(new Color(0, 153, 204));
-        tbAeropuerto.getTableHeader().setForeground(new Color(0, 0, 0));
-        tbAeropuerto.setRowHeight(25);
     }
 
     void CargarTabla() {

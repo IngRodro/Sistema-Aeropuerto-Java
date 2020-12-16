@@ -48,13 +48,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         initComponents();
         CargarDatos();
         DisplayMemberCompany();
-        tbVuelos.setBackground(new Color(0,0,0,0));
-        
-        tbVuelos.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbVuelos.getTableHeader().setOpaque(false);
-        tbVuelos.getTableHeader().setBackground(new Color(0,153,204));
-        tbVuelos.getTableHeader().setForeground(new Color(0,0,0));
-        tbVuelos.setRowHeight(25);
     }
 
     public frmMenuAdmin menuAdmin;
@@ -373,11 +366,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtDescuento.setText("0");
         txtDescuento.setBorder(null);
-        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescuentoActionPerformed(evt);
-            }
-        });
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyTyped(evt);
@@ -920,10 +908,6 @@ public class PnlVuelos extends javax.swing.JPanel {
     private void btnFinalizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFinalizadoActionPerformed
-
-    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescuentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

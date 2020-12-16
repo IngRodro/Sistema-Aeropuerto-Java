@@ -33,13 +33,6 @@ public class PnlEscala extends javax.swing.JPanel {
     public PnlEscala() {
         initComponents();
         DisplayMemberAero();
-        tbEscalas.setBackground(new Color(0,0,0,0));
-        
-        tbEscalas.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbEscalas.getTableHeader().setOpaque(false);
-        tbEscalas.getTableHeader().setBackground(new Color(0,153,204));
-        tbEscalas.getTableHeader().setForeground(new Color(0,0,0));
-        tbEscalas.setRowHeight(25);
     }
 
     public int idVuelo;

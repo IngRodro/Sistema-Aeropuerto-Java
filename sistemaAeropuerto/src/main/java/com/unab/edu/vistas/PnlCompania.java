@@ -27,14 +27,6 @@ public class PnlCompania extends javax.swing.JPanel {
     public PnlCompania() {
         initComponents();
         CargarTabla();
-        tbCompany.setBackground(new Color(0,0,0,0));
-        
-        tbCompany.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbCompany.getTableHeader().setOpaque(false);
-        tbCompany.getTableHeader().setBackground(new Color(0,153,204));
-        tbCompany.getTableHeader().setForeground(new Color(0,0,0));
-        tbCompany.setRowHeight(25);
-        //Tomo el tamaño de la pantalla
     }
     
     void CargarTabla() {
