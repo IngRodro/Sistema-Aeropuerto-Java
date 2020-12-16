@@ -14,6 +14,8 @@ import com.unab.edu.Entidades.Escala;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.sistemaaeropuerto.CambioPanel;
 import com.unab.edu.sistemaaeropuerto.frmMenuUsuario;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,13 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         initComponents();
         CargarTablaVuelos();
         DisplayMemberAero();
+        tbVuelos.setBackground(new Color(0, 0, 0, 0));
+
+        tbVuelos.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tbVuelos.getTableHeader().setOpaque(false);
+        tbVuelos.getTableHeader().setBackground(new Color(0, 153, 204));
+        tbVuelos.getTableHeader().setForeground(new Color(0, 0, 0));
+        tbVuelos.setRowHeight(25);
     }
     public frmMenuUsuario menuUser;
     CambioPanel CmPanel = new CambioPanel();
@@ -111,7 +120,9 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 204));
+        setPreferredSize(new java.awt.Dimension(920, 528));
 
+        tbVuelos.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         tbVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -123,8 +134,18 @@ public class PnlListaVuelos extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbVuelos.setFocusable(false);
+        tbVuelos.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tbVuelos.setRowHeight(25);
+        tbVuelos.setSelectionBackground(new java.awt.Color(0, 153, 204));
+        tbVuelos.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tbVuelos.setShowVerticalLines(false);
+        tbVuelos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbVuelos);
 
+        btnNuevo.setBackground(new java.awt.Color(0, 0, 0));
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("Nuevo Pasaje");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +157,8 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Lista de Vuelos");
 
-        cbAeropuerto.setBackground(new java.awt.Color(0, 0, 0));
+        cbAeropuerto.setBackground(new java.awt.Color(0, 153, 204));
+        cbAeropuerto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbAeropuerto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbAeropuerto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -152,35 +174,35 @@ public class PnlListaVuelos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addComponent(cbAeropuerto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(395, 395, 395))
+                .addGap(377, 377, 377))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(jLabel2)
                     .addComponent(cbAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,9 +219,9 @@ public class PnlListaVuelos extends javax.swing.JPanel {
 
         PnlPasaje frmPasaje = new PnlPasaje();
         CmPanel.ModificarPanel(menuUser.PnlContenedor, frmPasaje);
-        frmPasaje.txtVuelo.setText(idVuelo);
+        /*frmPasaje.txtVuelo.setText(idVuelo);
         frmPasaje.txtNEscala.setText(NEscala);
-        frmPasaje.txtPrecio.setText(String.valueOf(PrecioVuelo));
+        frmPasaje.txtPrecio.setText(String.valueOf(PrecioVuelo));*/
         frmPasaje.NVuelo = Integer.parseInt(idVuelo);
         frmPasaje.DisplayMemberClase();
         frmPasaje.DisplayAsientos();

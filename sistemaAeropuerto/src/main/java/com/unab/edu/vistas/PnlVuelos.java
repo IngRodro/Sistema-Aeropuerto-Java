@@ -48,6 +48,13 @@ public class PnlVuelos extends javax.swing.JPanel {
         initComponents();
         CargarDatos();
         DisplayMemberCompany();
+        tbVuelos.setBackground(new Color(0,0,0,0));
+        
+        tbVuelos.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tbVuelos.getTableHeader().setOpaque(false);
+        tbVuelos.getTableHeader().setBackground(new Color(0,153,204));
+        tbVuelos.getTableHeader().setForeground(new Color(0,0,0));
+        tbVuelos.setRowHeight(25);
     }
 
     public frmMenuAdmin menuAdmin;
@@ -219,7 +226,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtVuelo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtHora = new javax.swing.JFormattedTextField();
         BtnActualizar = new javax.swing.JButton();
@@ -235,21 +241,23 @@ public class PnlVuelos extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btnFinalizado = new javax.swing.JButton();
+        lblId = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbVuelos = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(51, 102, 255));
 
+        tbPVuelos.setBackground(new java.awt.Color(51, 102, 255));
         tbPVuelos.setForeground(new java.awt.Color(255, 255, 255));
         tbPVuelos.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
         cbCompany.setBackground(new java.awt.Color(0, 153, 204));
+        cbCompany.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbCompany.setForeground(new java.awt.Color(255, 255, 255));
         cbCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCompany.setBorder(null);
         cbCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
@@ -257,15 +265,15 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel1.setText("Vuelos");
 
         cbTipo.setBackground(new java.awt.Color(0, 153, 204));
+        cbTipo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbTipo.setForeground(new java.awt.Color(255, 255, 255));
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbTipo.setBorder(null);
         cbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         cbOrigen.setBackground(new java.awt.Color(0, 153, 204));
+        cbOrigen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbOrigen.setForeground(new java.awt.Color(255, 255, 255));
         cbOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbOrigen.setBorder(null);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -276,21 +284,22 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel5.setText("Avion:");
 
         cbDestino.setBackground(new java.awt.Color(0, 153, 204));
+        cbDestino.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbDestino.setForeground(new java.awt.Color(255, 255, 255));
         cbDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbDestino.setBorder(null);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tipo de Vuelo:");
 
         cbAvion.setBackground(new java.awt.Color(0, 153, 204));
+        cbAvion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         cbAvion.setForeground(new java.awt.Color(255, 255, 255));
         cbAvion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbAvion.setBorder(null);
         cbAvion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jdcFecha.setBackground(new java.awt.Color(0, 153, 204));
+        jdcFecha.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,14 +326,6 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Vuelo:");
-
-        txtVuelo.setEditable(false);
-        txtVuelo.setBackground(new java.awt.Color(0, 153, 204));
-        txtVuelo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        txtVuelo.setForeground(new java.awt.Color(255, 255, 255));
-        txtVuelo.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txtVuelo.setBorder(null);
-        txtVuelo.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -372,6 +373,11 @@ public class PnlVuelos extends javax.swing.JPanel {
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtDescuento.setText("0");
         txtDescuento.setBorder(null);
+        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentoActionPerformed(evt);
+            }
+        });
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyTyped(evt);
@@ -383,12 +389,14 @@ public class PnlVuelos extends javax.swing.JPanel {
         jLabel11.setText("Inicio Desc(Opcional):");
 
         jdcFechaI.setBackground(new java.awt.Color(0, 153, 204));
+        jdcFechaI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Final Desc(Opcional):");
 
         jdcFechaF.setBackground(new java.awt.Color(0, 153, 204));
+        jdcFechaF.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(166, 3));
@@ -446,12 +454,31 @@ public class PnlVuelos extends javax.swing.JPanel {
             }
         });
 
+        lblId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(304, Short.MAX_VALUE)
+                .addComponent(BtnActualizar)
+                .addGap(113, 113, 113)
+                .addComponent(btnEscala)
+                .addGap(317, 317, 317))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(424, 424, 424)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFinalizado)
+                .addGap(43, 43, 43))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -459,15 +486,10 @@ public class PnlVuelos extends javax.swing.JPanel {
                             .addComponent(jLabel11)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jdcFechaI, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BtnActualizar)
-                                .addGap(113, 113, 113)
-                                .addComponent(btnEscala))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jdcFechaF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jdcFechaF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,7 +506,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                                                     .addGap(87, 87, 87)))
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(cbCompany, 0, 160, Short.MAX_VALUE)
-                                                .addComponent(txtVuelo)))
+                                                .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(82, 82, 82)
@@ -492,7 +514,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel6)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -521,32 +543,23 @@ public class PnlVuelos extends javax.swing.JPanel {
                                             .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(41, 41, 41)))
-                .addGap(134, 134, 134))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(424, 424, 424)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnFinalizado)
-                .addGap(43, 43, 43))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel9)
                                 .addComponent(jLabel2)
                                 .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(4, 4, 4)
+                        .addGap(5, 5, 5)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -581,12 +594,13 @@ public class PnlVuelos extends javax.swing.JPanel {
                         .addComponent(jLabel13))
                     .addComponent(jdcFechaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel12))
                     .addComponent(jdcFechaF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEscala, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -599,7 +613,6 @@ public class PnlVuelos extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
-        tbVuelos.setBackground(new java.awt.Color(0, 153, 204));
         tbVuelos.setForeground(new java.awt.Color(255, 255, 255));
         tbVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -613,11 +626,11 @@ public class PnlVuelos extends javax.swing.JPanel {
             }
         ));
         tbVuelos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tbVuelos.setGridColor(new java.awt.Color(51, 102, 255));
+        tbVuelos.setFocusable(false);
         tbVuelos.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbVuelos.setRowHeight(25);
-        tbVuelos.setSelectionBackground(new java.awt.Color(51, 102, 255));
-        tbVuelos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tbVuelos.setSelectionBackground(new java.awt.Color(0, 102, 255));
+        tbVuelos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tbVuelos.setShowGrid(false);
         tbVuelos.setShowHorizontalLines(true);
         tbVuelos.getTableHeader().setResizingAllowed(false);
@@ -668,7 +681,7 @@ public class PnlVuelos extends javax.swing.JPanel {
     private void btnEscalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscalaActionPerformed
         PnlEscala Escala = new PnlEscala();
         cambio.ModificarPanel(menuAdmin.PnlContenedor, Escala);
-        Escala.idVuelo = Integer.parseInt(txtVuelo.getText());
+        Escala.idVuelo = Integer.parseInt(lblId.getText());
         Escala.CargarTabla();
     }//GEN-LAST:event_btnEscalaActionPerformed
 
@@ -686,7 +699,7 @@ public class PnlVuelos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Introduzca la Hora en el formato correcto");
         } else {
             if (cbAvion.getSelectedIndex() == 0 || cbCompany.getSelectedIndex() == 0 || cbDestino.getSelectedIndex() == 0 || cbOrigen.getSelectedIndex() == 0
-                    || cbTipo.getSelectedIndex() == 0 || jdcFecha.getDate() == null || txtVuelo.getText().isEmpty()) {
+                    || cbTipo.getSelectedIndex() == 0 || jdcFecha.getDate() == null || lblId.getText().isEmpty()) {
             } else {
                 if (Double.parseDouble(txtDescuento.getText()) == 0.0) {
                     try {
@@ -695,7 +708,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                         promo.setFechaFinal(null);
                         itinerario.setHora(Horas);
                         itinerario.setMinutos(Minutos);
-                        vuelo.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
+                        vuelo.setIdVuelo(Integer.parseInt(lblId.getText()));
                         vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
                         vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
                         vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
@@ -716,7 +729,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                     try {
                         itinerario.setHora(Horas);
                         itinerario.setMinutos(Minutos);
-                        vuelo.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
+                        vuelo.setIdVuelo(Integer.parseInt(lblId.getText()));
                         vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
                         vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
                         vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
@@ -828,7 +841,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         itinerario = clsItinerario.SeleccionarIterinario(vuelo.getIdIterinario());
         promo = clsPromo.SeleccionarPromo(ID);
 
-        txtVuelo.setText(String.valueOf(vuelo.getIdVuelo()));
+        lblId.setText(String.valueOf(vuelo.getIdVuelo()));
 
         for (int i = 1; i < valueMemberCompany.length; i++) {
             int idCompany = Integer.parseInt(valueMemberCompany[i]);
@@ -908,6 +921,10 @@ public class PnlVuelos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFinalizadoActionPerformed
 
+    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
@@ -941,10 +958,10 @@ public class PnlVuelos extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jdcFecha;
     private com.toedter.calendar.JDateChooser jdcFechaF;
     private com.toedter.calendar.JDateChooser jdcFechaI;
+    private javax.swing.JLabel lblId;
     private javax.swing.JTabbedPane tbPVuelos;
     private javax.swing.JTable tbVuelos;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JFormattedTextField txtHora;
-    private javax.swing.JTextField txtVuelo;
     // End of variables declaration//GEN-END:variables
 }

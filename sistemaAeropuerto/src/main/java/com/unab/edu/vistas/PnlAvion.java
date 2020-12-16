@@ -27,6 +27,13 @@ public class PnlAvion extends javax.swing.JPanel {
     public PnlAvion() {
         initComponents();
         CargarTabla();
+        tbAviones.setBackground(new Color(0, 0, 0, 0));
+
+        tbAviones.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tbAviones.getTableHeader().setOpaque(false);
+        tbAviones.getTableHeader().setBackground(new Color(0, 153, 204));
+        tbAviones.getTableHeader().setForeground(new Color(0, 0, 0));
+        tbAviones.setRowHeight(25);
     }
 
     PnlClases frmClase = new PnlClases();
@@ -34,7 +41,7 @@ public class PnlAvion extends javax.swing.JPanel {
     CambioPanel cambio = new CambioPanel();
 
     void LimpiarCajasdeTexto() {
-        txtId.setText("");
+        lblId.setText("");
         txtCapacidad.setText("");
         txtModelo.setText("");
     }
@@ -71,11 +78,14 @@ public class PnlAvion extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtCapacidad = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
-        txtId = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnClase = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        lblId = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbAviones = new javax.swing.JTable();
@@ -104,15 +114,15 @@ public class PnlAvion extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Capacidad:");
 
-        txtCapacidad.setBackground(new java.awt.Color(0, 0, 0));
+        txtCapacidad.setBackground(new java.awt.Color(0, 153, 204));
+        txtCapacidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtCapacidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtCapacidad.setBorder(null);
 
-        txtModelo.setBackground(new java.awt.Color(0, 0, 0));
+        txtModelo.setBackground(new java.awt.Color(0, 153, 204));
+        txtModelo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtModelo.setForeground(new java.awt.Color(255, 255, 255));
-
-        txtId.setBackground(new java.awt.Color(0, 0, 0));
-        txtId.setForeground(new java.awt.Color(255, 255, 255));
-        txtId.setEnabled(false);
+        txtModelo.setBorder(null);
 
         btnGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -154,14 +164,55 @@ public class PnlAvion extends javax.swing.JPanel {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 3));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setPreferredSize(new java.awt.Dimension(100, 3));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(100, 3));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        lblId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(423, 423, 423))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -172,11 +223,14 @@ public class PnlAvion extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtId)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                             .addComponent(txtModelo)
-                            .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
+                        .addGap(133, 133, 133)
                         .addComponent(btnGuardar)
                         .addGap(91, 91, 91)
                         .addComponent(btnActualizar)
@@ -184,34 +238,45 @@ public class PnlAvion extends javax.swing.JPanel {
                         .addComponent(btnEliminar)
                         .addGap(93, 93, 93)
                         .addComponent(btnClase)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(423, 423, 423))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel4)))
-                .addGap(91, 91, 91)
+                        .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnEliminar)
                     .addComponent(btnActualizar)
                     .addComponent(btnClase))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
         );
 
         tbPAvion.addTab("Registro Aviones", jPanel2);
@@ -233,7 +298,7 @@ public class PnlAvion extends javax.swing.JPanel {
         tbAviones.setFocusable(false);
         tbAviones.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbAviones.setRowHeight(25);
-        tbAviones.setSelectionBackground(new java.awt.Color(0, 102, 255));
+        tbAviones.setSelectionBackground(new java.awt.Color(0, 153, 204));
         tbAviones.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tbAviones.setShowVerticalLines(false);
         tbAviones.getTableHeader().setReorderingAllowed(false);
@@ -285,12 +350,12 @@ public class PnlAvion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (txtId.getText().isEmpty() == true) {
+        if (lblId.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
         } else {
             ClsAvion avion = new ClsAvion();
             Avion aviones = new Avion();
-            aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+            aviones.setIdAvion(Integer.parseInt(lblId.getText()));
             avion.BorrarAvion(aviones);
             LimpiarCajasdeTexto();
             CargarTabla();
@@ -298,12 +363,12 @@ public class PnlAvion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtId.getText().isEmpty() == true || txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true) {
+        if (lblId.getText().isEmpty() == true || txtModelo.getText().isEmpty() == true || txtCapacidad.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
         } else {
             ClsAvion avion = new ClsAvion();
             Avion aviones = new Avion();
-            aviones.setIdAvion(Integer.parseInt(txtId.getText()));
+            aviones.setIdAvion(Integer.parseInt(lblId.getText()));
             aviones.setModeloAvion(txtModelo.getText());
             aviones.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
             avion.ActualizarAvion(aviones);
@@ -319,18 +384,18 @@ public class PnlAvion extends javax.swing.JPanel {
         String ID = String.valueOf(tbAviones.getValueAt(fila, 0));
         String Modelo = String.valueOf(tbAviones.getValueAt(fila, 1));
         String Capacidad = String.valueOf(tbAviones.getValueAt(fila, 2));
-        txtId.setText(ID);
+        lblId.setText(ID);
         txtModelo.setText(Modelo);
         txtCapacidad.setText(Capacidad);
     }//GEN-LAST:event_tbAvionesMouseClicked
 
     private void btnClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaseActionPerformed
-        if (txtId.getText().isEmpty() == true) {
+        if (lblId.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(null, "Seleccione un Avion para ver su Clase");
             tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel3));
         } else {
             cambio.ModificarPanel(menuAdmin.PnlContenedor, frmClase);
-            int idAvion = Integer.parseInt(txtId.getText());
+            int idAvion = Integer.parseInt(lblId.getText());
             frmClase.idAvion = idAvion;
             frmClase.CargarTabla();
         }
@@ -346,13 +411,16 @@ public class PnlAvion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblId;
     private javax.swing.JTable tbAviones;
     private javax.swing.JTabbedPane tbPAvion;
     private javax.swing.JTextField txtCapacidad;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtModelo;
     // End of variables declaration//GEN-END:variables
 }
