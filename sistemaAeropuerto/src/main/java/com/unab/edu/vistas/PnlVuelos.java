@@ -768,6 +768,9 @@ public class PnlVuelos extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             } else {
                 try {
+                    if(cbOrigen.getSelectedIndex() == cbDestino.getSelectedIndex()){
+                    JOptionPane.showMessageDialog(null, "El Aeropuerto de Origen y de Destino no pueden ser el mismo");
+                    }else{
                     if (Double.parseDouble(txtDescuento.getText()) == 0.0) {
                         promo.setDescuento(0.0);
                         promo.setFechaInicio(null);
@@ -782,7 +785,7 @@ public class PnlVuelos extends javax.swing.JPanel {
                         itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
                         itinerario.setFecha(jdcFecha.getDate());
                         vuelos.AgregarVuelo(vuelo, itinerario, promo);
-                        clsAvion.AvionOcupado(vuelo.getIdAvion());
+                        clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
                     } else {
                         promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
                         promo.setFechaInicio(jdcFechaI.getDate());
@@ -798,11 +801,12 @@ public class PnlVuelos extends javax.swing.JPanel {
                                 JOptionPane.showMessageDialog(null, "La Fecha de Inicio debes ser anterior a la Fecha Final");
                             } else {
                                 vuelos.AgregarVuelo(vuelo, itinerario, promo);
-                                clsAvion.AvionOcupado(vuelo.getIdAvion());
+                                clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "La Promocion no puede durar mas alla de la Fecha del Vuelo");
                         }
+                    }
                     }
 
                 } catch (Exception e) {
@@ -906,7 +910,18 @@ public class PnlVuelos extends javax.swing.JPanel {
     }//GEN-LAST:event_tbVuelosMouseClicked
 
     private void btnFinalizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizadoActionPerformed
-        // TODO add your handling code here:
+        if (lblId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Vuelo para Marcar como Finalizado", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            ClsVuelo clsVuelo = new ClsVuelo();
+            ClsAvion clsAvion = new ClsAvion();
+            Vuelo vuelo = new Vuelo();
+            vuelo.setIdVuelo(Integer.parseInt(lblId.getText()));
+            vuelo = clsVuelo.SeleccionarVuelo(vuelo.getIdVuelo());
+            clsVuelo.VueloFinalizado(vuelo);
+            clsAvion.EstadoAvion(vuelo.getIdAvion(), "Activo");
+        }
+        CargarTabla();
     }//GEN-LAST:event_btnFinalizadoActionPerformed
 
 

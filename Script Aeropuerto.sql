@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`tipos_vuelo` (
   `estado` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipos_vuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -574,7 +574,7 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_Tipos`(PTipo varchar(45), PDescuento float)
 BEGIN
-	INSERT INTO tipos_vuelo(Tipo, PorcentajeDescuento, estado) values (PTipo,PDescuento, 'Activo');
+	INSERT INTO tipos_vuelo(Tipo, PorcentajeDesc, estado) values (PTipo,PDescuento, 'Activo');
 END$$
 
 DELIMITER ;
@@ -951,19 +951,6 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure SP_U_AvionOcupado
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `sistemaaeropuerto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_AvionOcupado`(PidAvion int)
-BEGIN
-	Update avion set estado = 'Ocupado' where idAvion = PidAvion; 
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
 -- procedure SP_U_Clase
 -- -----------------------------------------------------
 
@@ -1004,6 +991,19 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Escala`(PidEscala int, PidAeropuerto int, PPrecio double)
 BEGIN
 	Update escala set idAeropuerto = PidAeropuerto, Precio = PPrecio where idEscala = PidEscala;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_U_EstadoAvion
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_EstadoAvion`(PidAvion int, PEstado varchar(20))
+BEGIN
+	Update avion set estado = PEstado where idAvion = PidAvion; 
 END$$
 
 DELIMITER ;

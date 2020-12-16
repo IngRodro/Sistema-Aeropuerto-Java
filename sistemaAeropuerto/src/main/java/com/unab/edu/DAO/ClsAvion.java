@@ -101,10 +101,11 @@ public class ClsAvion {
         return avion;
     }
 
-    public void AvionOcupado(int idAvion) {
+    public void EstadoAvion(int idAvion, String Estado) {
         try {
-            CallableStatement Statement = conexion.prepareCall("call SP_U_AvionOcupado(?)");
+            CallableStatement Statement = conexion.prepareCall("call SP_U_EstadoAvion(?,?)");
             Statement.setInt("PidAvion", idAvion);
+            Statement.setString("PEstado", Estado);
             Statement.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
