@@ -134,6 +134,7 @@ public class frmMenuUsuario extends javax.swing.JFrame {
 
     private void btnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasajerosActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmPasajero);
+        frmPasajero.LimpiarCajasdeTexto();
     }//GEN-LAST:event_btnPasajerosActionPerformed
 
     private void bttnPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnPasajeActionPerformed

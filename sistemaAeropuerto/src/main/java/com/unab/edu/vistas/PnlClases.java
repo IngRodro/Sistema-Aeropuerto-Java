@@ -78,6 +78,7 @@ public class PnlClases extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblId = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbClase = new javax.swing.JTable();
@@ -99,6 +100,11 @@ public class PnlClases extends javax.swing.JPanel {
         txtExtra.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtExtra.setForeground(new java.awt.Color(255, 255, 255));
         txtExtra.setBorder(null);
+        txtExtra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExtraKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,10 +125,15 @@ public class PnlClases extends javax.swing.JPanel {
             }
         });
 
-        txtAsientos.setBackground(new java.awt.Color(0, 153, 255));
+        txtAsientos.setBackground(new java.awt.Color(0, 153, 204));
         txtAsientos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtAsientos.setForeground(new java.awt.Color(255, 255, 255));
         txtAsientos.setBorder(null);
+        txtAsientos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAsientosKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,7 +202,7 @@ public class PnlClases extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,6 +225,10 @@ public class PnlClases extends javax.swing.JPanel {
 
         lblId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("%");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,7 +242,7 @@ public class PnlClases extends javax.swing.JPanel {
                 .addComponent(btnEliminar)
                 .addGap(65, 65, 65))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,14 +259,18 @@ public class PnlClases extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtExtra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel13)
+                                    .addGap(11, 11, 11))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel9)
                             .addGap(89, 89, 89)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtAsientos, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)))))
+                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                                .addComponent(txtAsientos)))))
                 .addGap(134, 134, 134))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(422, 422, 422)
@@ -284,14 +303,16 @@ public class PnlClases extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9))
-                .addGap(31, 31, 31)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnActualizar)
@@ -441,6 +462,29 @@ public class PnlClases extends javax.swing.JPanel {
         txtExtra.setText(Porcentaje);
     }//GEN-LAST:event_tbClaseMouseClicked
 
+    private void txtExtraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExtraKeyTyped
+       char caracter = evt.getKeyChar();
+
+        // Verificar si la tecla pulsada no es un digito
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '.')
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtExtraKeyTyped
+
+    private void txtAsientosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsientosKeyTyped
+        char caracter = evt.getKeyChar();
+
+        // Verificar si la tecla pulsada no es un digito
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtAsientosKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TbPClase;
@@ -449,6 +493,7 @@ public class PnlClases extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

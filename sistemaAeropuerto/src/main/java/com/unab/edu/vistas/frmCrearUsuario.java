@@ -104,6 +104,11 @@ public class frmCrearUsuario extends javax.swing.JFrame {
         txtEdad.setBackground(new java.awt.Color(0, 0, 0));
         txtEdad.setForeground(new java.awt.Color(255, 255, 255));
         txtEdad.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadKeyTyped(evt);
+            }
+        });
 
         txtTelefono.setBackground(new java.awt.Color(0, 0, 0));
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
@@ -276,6 +281,16 @@ public class frmCrearUsuario extends javax.swing.JFrame {
        this.setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+       char caracter = evt.getKeyChar();
+        // Verificar si la tecla pulsada no es un digito
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtEdadKeyTyped
 
     /**
      * @param args the command line arguments

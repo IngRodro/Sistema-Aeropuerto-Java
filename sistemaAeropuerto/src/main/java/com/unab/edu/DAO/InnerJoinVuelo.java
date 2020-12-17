@@ -25,5 +25,6 @@ public class InnerJoinVuelo {
     String minutos;
     Double Descuento;
     int estado;
-    Date FechaDesc;
+    Date FechaFinalDesc;
+    Date FechaInicioDesc;
 }

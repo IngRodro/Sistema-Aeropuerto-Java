@@ -194,24 +194,30 @@ public class frmMenuAdmin extends javax.swing.JFrame {
 
     private void btnCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmCompania);
+        frmCompania.LimpiarCajasdeTexto();
     }//GEN-LAST:event_btnCompanyActionPerformed
 
     private void btnAeropuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAeropuertoActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmAeropuerto);
+        frmAeropuerto.Limpiar();
     }//GEN-LAST:event_btnAeropuertoActionPerformed
 
     private void btnAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvionActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmAvion);
         frmAvion.menuAdmin = this.menuAdmin;
+        frmAvion.LimpiarCajasdeTexto();
     }//GEN-LAST:event_btnAvionActionPerformed
 
     private void btnVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVueloActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmVuelo);
         frmVuelo.menuAdmin = this.menuAdmin;
+        frmVuelo.LimpiarCajasdeTexto();
+        
     }//GEN-LAST:event_btnVueloActionPerformed
 
     private void btnTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposActionPerformed
         CmPanel.ModificarPanel(PnlContenedor, frmTipos);
+        frmTipos.LimpiarCajasdeTexto();
     }//GEN-LAST:event_btnTiposActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

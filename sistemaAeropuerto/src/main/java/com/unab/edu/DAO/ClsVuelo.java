@@ -159,7 +159,8 @@ public class ClsVuelo {
                 InJoin.setHora(resultadoDeConsulta.getString("Hora"));
                 InJoin.setMinutos(resultadoDeConsulta.getString("Minutos"));
                 InJoin.setDescuento(resultadoDeConsulta.getDouble("Promo"));
-                InJoin.setFechaDesc(resultadoDeConsulta.getDate("FechaMax"));
+                InJoin.setFechaFinalDesc(resultadoDeConsulta.getDate("FechaMax"));
+                InJoin.setFechaInicioDesc(resultadoDeConsulta.getDate("FechaIni"));
                 InJoin.setEstado(resultadoDeConsulta.getInt("Estado"));
                 if (InJoin.getEstado() > 0) {
                     Vuelos.add(InJoin);

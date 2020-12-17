@@ -18,12 +18,10 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ClsTiposVuelo {
-    
-    ConexionBD cn = new ConexionBD();
-    Connection conexion = cn.retornarConexion();
-    
-    
+
     public ArrayList<Tipos_vuelo> MostrarTipos() {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         ArrayList<Tipos_vuelo> companies = new ArrayList<>();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_Tipos()");
@@ -41,8 +39,10 @@ public class ClsTiposVuelo {
         }
         return companies;
     }
-    
-    public void AgregarTipo(Tipos_vuelo Tipo){
+
+    public void AgregarTipo(Tipos_vuelo Tipo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Tipos(?,?)");
             Statement.setString("PTipo", Tipo.getTipo());
@@ -54,7 +54,10 @@ public class ClsTiposVuelo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void BorrarTipo(Tipos_vuelo Tipo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_D_Avion(?)");
             Statement.setInt("PidTipos_vuelo", Tipo.getIdTipos_vuelo());
@@ -64,7 +67,10 @@ public class ClsTiposVuelo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void ActualizarTipo(Tipos_vuelo Tipo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_U_Avion(?,?,?)");
             Statement.setInt("PidTipos_vuelo", Tipo.getIdTipos_vuelo());
@@ -76,5 +82,25 @@ public class ClsTiposVuelo {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
+    public Tipos_vuelo SeleccionarTipo(int idTipo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        Tipos_vuelo tipo = new Tipos_vuelo();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_1Tipo(?)");
+            Statement.setInt("PidTipo", idTipo);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                tipo.setIdTipos_vuelo(rs.getInt("idTipos_vuelo"));
+                tipo.setTipo(rs.getString("Tipo"));
+                tipo.setPorcentajeDesc(rs.getDouble("PorcentajeDesc"));
+            }
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return tipo;
+    }
+
 }

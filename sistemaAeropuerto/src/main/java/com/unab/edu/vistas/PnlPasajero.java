@@ -7,8 +7,6 @@ package com.unab.edu.vistas;
 
 import com.unab.edu.DAO.ClsPasajero;
 import com.unab.edu.Entidades.Pasajero;
-import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +25,7 @@ public class PnlPasajero extends javax.swing.JPanel {
         CargarTabla();
     }
 
-    void LimpiarCajasdeTexto() {
+    public void LimpiarCajasdeTexto() {
         txtApellido.setText("");
         txtDui.setText("");
         txtEdad.setText("");

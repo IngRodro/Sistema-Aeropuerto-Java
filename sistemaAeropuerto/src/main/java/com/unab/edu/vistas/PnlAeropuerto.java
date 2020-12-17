@@ -29,7 +29,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         initComponents();
         CargarTabla();
     }
-    void Limpiar(){
+    public void Limpiar(){
         lblId.setText("");
         txtNombre.setText("");
         txtCiudad.setText("");

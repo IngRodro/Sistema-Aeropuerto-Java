@@ -33,7 +33,7 @@ public class PnlAvion extends javax.swing.JPanel {
     public frmMenuAdmin menuAdmin;
     CambioPanel cambio = new CambioPanel();
 
-    void LimpiarCajasdeTexto() {
+    public void LimpiarCajasdeTexto() {
         lblId.setText("");
         txtCapacidad.setText("");
         txtModelo.setText("");

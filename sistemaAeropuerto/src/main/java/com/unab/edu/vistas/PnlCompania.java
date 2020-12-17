@@ -28,7 +28,7 @@ public class PnlCompania extends javax.swing.JPanel {
         initComponents();
         CargarTabla();
     }
-    
+
     void CargarTabla() {
         String Titulos[] = {"ID", "Nombre"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
@@ -41,6 +41,11 @@ public class PnlCompania extends javax.swing.JPanel {
             ModeloT.addRow(filas);
         }
         tbCompany.setModel(ModeloT);
+    }
+
+    public void LimpiarCajasdeTexto() {
+        txtNombre.setText("");
+        lblId.setText("");
     }
 
     /**
@@ -277,36 +282,45 @@ public class PnlCompania extends javax.swing.JPanel {
     }//GEN-LAST:event_tbCompanyMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       if(txtNombre.getText().isEmpty()==true){
-       JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
-       else{ClsCompany company = new ClsCompany();
-        Company companies = new Company();
-        companies.setNombre(txtNombre.getText());
-        company.AgregarCompany(companies);
-        CargarTabla();}
-        
+        if (txtNombre.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+        } else {
+            ClsCompany company = new ClsCompany();
+            Company companies = new Company();
+            companies.setNombre(txtNombre.getText());
+            company.AgregarCompany(companies);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(lblId.getText().isEmpty()==true){
-       JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
-        else{ ClsCompany company = new ClsCompany();
-        Company companies = new Company();
-        companies.setIdCompany(Integer.parseInt(lblId.getText()));
-        company.BorrarCompany(companies);
-        CargarTabla();}
-       
+        if (lblId.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+        } else {
+            ClsCompany company = new ClsCompany();
+            Company companies = new Company();
+            companies.setIdCompany(Integer.parseInt(lblId.getText()));
+            company.BorrarCompany(companies);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       if(lblId.getText().isEmpty()==true||txtNombre.getText().isEmpty()==true){
-       }else{ClsCompany company = new ClsCompany();
-        Company companies = new Company();
-        companies.setIdCompany(Integer.parseInt(lblId.getText()));
-        companies.setNombre(txtNombre.getText());
-        company.ActualizarCompany(companies);
-        CargarTabla();}
-        
+        if (lblId.getText().isEmpty() == true || txtNombre.getText().isEmpty() == true) {
+        } else {
+            ClsCompany company = new ClsCompany();
+            Company companies = new Company();
+            companies.setIdCompany(Integer.parseInt(lblId.getText()));
+            companies.setNombre(txtNombre.getText());
+            company.ActualizarCompany(companies);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
 

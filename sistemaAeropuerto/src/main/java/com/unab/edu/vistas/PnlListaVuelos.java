@@ -6,18 +6,22 @@
 package com.unab.edu.vistas;
 
 import com.unab.edu.DAO.ClsEscala;
+import com.unab.edu.DAO.ClsPromocion;
+import com.unab.edu.DAO.ClsTiposVuelo;
 import com.unab.edu.DAO.ClsVuelo;
 import com.unab.edu.DAO.Clsaeropuerto;
 import com.unab.edu.DAO.InnerJoinVuelo;
 import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Escala;
+import com.unab.edu.Entidades.Promociones;
 import com.unab.edu.Entidades.Vuelo;
+import com.unab.edu.Entidades.Tipos_vuelo;
 import com.unab.edu.sistemaaeropuerto.CambioPanel;
 import com.unab.edu.sistemaaeropuerto.frmMenuUsuario;
-import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -59,7 +63,7 @@ public class PnlListaVuelos extends javax.swing.JPanel {
 
     void CargarTablaVuelos() {
         ClsEscala clsEscala = new ClsEscala();
-        String Titulos[] = {"Vuelo", "N Escala", "AeropuertoDestino", "Precio", "Tipo de Vuelo", "Fecha", "Hora", "Descuento", "Fecha Max Descuento"};
+        String Titulos[] = {"Vuelo", "N Escala", "AeropuertoDestino", "Precio", "Tipo de Vuelo", "Fecha", "Hora", "Descuento", "Fecha Inicio Desc", "Fecha Final Desc"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsVuelo clsVuelos = new ClsVuelo();
         int idAeroO = 0;
@@ -67,7 +71,7 @@ public class PnlListaVuelos extends javax.swing.JPanel {
             idAeroO = (Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
         }
         ArrayList<InnerJoinVuelo> Vuelos = clsVuelos.MostrarVuelosOrigen(idAeroO);
-        String filas[] = new String[10];
+        String filas[] = new String[11];
         Vuelo vuelo = new Vuelo();
 
         for (var IterarVuelo : Vuelos) {
@@ -83,15 +87,16 @@ public class PnlListaVuelos extends javax.swing.JPanel {
                     filas[5] = String.valueOf(IterarVuelo.getFecha());
                     filas[6] = IterarVuelo.getHora() + ":" + IterarVuelo.getMinutos();
                     filas[7] = String.valueOf(IterarVuelo.getDescuento()) + "%";
-                    if (IterarVuelo.getFechaDesc() == null) {
+                    if (IterarVuelo.getFechaInicioDesc() == null && IterarVuelo.getFechaFinalDesc() == null) {
                         filas[8] = "";
+                        filas[9] = "";
                     } else {
-                        filas[8] = String.valueOf(IterarVuelo.getFechaDesc());
+                        filas[8] = String.valueOf(IterarVuelo.getFechaInicioDesc());
+                        filas[9] = String.valueOf(IterarVuelo.getFechaFinalDesc());
                     }
                     ModeloT.addRow(filas);
                 }
             }
-
         }
         tbVuelos.setModel(ModeloT);
     }
@@ -202,26 +207,50 @@ public class PnlListaVuelos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        int fila = tbVuelos.getSelectedRow();
-        String idVuelo = String.valueOf(tbVuelos.getValueAt(fila, 0));
-        String NEscala = String.valueOf(tbVuelos.getValueAt(fila, 1));
-        String Precio = String.valueOf(tbVuelos.getValueAt(fila, 3));
-        String Descuento = String.valueOf(tbVuelos.getValueAt(fila, 7));
-        double PrecioVuelo = Double.parseDouble(Precio);
-        String[] c = Descuento.split("%");
-        double PorcentajeDescuento = Double.parseDouble(c[0]);
-        PrecioVuelo = PrecioVuelo - (PrecioVuelo * (PorcentajeDescuento / 100));
+        if (tbVuelos.getSelectedRow() >= 0) {
+            ClsVuelo clsVuelo = new ClsVuelo();
+            int fila = tbVuelos.getSelectedRow();
+            String idVuelo = String.valueOf(tbVuelos.getValueAt(fila, 0));
+            String NEscala = String.valueOf(tbVuelos.getValueAt(fila, 1));
+            String Precio = String.valueOf(tbVuelos.getValueAt(fila, 3));
+            String Descuento = String.valueOf(tbVuelos.getValueAt(fila, 7));
+            double PrecioVuelo = Double.parseDouble(Precio);
+            String[] c = Descuento.split("%");
+            double PorcentajeDescuentoPromo = Double.parseDouble(c[0]);
+            Vuelo vuelo = new Vuelo();
+            vuelo = clsVuelo.SeleccionarVuelo(Integer.parseInt(idVuelo));
+            Promociones promo = new Promociones();
+            ClsPromocion clsPromo = new ClsPromocion();
+            promo = clsPromo.SeleccionarPromo(vuelo.getIdVuelo());
+            ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+            Tipos_vuelo tipo = new Tipos_vuelo();
+            tipo = clsTipos.SeleccionarTipo(vuelo.getIdTiposVuelo());
+            Date FechaActual = new Date();
+            Double PorcentajeDescuentoTipo = tipo.getPorcentajeDesc() / 100;
+            if (promo.getFechaFinal() == null && promo.getFechaInicio() == null) {
+                PrecioVuelo = PrecioVuelo - (PrecioVuelo * PorcentajeDescuentoTipo);
+            } else {
 
-        PnlPasaje frmPasaje = new PnlPasaje();
-        CmPanel.ModificarPanel(menuUser.PnlContenedor, frmPasaje);
-        frmPasaje.txtVuelo.setText(idVuelo);
-        frmPasaje.txtNEscala.setText(NEscala);
-        frmPasaje.txtPrecio.setText(String.valueOf(PrecioVuelo));
-        frmPasaje.NVuelo = Integer.parseInt(idVuelo);
-        frmPasaje.DisplayMemberClase();
-        frmPasaje.DisplayAsientos();
-        frmPasaje.menuUser = menuUser;
-        frmPasaje.Precio = PrecioVuelo;
+                if (FechaActual.before(promo.getFechaFinal()) && FechaActual.after(promo.getFechaInicio())) {
+                    PrecioVuelo = PrecioVuelo - (PrecioVuelo * (PorcentajeDescuentoPromo / 100 + PorcentajeDescuentoTipo));
+                } else {
+                    PrecioVuelo = PrecioVuelo - (PrecioVuelo * PorcentajeDescuentoTipo);
+                }
+            }
+
+            PnlPasaje frmPasaje = new PnlPasaje();
+            CmPanel.ModificarPanel(menuUser.PnlContenedor, frmPasaje);
+            frmPasaje.txtVuelo.setText(idVuelo);
+            frmPasaje.txtNEscala.setText(NEscala);
+            frmPasaje.txtPrecio.setText(String.valueOf(PrecioVuelo));
+            frmPasaje.NVuelo = Integer.parseInt(idVuelo);
+            frmPasaje.DisplayMemberClase();
+            frmPasaje.DisplayAsientos();
+            frmPasaje.menuUser = menuUser;
+            frmPasaje.Precio = PrecioVuelo;
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un Vuelo");
+        }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void cbAeropuertoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAeropuertoItemStateChanged

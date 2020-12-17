@@ -24,6 +24,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         initComponents();
         CargarTabla();
     }
+
     void CargarTabla() {
         String Titulos[] = {"Id", "Tipo de Vuelo", "Descuento"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
@@ -38,7 +39,13 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         }
         tbTipos.setModel(ModeloT);
     }
-    
+
+    public void LimpiarCajasdeTexto() {
+        txtTipo.setText("");
+        txtTipo.setText("");
+        lblId.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -317,39 +324,48 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(txtTipo.getText().isEmpty()==true ||txtDescuento.getText().isEmpty() ==true){
-         JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
-        else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
-        Tipos_vuelo tipo = new Tipos_vuelo();
-        tipo.setTipo(txtTipo.getText());
-        tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
-        clsTipos.AgregarTipo(tipo);
-        CargarTabla();}
-        
+        if (txtTipo.getText().isEmpty() == true || txtDescuento.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+        } else {
+            ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+            Tipos_vuelo tipo = new Tipos_vuelo();
+            tipo.setTipo(txtTipo.getText());
+            tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
+            clsTipos.AgregarTipo(tipo);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       if(lblId.getText().isEmpty()==true ||txtTipo.getText().isEmpty()==true ||txtDescuento.getText().isEmpty()==true){
-       JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
-       else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
-        Tipos_vuelo tipo = new Tipos_vuelo();
-        tipo.setIdTipos_vuelo(Integer.parseInt(lblId.getText()));
-        tipo.setTipo(txtTipo.getText());
-        tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
-        clsTipos.ActualizarTipo(tipo);
-        CargarTabla();}
-        
+        if (lblId.getText().isEmpty() == true || txtTipo.getText().isEmpty() == true || txtDescuento.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+        } else {
+            ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+            Tipos_vuelo tipo = new Tipos_vuelo();
+            tipo.setIdTipos_vuelo(Integer.parseInt(lblId.getText()));
+            tipo.setTipo(txtTipo.getText());
+            tipo.setPorcentajeDesc(Double.parseDouble(txtDescuento.getText()));
+            clsTipos.ActualizarTipo(tipo);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(lblId.getText().isEmpty()==true){JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");}
-        else{ClsTiposVuelo clsTipos = new ClsTiposVuelo();
-        Tipos_vuelo tipo = new Tipos_vuelo();
-        tipo.setIdTipos_vuelo(Integer.parseInt(lblId.getText()));
-        clsTipos.BorrarTipo(tipo);
+        if (lblId.getText().isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
+        } else {
+            ClsTiposVuelo clsTipos = new ClsTiposVuelo();
+            Tipos_vuelo tipo = new Tipos_vuelo();
+            tipo.setIdTipos_vuelo(Integer.parseInt(lblId.getText()));
+            clsTipos.BorrarTipo(tipo);
             CargarTabla();
+            LimpiarCajasdeTexto();
         }
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTiposMouseClicked
@@ -365,7 +381,7 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
     }//GEN-LAST:event_tbTiposMouseClicked
 
     private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
-      char caracter = evt.getKeyChar();
+        char caracter = evt.getKeyChar();
 
         // Verificar si la tecla pulsada no es un digito
         if (((caracter < '0')
