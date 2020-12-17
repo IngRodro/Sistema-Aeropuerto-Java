@@ -9,8 +9,6 @@ import com.unab.edu.DAO.ClsAvion;
 import com.unab.edu.DAO.ClsClase;
 import com.unab.edu.Entidades.Clases;
 import com.unab.edu.Entidades.Avion;
-import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -46,7 +44,13 @@ public class PnlClases extends javax.swing.JPanel {
         }
         tbClase.setModel(ModeloT);
     }
-
+    
+     void LimpiarCajasdeTexto() {
+        lblId.setText("");
+        txtNombre.setText("");
+        txtExtra.setText("");
+        txtAsientos.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -373,6 +377,7 @@ public class PnlClases extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El Numero de Asientos asientos sobrepasa la Capacidad del Avion");
             } else {
                 clsClase.AgregarClase(clase);
+                LimpiarCajasdeTexto();
             }
 
         }
@@ -390,8 +395,9 @@ public class PnlClases extends javax.swing.JPanel {
             clase.setNombreClase(txtNombre.getText());
             clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
             clsClase.ActualizarClase(clase);
+            LimpiarCajasdeTexto();
         }
-
+        CargarTabla();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -408,11 +414,17 @@ public class PnlClases extends javax.swing.JPanel {
                 ClsClase clsClase = new ClsClase();
                 Clases clase = new Clases();
                 clase.setIdClase(Integer.parseInt(lblId.getText()));
-                clsClase.BorrarClase(clase);
+                if (avion.getEstado().equals("Ocupado")) {
+                    JOptionPane.showMessageDialog(null, "El Avion esta en uso, no se le puede eliminar la clase", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    clsClase.BorrarClase(clase);
+                    LimpiarCajasdeTexto();
+                }
+
             }
 
         }
-
+        CargarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClaseMouseClicked

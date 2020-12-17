@@ -10,6 +10,7 @@ import com.unab.edu.Entidades.Pasajero;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,15 +25,18 @@ public class PnlPasajero extends javax.swing.JPanel {
     public PnlPasajero() {
         initComponents();
         CargarTabla();
-        tbPasajero.setBackground(new Color(0, 0, 0, 0));
-
-        tbPasajero.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tbPasajero.getTableHeader().setOpaque(false);
-        tbPasajero.getTableHeader().setBackground(new Color(0, 153, 204));
-        tbPasajero.getTableHeader().setForeground(new Color(0, 0, 0));
-        tbPasajero.setRowHeight(25);
     }
-    
+
+    void LimpiarCajasdeTexto() {
+        txtApellido.setText("");
+        txtDui.setText("");
+        txtEdad.setText("");
+        txtNombre.setText("");
+        txtPasapote.setText("");
+        txtSexo.setText("");
+        lblId.setText("");
+    }
+
     void CargarTabla() {
         String Titulos[] = {"idPasajero", "nombres", "apellidos", "edad", "sexo", "documentoIdentidad", "pasaporte"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
@@ -479,44 +483,61 @@ public class PnlPasajero extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
-        ClsPasajero pasajero = new ClsPasajero();
-        Pasajero pasajeros = new Pasajero();
-        pasajeros.setNombres(txtNombre.getText());
-        pasajeros.setApellidos(txtApellido.getText());
-        pasajeros.setEdad(Integer.parseInt(txtEdad.getText()));
-        pasajeros.setSexo(txtSexo.getText());
-        pasajeros.setDocumentoIdentidad(txtDui.getText());
-        pasajeros.setPasaporte(txtPasapote.getText());
-        pasajero.AgregarPasajero(pasajeros);
-        CargarTabla();
+        if (txtApellido.getText().isEmpty() || txtDui.getText().isEmpty() || txtEdad.getText().isEmpty()
+                || txtNombre.getText().isEmpty() || txtPasapote.getText().isEmpty() || txtSexo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos para continuar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ClsPasajero pasajero = new ClsPasajero();
+            Pasajero pasajeros = new Pasajero();
+            pasajeros.setNombres(txtNombre.getText());
+            pasajeros.setApellidos(txtApellido.getText());
+            pasajeros.setEdad(Integer.parseInt(txtEdad.getText()));
+            pasajeros.setSexo(txtSexo.getText());
+            pasajeros.setDocumentoIdentidad(txtDui.getText());
+            pasajeros.setPasaporte(txtPasapote.getText());
+            pasajero.AgregarPasajero(pasajeros);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
     }//GEN-LAST:event_bttnGuardarActionPerformed
 
     private void bttnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActualizarActionPerformed
-        ClsPasajero pasajero = new ClsPasajero();
-        Pasajero pasajeros = new Pasajero();
-        pasajeros.setIdPasajero(Integer.parseInt(lblId.getText()));
-        pasajeros.setNombres(txtNombre.getText());
-        pasajeros.setApellidos(txtApellido.getText());
-        pasajeros.setEdad(Integer.parseInt(txtEdad.getText()));
-        pasajeros.setSexo(txtSexo.getText());
-        pasajeros.setDocumentoIdentidad(txtDui.getText());
-        pasajeros.setPasaporte(txtPasapote.getText());
-        pasajero.ActualizarPasajero(pasajeros);
-        CargarTabla();
+        if (lblId.getText().isEmpty() || txtApellido.getText().isEmpty() || txtDui.getText().isEmpty() || txtEdad.getText().isEmpty()
+                || txtNombre.getText().isEmpty() || txtPasapote.getText().isEmpty() || txtSexo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos para continuar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ClsPasajero pasajero = new ClsPasajero();
+            Pasajero pasajeros = new Pasajero();
+            pasajeros.setIdPasajero(Integer.parseInt(lblId.getText()));
+            pasajeros.setNombres(txtNombre.getText());
+            pasajeros.setApellidos(txtApellido.getText());
+            pasajeros.setEdad(Integer.parseInt(txtEdad.getText()));
+            pasajeros.setSexo(txtSexo.getText());
+            pasajeros.setDocumentoIdentidad(txtDui.getText());
+            pasajeros.setPasaporte(txtPasapote.getText());
+            pasajero.ActualizarPasajero(pasajeros);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
     }//GEN-LAST:event_bttnActualizarActionPerformed
 
     private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
-        ClsPasajero pasajero = new ClsPasajero();
-        Pasajero pasajeros = new Pasajero();
-        pasajeros.setIdPasajero(Integer.parseInt(lblId.getText()));
-        pasajero.BorrarPasajero(pasajeros);
-        CargarTabla();
+        if (lblId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Pasajero para eliminar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ClsPasajero pasajero = new ClsPasajero();
+            Pasajero pasajeros = new Pasajero();
+            pasajeros.setIdPasajero(Integer.parseInt(lblId.getText()));
+            pasajero.BorrarPasajero(pasajeros);
+            CargarTabla();
+            LimpiarCajasdeTexto();
+        }
     }//GEN-LAST:event_bttnEliminarActionPerformed
 
     private void tbPasajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasajeroMouseClicked
         jtpPasajero.setSelectedIndex(jtpPasajero.indexOfComponent(jPanel1));
         int fila = tbPasajero.getSelectedRow();
-        
+
         String idPasajero = String.valueOf(tbPasajero.getValueAt(fila, 0));
         String nombres = String.valueOf(tbPasajero.getValueAt(fila, 1));
         String apellidos = String.valueOf(tbPasajero.getValueAt(fila, 2));
@@ -524,7 +545,7 @@ public class PnlPasajero extends javax.swing.JPanel {
         String sexo = String.valueOf(tbPasajero.getValueAt(fila, 4));
         String documentoIdentidad = String.valueOf(tbPasajero.getValueAt(fila, 5));
         String pasaporte = String.valueOf(tbPasajero.getValueAt(fila, 6));
-        
+
         lblId.setText(idPasajero);
         txtNombre.setText(nombres);
         txtApellido.setText(apellidos);

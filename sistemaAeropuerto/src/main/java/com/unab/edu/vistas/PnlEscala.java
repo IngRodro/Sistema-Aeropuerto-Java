@@ -5,17 +5,14 @@
  */
 package com.unab.edu.vistas;
 
-import com.unab.edu.DAO.ClsCompany;
 import com.unab.edu.DAO.ClsEscala;
-import com.unab.edu.DAO.ClsItinerario;
+import com.unab.edu.DAO.ClsPasaje;
 import com.unab.edu.DAO.ClsVuelo;
 import com.unab.edu.DAO.Clsaeropuerto;
-import com.unab.edu.DAO.InnerJoinVuelo;
 import com.unab.edu.Entidades.Aeropuerto;
 import com.unab.edu.Entidades.Vuelo;
 import com.unab.edu.Entidades.Escala;
-import java.awt.Color;
-import java.awt.Font;
+import com.unab.edu.Entidades.Pasaje;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -34,18 +31,24 @@ public class PnlEscala extends javax.swing.JPanel {
         initComponents();
         DisplayMemberAero();
     }
-
+    
+    void LimpiarCajasdeTexto() {
+        txtId.setText("");
+        txtPrecio.setText("");
+        cbAeropuerto.setSelectedIndex(0);
+    }
+    
     public int idVuelo;
     String valueMemberAero[];
     int contadorAero = 1;
-
+    
     void DisplayMemberAero() {
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         Clsaeropuerto claseAeropuerto = new Clsaeropuerto();
         ArrayList<Aeropuerto> aeropuertos = claseAeropuerto.MostrAeropuerto();
         valueMemberAero = new String[aeropuertos.size() + 1];
         String filas[] = new String[3];
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosAeropuerto : aeropuertos) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAeropuerto());
             filas[1] = IterarDatosAeropuerto.getNombre();
@@ -55,7 +58,7 @@ public class PnlEscala extends javax.swing.JPanel {
         }
         cbAeropuerto.setModel(cbdefaDefault);
     }
-
+    
     void CargarTabla() {
         Vuelo vuelo = new Vuelo();
         ClsVuelo clsVuelo = new ClsVuelo();
@@ -326,11 +329,11 @@ public class PnlEscala extends javax.swing.JPanel {
             escala.setPrecio(Double.parseDouble(txtPrecio.getText()));
             escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
             escala.setNumeroEscala(tbEscalas.getRowCount() + 1);
-            if (clsescala.ComprobarEscala(vuelo.getIdIterinario(), escala.getIdAeropuerto())== true) {
+            if (clsescala.ComprobarEscala(vuelo.getIdIterinario(), escala.getIdAeropuerto()) == true) {
                 JOptionPane.showMessageDialog(null, "La escala de ese Aeropuerto ya esta Registrada");
-            }else
-            {
+            } else {
                 clsescala.AgregarEscala(escala, vuelo.getIdIterinario());
+                LimpiarCajasdeTexto();
             }
         }
         CargarTabla();
@@ -347,6 +350,7 @@ public class PnlEscala extends javax.swing.JPanel {
             escala.setIdAeropuerto(Integer.parseInt(valueMemberAero[cbAeropuerto.getSelectedIndex()]));
             clsescala.ActualizarEscala(escala);
             CargarTabla();
+            LimpiarCajasdeTexto();
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -354,18 +358,25 @@ public class PnlEscala extends javax.swing.JPanel {
         if (txtId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos");
         } else {
-            Vuelo vuelo = new Vuelo();
             ClsVuelo clsVuelo = new ClsVuelo();
+            Vuelo vuelo = new Vuelo();
             vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
             ClsEscala clsescala = new ClsEscala();
             Escala escala = new Escala();
             escala.setIdEscala(Integer.parseInt(txtId.getText()));
             escala = clsescala.SeleccionarEscala(escala.getIdEscala());
-            clsescala.BorrarEscala(escala);
-
-            ArrayList<Escala> Escalas = clsescala.EscalasSuperiores(vuelo.getIdIterinario(), escala.getNumeroEscala());
-            for (var iterarescala : Escalas) {
-                clsescala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
+            ArrayList<Pasaje> pasajes = new ArrayList<>();
+            ClsPasaje clsPasaje = new ClsPasaje();
+            pasajes = clsPasaje.ListaPasaje(idVuelo, escala.getNumeroEscala());
+            if (pasajes.size() > 0) {
+                JOptionPane.showMessageDialog(null, "La Escala ya tiene Registrados Pasajes, no se puede eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                clsescala.BorrarEscala(escala);
+                ArrayList<Escala> Escalas = clsescala.EscalasSuperiores(vuelo.getIdIterinario(), escala.getNumeroEscala());
+                for (var iterarescala : Escalas) {
+                    clsescala.ActualizarNEscala(iterarescala.getIdItinerario(), iterarescala.getNumeroEscala());
+                }
+                LimpiarCajasdeTexto();
             }
         }
         CargarTabla();

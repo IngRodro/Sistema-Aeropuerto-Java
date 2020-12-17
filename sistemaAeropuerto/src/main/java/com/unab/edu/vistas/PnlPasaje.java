@@ -42,6 +42,15 @@ public class PnlPasaje extends javax.swing.JPanel {
     public frmMenuUsuario menuUser;
     public double Precio;
 
+    void LimpiarCajas() {
+        txtNEscala.setText("");
+        txtPrecio.setText("");
+        txtVuelo.setText("");
+        txtxPasajero.setText("");
+        cbAsientos.setSelectedIndex(0);
+        cbClase.setSelectedIndex(0);
+    }
+
     void DisplayMemberClase() {
         ClsVuelo clsVuelo = new ClsVuelo();
         Vuelo vuelo = new Vuelo();
@@ -53,7 +62,7 @@ public class PnlPasaje extends javax.swing.JPanel {
         valueMemberClase = new String[clases.size() + 1];
         String filas[] = new String[4];
         contadorClase = 1;
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosClase : clases) {
             filas[0] = String.valueOf(IterarDatosClase.getIdClase());
             filas[1] = String.valueOf(IterarDatosClase.getNombreClase());
@@ -73,10 +82,10 @@ public class PnlPasaje extends javax.swing.JPanel {
         ClsClase clsclase = new ClsClase();
         ArrayList<Clases> clases = clsclase.MostrarClase(vuelo.getIdAvion());
         cbdefaDefault.removeAllElements();
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una opcion");
         Clases clase = new Clases();
         int Asiento = 0;
-        ArrayList<Pasaje> AsientosOcupados = clsPasaje.MostrarPasajes(NVuelo, idClase);
+        ArrayList<Pasaje> AsientosOcupados = clsPasaje.AsientosOcupados(NVuelo, idClase);
         for (var iterarclases : clases) {
             if (iterarclases.getIdClase() == idClase) {
                 clase.setNAsientos(iterarclases.getNAsientos());
@@ -262,10 +271,25 @@ public class PnlPasaje extends javax.swing.JPanel {
         );
 
         txtVuelo.setForeground(new java.awt.Color(255, 255, 255));
+        txtVuelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtVueloKeyTyped(evt);
+            }
+        });
 
         txtNEscala.setForeground(new java.awt.Color(255, 255, 255));
+        txtNEscala.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNEscalaKeyTyped(evt);
+            }
+        });
 
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -410,19 +434,25 @@ public class PnlPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_txtxPasajeroFocusLost
 
     private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
-        ClsPasaje pasajes = new ClsPasaje();
-        ClsPasajero clsPasajero = new ClsPasajero();
-        Pasaje pasaje = new Pasaje();
-        pasaje.setIdPasajero((clsPasajero.IdPasajero(txtxPasajero.getText())));
-        pasaje.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
-        pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
-        pasaje.setNAsiento(Integer.parseInt(String.valueOf(cbAsientos.getSelectedItem())));
-        pasaje.setPrecionTotal(Float.parseFloat(txtVuelo.getText()));
-        String usuario = menuUser.Usuario;
-        pasaje.setNombreUsuario(usuario);
-        pasaje.setNEscala(Integer.parseInt(txtVuelo.getText()));
-        pasajes.AgregarPasaje(pasaje);
-
+        if (txtNEscala.getText().isEmpty() || txtPrecio.getText().isEmpty() || txtVuelo.getText().isEmpty() || txtxPasajero.getText().isEmpty()
+                || cbAsientos.getSelectedIndex() == 0 || cbClase.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos para continuar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ClsPasaje pasajes = new ClsPasaje();
+            ClsPasajero clsPasajero = new ClsPasajero();
+            Pasaje pasaje = new Pasaje();
+            pasaje.setIdPasajero((clsPasajero.IdPasajero(txtxPasajero.getText())));
+            pasaje.setIdVuelo(Integer.parseInt(txtVuelo.getText()));
+            pasaje.setIdClase(Integer.parseInt(valueMemberClase[cbClase.getSelectedIndex()]));
+            pasaje.setNAsiento(Integer.parseInt(String.valueOf(cbAsientos.getSelectedItem())));
+            pasaje.setPrecionTotal(Float.parseFloat(txtVuelo.getText()));
+            String usuario = menuUser.Usuario;
+            pasaje.setNombreUsuario(usuario);
+            pasaje.setNEscala(Integer.parseInt(txtVuelo.getText()));
+            pasajes.AgregarPasaje(pasaje);
+            
+            DisplayAsientos();
+        }
     }//GEN-LAST:event_bttnGuardarActionPerformed
 
     private void cbClaseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClaseItemStateChanged
@@ -438,6 +468,18 @@ public class PnlPasaje extends javax.swing.JPanel {
             txtPrecio.setText(String.valueOf(PrecioClase));
         }
     }//GEN-LAST:event_cbClaseItemStateChanged
+
+    private void txtVueloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVueloKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_txtVueloKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtNEscalaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNEscalaKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_txtNEscalaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

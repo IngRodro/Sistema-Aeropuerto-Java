@@ -18,4 +18,5 @@ public class Vuelo {
     private int idIterinario;
     private int idAvion;
     private int idTiposVuelo;
+    private int Estado;
 }

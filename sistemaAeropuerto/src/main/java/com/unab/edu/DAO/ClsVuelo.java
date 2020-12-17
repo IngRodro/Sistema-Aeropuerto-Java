@@ -87,6 +87,7 @@ public class ClsVuelo {
                 vuelo.setIdIterinario(rs.getInt("idItinerario"));
                 vuelo.setIdTiposVuelo(rs.getInt("idTiposvuelo"));
                 vuelo.setIdAvion(rs.getInt("idAvion"));
+                vuelo.setEstado(rs.getInt("estado"));
             }
 
             conexion.close();
@@ -101,6 +102,27 @@ public class ClsVuelo {
         Connection conexion = cn.retornarConexion();
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
+            Itinerario itiAnti = new Itinerario();
+            Vuelo vueloo = new Vuelo();
+            vueloo = SeleccionarVuelo(vuelo.getIdVuelo());
+            itiAnti = clsItinerario.SeleccionarIterinario(vueloo.getIdIterinario());
+            if (vueloo.getEstado() == 2) {
+                    if (itiAnti.getFecha().before(Iti.getFecha())) {
+                        vuelo.setEstado(3);
+                        CambioEstado(vuelo);
+                    }
+            } else  if (vueloo.getEstado() == 1) {
+                if (itiAnti.getFecha().before(Iti.getFecha())) {
+                    vuelo.setEstado(3);
+                    CambioEstado(vuelo);
+                } else if (Integer.parseInt(itiAnti.getHora()) < Integer.parseInt(Iti.getHora())) {
+                    vuelo.setEstado(2);
+                    CambioEstado(vuelo);
+                } else if (Integer.parseInt(itiAnti.getMinutos()) < Integer.parseInt(Iti.getMinutos())) {
+                    vuelo.setEstado(2);
+                    CambioEstado(vuelo);
+                }
+            }
             clsItinerario.ActualizarItinerario(Iti, vuelo);
             ClsPromocion clsPromo = new ClsPromocion();
             clsPromo.ActualizarPromo(promo, vuelo);
@@ -162,5 +184,44 @@ public class ClsVuelo {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public void CambioEstado(Vuelo vuelo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_U_EstadoVuelo(?,?)");
+            Statement.setInt("PidVuelo", vuelo.getIdVuelo());
+            Statement.setInt("PEstado", vuelo.getEstado());
+            Statement.execute();
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    
+        public Vuelo SeleccionarVuelodeItinerario(int idItinerario) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
+        Vuelo vuelo = new Vuelo();
+        try {
+            CallableStatement Statement = conexion.prepareCall("call SP_S_VueloItinerario(?)");
+            Statement.setInt("PidItinerario", idItinerario);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                vuelo.setIdVuelo(rs.getInt("idVuelo"));
+                vuelo.setIdCompany(rs.getInt("idCompany"));
+                vuelo.setIdIterinario(rs.getInt("idItinerario"));
+                vuelo.setIdTiposVuelo(rs.getInt("idTiposvuelo"));
+                vuelo.setIdAvion(rs.getInt("idAvion"));
+                vuelo.setEstado(rs.getInt("estado"));
+            }
+
+            conexion.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return vuelo;
     }
 }

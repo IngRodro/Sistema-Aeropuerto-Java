@@ -9,8 +9,6 @@ import com.unab.edu.DAO.ClsTiposVuelo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import com.unab.edu.Entidades.Tipos_vuelo;
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JOptionPane;
 
 /**
@@ -349,12 +347,13 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         Tipos_vuelo tipo = new Tipos_vuelo();
         tipo.setIdTipos_vuelo(Integer.parseInt(lblId.getText()));
         clsTipos.BorrarTipo(tipo);
-        CargarTabla();}
+            CargarTabla();
+        }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTiposMouseClicked
-        tbPTipos.setSelectedIndex(tbPTipos.indexOfComponent(jPanel2));
+        tbPTipos.setSelectedIndex(tbPTipos.indexOfComponent(jPanel1));
         int fila = tbTipos.getSelectedRow();
 
         String ID = String.valueOf(tbTipos.getValueAt(fila, 0));

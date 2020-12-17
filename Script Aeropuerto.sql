@@ -838,9 +838,11 @@ DELIMITER ;
 DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Pasaje`(
+PidVuelo int,
+PNEscala int
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.pasaje;
+SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = idVuelo and NEscala = PNEscala;
 END$$
 
 DELIMITER ;
@@ -870,6 +872,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Tipos`(
 )
 BEGIN
 SELECT * FROM sistemaaeropuerto.tipos_vuelo where estado = "Activo";
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_VueloItinerario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_VueloItinerario`(PidItinerario int)
+BEGIN
+	Select * from vuelo where idItinerario = PidItinerario;
 END$$
 
 DELIMITER ;
@@ -1004,6 +1019,22 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_EstadoAvion`(PidAvion int, PEstado varchar(20))
 BEGIN
 	Update avion set estado = PEstado where idAvion = PidAvion; 
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_U_EstadoVuelo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_EstadoVuelo`(
+PEstado int,
+PidVuelo int
+)
+BEGIN
+   Update sistemaaeropuerto.vuelo set estado = PEstado where idVuelo = PidVuelo;
 END$$
 
 DELIMITER ;

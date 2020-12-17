@@ -29,7 +29,12 @@ public class PnlAeropuerto extends javax.swing.JPanel {
         initComponents();
         CargarTabla();
     }
-
+    void Limpiar(){
+        lblId.setText("");
+        txtNombre.setText("");
+        txtCiudad.setText("");
+        txtPais.setText("");
+   }
     void CargarTabla() {
         String Titulos[] = {"ID", "Nombre", "Pais", "Ciudad"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
@@ -353,6 +358,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
             aeropuerto.setCiudad(txtCiudad.getText());
             aeropuertos.AgregarAeropuerto(aeropuerto);
             CargarTabla();
+            Limpiar();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -365,6 +371,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
             aeropuerto.setIdAeropuerto(Integer.parseInt(lblId.getText()));
             aeropuertos.BorrarAeropuerto(aeropuerto);
             CargarTabla();
+            Limpiar();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -380,6 +387,7 @@ public class PnlAeropuerto extends javax.swing.JPanel {
             aeropuerto.setCiudad(txtCiudad.getText());
             aeropuertos.ActualizarAeropuerto(aeropuerto);
             CargarTabla();
+            Limpiar();
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 

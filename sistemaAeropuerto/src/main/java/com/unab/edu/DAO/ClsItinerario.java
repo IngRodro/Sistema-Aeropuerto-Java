@@ -19,15 +19,14 @@ import javax.swing.JOptionPane;
  * @author PREDATOR
  */
 public class ClsItinerario {
-    ConexionBD cn = new ConexionBD();
-    Connection conexion = cn.retornarConexion();
-    
-    
-    public void AgregarItinerario(Itinerario Iti){
+
+    public void AgregarItinerario(Itinerario Iti) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Itinerario(?,?,?,?,?)");
             Statement.setInt("PidAeropuertoDestino", Iti.getIdAeropuertoDestino());
-            Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());  
+            Statement.setInt("PidAeropuertoOrigen", Iti.getIdAeropuertoOrigen());
             Statement.setDate("Pfecha", new java.sql.Date(Iti.getFecha().getTime()));
             Statement.setString("Phora", Iti.getHora());
             Statement.setString("Pminutos", Iti.getMinutos());
@@ -38,7 +37,10 @@ public class ClsItinerario {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     public void ActualizarItinerario(Itinerario Iti, Vuelo vuelo) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         try {
             ClsVuelo clsVuelo = new ClsVuelo();
             Vuelo vueloIti = new Vuelo();
@@ -55,8 +57,10 @@ public class ClsItinerario {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public Itinerario SeleccionarIterinario(int idIterinario){
+
+    public Itinerario SeleccionarIterinario(int idIterinario) {
+        ConexionBD cn = new ConexionBD();
+        Connection conexion = cn.retornarConexion();
         Itinerario itinerario = new Itinerario();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Itinerario(?)");
@@ -69,7 +73,7 @@ public class ClsItinerario {
                 itinerario.setHora(resultadoDeConsulta.getString("hora"));
                 itinerario.setMinutos(resultadoDeConsulta.getString("minutos"));
             }
-        
+
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
