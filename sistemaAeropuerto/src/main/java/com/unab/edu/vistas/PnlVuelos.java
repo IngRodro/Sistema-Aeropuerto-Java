@@ -186,7 +186,7 @@ public class PnlVuelos extends javax.swing.JPanel {
         ArrayList<Tipos_vuelo> tipos = clsTipos.MostrarTipos();
         valueMemberTipos = new String[tipos.size() + 1];
         String filas[] = new String[3];
-        cbdefaDefault.addElement("");
+        cbdefaDefault.addElement("Seleccione una Opcion");
         for (var IterarDatostipos : tipos) {
             filas[0] = String.valueOf(IterarDatostipos.getIdTipos_vuelo());
             filas[1] = IterarDatostipos.getTipo();
@@ -250,6 +250,11 @@ public class PnlVuelos extends javax.swing.JPanel {
         tbPVuelos.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel1KeyTyped(evt);
+            }
+        });
 
         cbCompany.setBackground(new java.awt.Color(0, 153, 204));
         cbCompany.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -981,6 +986,15 @@ public class PnlVuelos extends javax.swing.JPanel {
         }
         CargarTabla();
     }//GEN-LAST:event_btnFinalizadoActionPerformed
+
+    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_jPanel1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

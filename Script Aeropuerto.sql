@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`clases` (
     FOREIGN KEY (`idAvion`)
     REFERENCES `sistemaaeropuerto`.`avion` (`idAvion`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`itinerario` (
     FOREIGN KEY (`idAeropuertoOrigen`)
     REFERENCES `sistemaaeropuerto`.`aeropuerto` (`idAeropuerto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`vuelo` (
     FOREIGN KEY (`idTiposvuelo`)
     REFERENCES `sistemaaeropuerto`.`tipos_vuelo` (`idTipos_vuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 16
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `sistemaaeropuerto`.`promocionesvuelos` (
     FOREIGN KEY (`idVuelo`)
     REFERENCES `sistemaaeropuerto`.`vuelo` (`idVuelo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -681,6 +681,19 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure SP_S_1Tipo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_1Tipo`(PidTipo int)
+BEGIN
+	select* from tipos_vuelo where idTipos_vuelo = PidTipo;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure SP_S_1Usuario
 -- -----------------------------------------------------
 
@@ -842,7 +855,22 @@ PidVuelo int,
 PNEscala int
 )
 BEGIN
-SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = idVuelo and NEscala = PNEscala;
+SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = PidVuelo and NEscala = PNEscala;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SP_S_PasajeVuelo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `sistemaaeropuerto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_PasajeVuelo`(
+PidVuelo int
+)
+BEGIN
+SELECT * FROM sistemaaeropuerto.pasaje where idVuelo = PidVuelo;
 END$$
 
 DELIMITER ;
@@ -897,7 +925,9 @@ DELIMITER $$
 USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_Vuelos`()
 BEGIN
-	SELECT vuelo.idVuelo Vuelo, company.nombre Compania, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, avion.modelo Modelo_Avion, TV.Tipo Tipo_de_Vuelo, itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, PV.Descuento Promo, PV.FechaFinal FechaMax, vuelo.estado Estado
+	SELECT vuelo.idVuelo Vuelo, company.nombre Compania, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, 
+    avion.modelo Modelo_Avion, TV.Tipo Tipo_de_Vuelo, itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, 
+    PV.Descuento Promo, PV.FechaFinal FechaMax, PV.FechaInicio FechaIni, vuelo.estado Estado
 	FROM sistemaaeropuerto.vuelo 
 	INNER JOIN company ON vuelo.idCompany = company.idCompany 
 	INNER JOIN itinerario ON vuelo.idItinerario = itinerario.idItinerario  
@@ -905,7 +935,8 @@ BEGIN
 	INNER JOIN aeropuerto A2 ON itinerario.idAeropuertoDestino = A2.idAeropuerto
 	INNER JOIN avion ON vuelo.idAvion = avion.idAvion
 	INNER JOIN tipos_vuelo TV ON vuelo.idTiposvuelo = TV.idTipos_vuelo
-    INNER JOIN promocionesvuelos PV ON vuelo.idVuelo = PV.idVuelo;
+    INNER JOIN promocionesvuelos PV ON vuelo.idVuelo = PV.idVuelo
+    order by Vuelo asc;
 END$$
 
 DELIMITER ;
@@ -919,7 +950,7 @@ USE `sistemaaeropuerto`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_VuelosOrigen`(PidAeropuerto int)
 BEGIN
 	SELECT vuelo.idVuelo Vuelo, company.nombre Compania, A1.nombre Aeropuerto_Origen, A2.nombre Aeropuerto_Destino, avion.modelo Modelo_Avion, 
-    TV.Tipo Tipo_de_Vuelo, itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, PV.Descuento Promo, PV.FechaFinal FechaMax, vuelo.estado Estado
+    TV.Tipo Tipo_de_Vuelo, itinerario.fecha, itinerario.hora Hora, itinerario.minutos Minutos, PV.Descuento Promo, PV.FechaFinal FechaMax,PV.FechaInicio FechaIni, vuelo.estado Estado
 	FROM sistemaaeropuerto.vuelo 
 	INNER JOIN company ON vuelo.idCompany = company.idCompany 
 	INNER JOIN itinerario ON vuelo.idItinerario = itinerario.idItinerario  
