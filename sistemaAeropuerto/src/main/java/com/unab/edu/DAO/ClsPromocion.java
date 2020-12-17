@@ -19,18 +19,25 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ClsPromocion {
-    
+
     ConexionBD cn = new ConexionBD();
     Connection conexion = cn.retornarConexion();
-    
-    
-    public void AgregarPromo(Promociones Promo){
+
+    public void AgregarPromo(Promociones Promo) {
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_I_Promocion(?,?,?)");
-            Statement.setDate("PfechaInicio", new java.sql.Date(Promo.getFechaInicio().getTime()));
-            Statement.setDate("PfechaFinal", new java.sql.Date(Promo.getFechaFinal().getTime()));
-            Statement.setDouble("PDescuento", Promo.getDescuento());
-            Statement.execute();
+            if (Promo.getFechaInicio() == null && Promo.getFechaFinal() == null) {
+                Statement.setDate("PfechaInicio", null);
+                Statement.setDate("PfechaFinal", null);
+                Statement.setDouble("PDescuento", Promo.getDescuento());
+                Statement.execute();
+            } else {
+                Statement.setDate("PfechaInicio", new java.sql.Date(Promo.getFechaInicio().getTime()));
+                Statement.setDate("PfechaFinal", new java.sql.Date(Promo.getFechaFinal().getTime()));
+                Statement.setDouble("PDescuento", Promo.getDescuento());
+                Statement.execute();
+            }
+
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
@@ -50,8 +57,8 @@ public class ClsPromocion {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public Promociones SeleccionarPromo(int idVuelo){
+
+    public Promociones SeleccionarPromo(int idVuelo) {
         Promociones promo = new Promociones();
         try {
             CallableStatement Statement = conexion.prepareCall("call SP_S_1Promocion(?)");
@@ -68,5 +75,5 @@ public class ClsPromocion {
         }
         return promo;
     }
-    
+
 }
