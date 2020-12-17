@@ -48,7 +48,7 @@ public class PnlPasajero extends javax.swing.JPanel {
             filas[3] = String.valueOf(Iterar.getEdad());
             filas[4] = String.valueOf(Iterar.getSexo());
             filas[5] = String.valueOf(Iterar.getDocumentoIdentidad());
-            filas[6] = String.valueOf(Iterar.getIdPasajero());
+            filas[6] = String.valueOf(Iterar.getPasaporte());
             ModeloT.addRow(filas);
         }
         tbPasajero.setModel(ModeloT);
