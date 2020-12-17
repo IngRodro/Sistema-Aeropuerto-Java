@@ -164,11 +164,13 @@ public class PnlVuelos extends javax.swing.JPanel {
     }
 
     void DisplayMemberAvion() {
+        contadorAvion = 1;
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         ClsAvion clsAvion = new ClsAvion();
         ArrayList<Avion> aviones = clsAvion.MostrarAvion();
         valueMemberAvion = new String[aviones.size() + 1];
         String filas[] = new String[3];
+        cbdefaDefault.removeAllElements();
         cbdefaDefault.addElement("Seleccione una opcion");
         for (var IterarDatosAeropuerto : aviones) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAvion());
@@ -195,7 +197,6 @@ public class PnlVuelos extends javax.swing.JPanel {
             contadorTipos++;
         }
         cbTipo.setModel(cbdefaDefault);
-
     }
 
     /**

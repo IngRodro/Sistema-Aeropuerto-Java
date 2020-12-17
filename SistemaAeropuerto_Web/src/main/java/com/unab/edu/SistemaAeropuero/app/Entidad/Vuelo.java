@@ -1,6 +1,6 @@
 package com.unab.edu.SistemaAeropuero.app.Entidad;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,29 +13,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name= "vuelos")
+@Table(name = "vuelo")
 public class Vuelo {
-	public static final long serialVersionUID=1;
+	public static final long serialVersionUID = 1;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idvuelo")
 	private Long idVuelo;
 	@ManyToOne()
-	@JoinColumn(name = "idCompany")
+	@JoinColumn(name = "idcompany")
 	private Company idCompany;
 	@ManyToOne()
-	@JoinColumn(name = "idItinerario")
+	@JoinColumn(name = "iditinerario")
 	private Itinerario idItinerario;
 	@ManyToOne()
-	@JoinColumn(name = "idAvion")
+	@JoinColumn(name = "idavion")
 	private Avion idAvion;
-	@ManyToOne()
-	@JoinColumn(name = "idTipos_vuelo")
-	private Tipos_vuelo idTiposvuelo;
-	
-	
+	private long estado;
+
 	public static Long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	public Long getIdVuelo() {
 		return idVuelo;
 	}
@@ -56,7 +55,6 @@ public class Vuelo {
 		return idItinerario;
 	}
 
-
 	public void setIdItinerario(Itinerario idItinerario) {
 		this.idItinerario = idItinerario;
 	}
@@ -69,12 +67,13 @@ public class Vuelo {
 		this.idAvion = idAvion;
 	}
 
-	public Tipos_vuelo getIdTiposvuelo() {
-		return idTiposvuelo;
+	public long getEstado() {
+		return estado;
 	}
 
-	public void setIdTiposvuelo(Tipos_vuelo idTiposvuelo) {
-		this.idTiposvuelo = idTiposvuelo;
+	public void setEstado(long estado) {
+		this.estado = estado;
 	}
 	
+
 }

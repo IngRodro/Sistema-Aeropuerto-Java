@@ -25,9 +25,11 @@ public class Itinerario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "iditinerario")
 	private long idItinerario;
+	@ManyToOne
+	@JoinColumn(name = "idaeropuertodestino")
 	private Aeropuerto idAeropuertoDestino;
 	@ManyToOne
-	@JoinColumn(name = "idaeropuerto")
+	@JoinColumn(name = "idaeropuertoorigen")
 	private Aeropuerto idAeropuertoOrigen;
 	private Date fecha;
 	private String hora;
@@ -39,16 +41,16 @@ public class Itinerario implements Serializable{
 	public void setIdItinerario(long idItinerario) {
 		this.idItinerario = idItinerario;
 	}
-	public Aeropuerto getIdAeropuertoDestino() {
+	public Aeropuerto getidaeropuertodestino() {
 		return idAeropuertoDestino;
 	}
-	public void setIdAeropuertoDestino(Aeropuerto idAeropuertoDestino) {
+	public void setidaeropuertodestino(Aeropuerto idAeropuertoDestino) {
 		this.idAeropuertoDestino = idAeropuertoDestino;
 	}
-	public Aeropuerto getIdAeropuertoOrigen() {
+	public Aeropuerto getidaeropuertoorigen() {
 		return idAeropuertoOrigen;
 	}
-	public void setIdAeropuertoOrigen(Aeropuerto idAeropuertoOrigen) {
+	public void setidaeropuertoorigen(Aeropuerto idAeropuertoOrigen) {
 		this.idAeropuertoOrigen = idAeropuertoOrigen;
 	}
 	public Date getFecha() {
