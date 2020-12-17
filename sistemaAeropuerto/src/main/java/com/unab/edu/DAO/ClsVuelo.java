@@ -53,19 +53,17 @@ public class ClsVuelo {
         return Vuelos;
     }
 
-    public void AgregarVuelo(Vuelo vuelo, Itinerario itine, Promociones promo) {
+    public void AgregarVuelo(Vuelo vuelo, Itinerario itine) {
         ConexionBD cn = new ConexionBD();
         Connection conexion = cn.retornarConexion();
         try {
             ClsItinerario clsItinerario = new ClsItinerario();
-            ClsPromocion clsPromo = new ClsPromocion();
             clsItinerario.AgregarItinerario(itine);
             CallableStatement Statement = conexion.prepareCall("call SP_I_Vuelos(?,?,?)");
             Statement.setInt("PidCompany", vuelo.getIdCompany());
             Statement.setInt("PidAvion", vuelo.getIdAvion());
             Statement.setInt("PidTiposvuelo", vuelo.getIdTiposVuelo());
             Statement.execute();
-            clsPromo.AgregarPromo(promo);
             JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {

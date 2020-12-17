@@ -166,11 +166,11 @@ public class PnlVuelos extends javax.swing.JPanel {
     void DisplayMemberAvion() {
         DefaultComboBoxModel cbdefaDefault = new DefaultComboBoxModel();
         ClsAvion clsAvion = new ClsAvion();
-        ArrayList<Avion> aeropuertos = clsAvion.MostrarAvion();
-        valueMemberAvion = new String[aeropuertos.size() + 1];
+        ArrayList<Avion> aviones = clsAvion.MostrarAvion();
+        valueMemberAvion = new String[aviones.size() + 1];
         String filas[] = new String[3];
         cbdefaDefault.addElement("Seleccione una opcion");
-        for (var IterarDatosAeropuerto : aeropuertos) {
+        for (var IterarDatosAeropuerto : aviones) {
             filas[0] = String.valueOf(IterarDatosAeropuerto.getIdAvion());
             filas[1] = IterarDatosAeropuerto.getModeloAvion() + ", " + IterarDatosAeropuerto.getCapacidad() + " Asientos" + " (" + IterarDatosAeropuerto.getEstado() + ")";
             valueMemberAvion[contadorAvion] = filas[0];
@@ -809,6 +809,7 @@ public class PnlVuelos extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         ClsVuelo vuelos = new ClsVuelo();
+        ClsPromocion clspromo = new ClsPromocion();
         ClsAvion clsAvion = new ClsAvion();
         Itinerario itinerario = new Itinerario();
         Vuelo vuelo = new Vuelo();
@@ -824,54 +825,53 @@ public class PnlVuelos extends javax.swing.JPanel {
             itinerario.setHora(Horas);
             itinerario.setMinutos(Minutos);
 
-            if (cbAvion.getSelectedIndex() == 0 || cbCompany.getSelectedIndex() == 0 || cbDestino.getSelectedIndex() == 0
+            if (cbCompany.getSelectedIndex() == 0 || cbDestino.getSelectedIndex() == 0
                     || cbOrigen.getSelectedIndex() == 0 || cbTipo.getSelectedIndex() == 0 || jdcFecha.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos necesarios");
             } else {
-                try {
-                    if (cbOrigen.getSelectedIndex() == cbDestino.getSelectedIndex()) {
-                        JOptionPane.showMessageDialog(null, "El Aeropuerto de Origen y de Destino no pueden ser el mismo");
+                if (cbOrigen.getSelectedIndex() == cbDestino.getSelectedIndex()) {
+                    JOptionPane.showMessageDialog(null, "El Aeropuerto de Origen y de Destino no pueden ser el mismo");
+                } else {
+                    if (Double.parseDouble(txtDescuento.getText()) == 0.0) {
+//                        promo.setDescuento(0.0);
+//                        promo.setFechaInicio(null);
+//                        promo.setFechaFinal(null);
+//                        promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
+//                        promo.setFechaInicio(jdcFechaI.getDate());
+//                        promo.setFechaFinal(jdcFechaF.getDate());
+//                        vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
+//                        vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
+//                        vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
+//                        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
+//                        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
+//                        itinerario.setFecha(jdcFecha.getDate());
+//                        vuelos.AgregarVuelo(vuelo, itinerario);
+//                        clspromo.AgregarPromo(promo);
+//                        clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
+//                        LimpiarCajasdeTexto();
                     } else {
-                        if (Double.parseDouble(txtDescuento.getText()) == 0.0) {
-                            promo.setDescuento(0.0);
-                            promo.setFechaInicio(null);
-                            promo.setFechaFinal(null);
-                            promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
-                            promo.setFechaInicio(jdcFechaI.getDate());
-                            promo.setFechaFinal(jdcFechaF.getDate());
-                            vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
-                            vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
-                            vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
-                            itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
-                            itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
-                            itinerario.setFecha(jdcFecha.getDate());
-                            vuelos.AgregarVuelo(vuelo, itinerario, promo);
-                            clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
-                        } else {
-                            promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
-                            promo.setFechaInicio(jdcFechaI.getDate());
-                            promo.setFechaFinal(jdcFechaF.getDate());
-                            vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
-                            vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
-                            vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
-                            itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
-                            itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
-                            itinerario.setFecha(jdcFecha.getDate());
-                            if (promo.getFechaFinal().before(itinerario.getFecha())) {
-                                if (promo.getFechaFinal().before(promo.getFechaInicio())) {
-                                    JOptionPane.showMessageDialog(null, "La Fecha de Inicio debes ser anterior a la Fecha Final");
-                                } else {
-                                    vuelos.AgregarVuelo(vuelo, itinerario, promo);
-                                    clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
-                                    LimpiarCajasdeTexto();
-                                }
+                        promo.setDescuento(Double.parseDouble(txtDescuento.getText()));
+                        promo.setFechaInicio(jdcFechaI.getDate());
+                        promo.setFechaFinal(jdcFechaF.getDate());
+                        vuelo.setIdAvion(Integer.parseInt(valueMemberAvion[cbAvion.getSelectedIndex()]));
+                        vuelo.setIdCompany(Integer.parseInt(valueMemberCompany[cbCompany.getSelectedIndex()]));
+                        vuelo.setIdTiposVuelo(Integer.parseInt(valueMemberTipos[cbTipo.getSelectedIndex()]));
+                        itinerario.setIdAeropuertoDestino(Integer.parseInt(valueMemberDestino[cbDestino.getSelectedIndex()]));
+                        itinerario.setIdAeropuertoOrigen(Integer.parseInt(valueMemberOrigen[cbOrigen.getSelectedIndex()]));
+                        itinerario.setFecha(jdcFecha.getDate());
+                        if (promo.getFechaFinal().before(itinerario.getFecha())) {
+                            if (promo.getFechaFinal().before(promo.getFechaInicio())) {
+                                JOptionPane.showMessageDialog(null, "La Fecha de Inicio debes ser anterior a la Fecha Final");
                             } else {
-                                JOptionPane.showMessageDialog(null, "La Promocion no puede durar mas alla de la Fecha del Vuelo");
+                                vuelos.AgregarVuelo(vuelo, itinerario);
+                                clspromo.AgregarPromo(promo);
+                                clsAvion.EstadoAvion(vuelo.getIdAvion(), "Ocupado");
+                                LimpiarCajasdeTexto();
                             }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La Promocion no puede durar mas alla de la Fecha del Vuelo");
                         }
                     }
-
-                } catch (Exception e) {
                 }
             }
         }

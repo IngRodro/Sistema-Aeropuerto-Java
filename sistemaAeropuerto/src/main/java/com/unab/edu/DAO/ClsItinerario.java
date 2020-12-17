@@ -31,7 +31,6 @@ public class ClsItinerario {
             Statement.setString("Phora", Iti.getHora());
             Statement.setString("Pminutos", Iti.getMinutos());
             Statement.execute();
-            JOptionPane.showMessageDialog(null, "Guardado");
             conexion.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
