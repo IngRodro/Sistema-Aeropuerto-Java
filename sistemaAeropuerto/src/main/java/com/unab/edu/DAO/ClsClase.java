@@ -33,7 +33,7 @@ public class ClsClase {
                 clase.setIdClase(rs.getInt("idClases"));
                 clase.setNAsientos(rs.getInt("nAsientos"));
                 clase.setNombreClase(rs.getString("nombreClase"));
-                clase.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
+                clase.setPorcentajeEPrecio(rs.getDouble("porcentajeEPrecio"));
                 clase.setIdAvion(rs.getInt("idAvion"));
                 clases.add(clase);
             }
@@ -83,7 +83,7 @@ public class ClsClase {
             Statement.setString("PnombreClase", clase.getNombreClase());
             Statement.setInt("PnAsientos", clase.getNAsientos());
             Statement.setInt("PidAvion", clase.getIdAvion());
-            Statement.setInt("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
+            Statement.setDouble("PPorcentajeEprecio", clase.getPorcentajeEPrecio());
             Statement.setDouble("PidClase", clase.getIdClase());
             Statement.execute();
             JOptionPane.showMessageDialog(null, "Actualizado");
@@ -104,7 +104,7 @@ public class ClsClase {
                 clase.setIdClase(rs.getInt("idClases"));
                 clase.setNAsientos(rs.getInt("nAsientos"));
                 clase.setNombreClase(rs.getString("nombreClase"));
-                clase.setPorcentajeEPrecio(rs.getInt("porcentajeEPrecio"));
+                clase.setPorcentajeEPrecio(rs.getDouble("porcentajeEPrecio"));
                 clase.setIdAvion(rs.getInt("idAvion"));
             }
             conexion.close();

@@ -21,6 +21,8 @@ public class frmLoguin extends javax.swing.JFrame {
     public frmLoguin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtPass.setEchoChar((char) 0);
+        txtPass.setText("Ingrese su contraseña");
     }
     public frmMenuAdmin frmAdmin = new frmMenuAdmin();
     public frmMenuUsuario frmMenu = new frmMenuUsuario();
@@ -141,7 +143,6 @@ public class frmLoguin extends javax.swing.JFrame {
         txtPass.setBackground(new java.awt.Color(0, 0, 0));
         txtPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
-        txtPass.setText("******************");
         txtPass.setToolTipText("");
         txtPass.setBorder(null);
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -165,15 +166,14 @@ public class frmLoguin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addComponent(txtPass)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(47, 47, 47)))
                 .addContainerGap())
@@ -190,7 +190,7 @@ public class frmLoguin extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addComponent(jLabel3))
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(53, 53, 53)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,22 +313,27 @@ public class frmLoguin extends javax.swing.JFrame {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         if (jCheckBox1.isSelected()) {
-            txtPass.setEchoChar((char)0);
-        }
-        else{
-        txtPass.setEchoChar('*');
+            txtPass.setEchoChar((char) 0);
+        } else {
+            txtPass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-        if (txtPass.getText().equals("******************")) {
+        if (txtPass.getText().equals("Ingrese su contraseña")) {
+            if (jCheckBox1.isSelected()) {
+                txtPass.setEchoChar((char) 0);
+            } else {
+                txtPass.setEchoChar('*');
+            }
             txtPass.setText("");
         }
     }//GEN-LAST:event_txtPassFocusGained
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
         if (txtPass.getText().isEmpty()) {
-            txtPass.setText("******************");
+            txtPass.setEchoChar((char) 0);
+            txtPass.setText("Ingrese su contraseña");
         }
     }//GEN-LAST:event_txtPassFocusLost
 

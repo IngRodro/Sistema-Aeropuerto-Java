@@ -15,8 +15,6 @@ import lombok.Data;
 public class Escala extends Aeropuerto{
     private int idEscala;
     private int numeroEscala;
-    private int nPasajerosSuben;
-    private int npasajerosBajan;
     private int idItinerario;
     private double Precio;
 }

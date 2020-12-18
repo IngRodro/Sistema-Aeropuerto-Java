@@ -380,7 +380,7 @@ public class PnlClases extends javax.swing.JPanel {
         } else {
             ClsClase clsClase = new ClsClase();
             Clases clase = new Clases();
-            clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
+            clase.setPorcentajeEPrecio(Double.parseDouble(txtExtra.getText()));
             clase.setNombreClase(txtNombre.getText());
             clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
             clase.setIdAvion(idAvion);
@@ -412,7 +412,7 @@ public class PnlClases extends javax.swing.JPanel {
             ClsClase clsClase = new ClsClase();
             Clases clase = new Clases();
             clase.setIdClase(Integer.parseInt(lblId.getText()));
-            clase.setPorcentajeEPrecio(Integer.parseInt(txtExtra.getText()));
+            clase.setPorcentajeEPrecio(Double.parseDouble(txtExtra.getText()));
             clase.setNombreClase(txtNombre.getText());
             clase.setNAsientos(Integer.parseInt(txtAsientos.getText()));
             clsClase.ActualizarClase(clase);

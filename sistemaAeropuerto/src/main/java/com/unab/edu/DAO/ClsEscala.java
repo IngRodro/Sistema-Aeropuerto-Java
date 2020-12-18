@@ -32,8 +32,6 @@ public class ClsEscala {
                 esc.setIdEscala(rs.getInt("idEscala"));
                 esc.setNumeroEscala(rs.getInt("numeroEscala"));
                 esc.setNombre(rs.getString("nombre"));
-                esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
-                esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
                 esc.setPrecio(rs.getDouble("Precio"));
                 escalas.add(esc);
             }
@@ -101,8 +99,6 @@ public class ClsEscala {
                 esc.setIdEscala(rs.getInt("idEscala"));
                 esc.setNumeroEscala(rs.getInt("numeroEscala"));
                 esc.setIdAeropuerto(rs.getInt("idAeropuerto"));
-                esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
-                esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
                 esc.setPrecio(rs.getDouble("Precio"));
             }
             conexion.close();
@@ -125,8 +121,6 @@ public class ClsEscala {
                 esc.setIdEscala(rs.getInt("idEscala"));
                 esc.setNumeroEscala(rs.getInt("numeroEscala"));
                 esc.setNombre(rs.getString("nombre"));
-                esc.setNPasajerosSuben(rs.getInt("nPasajerosSuben"));
-                esc.setNpasajerosBajan(rs.getInt("nPasajerosBajan"));
                 esc.setIdItinerario(rs.getInt("idItinerario"));
                 if (esc.getNumeroEscala() > NEscala) {
                     escalas.add(esc);

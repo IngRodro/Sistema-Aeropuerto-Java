@@ -16,9 +16,8 @@ public class Clases {
     private int idClase;
     private String nombreClase;
     private int nAsientos;
-    private int nAsientosDisponibles;
     private int idAvion;
-    private int porcentajeEPrecio;
+    private Double porcentajeEPrecio;
     
     
 }

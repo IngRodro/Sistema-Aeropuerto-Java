@@ -63,18 +63,16 @@ public class PnlEscala extends javax.swing.JPanel {
         Vuelo vuelo = new Vuelo();
         ClsVuelo clsVuelo = new ClsVuelo();
         vuelo = clsVuelo.SeleccionarVuelo(idVuelo);
-        String Titulos[] = {"Id", "Numero Escala", "Aeropuerto", "N Pasajeros Suben", "N Pasajeros Bajan", "Precio"};
+        String Titulos[] = {"Id", "Numero Escala", "Aeropuerto", "Precio"};
         DefaultTableModel ModeloT = new DefaultTableModel(null, Titulos);
         ClsEscala clsEscala = new ClsEscala();
         ArrayList<Escala> Escalas = clsEscala.MostrarEscala(vuelo.getIdIterinario());
-        String filas[] = new String[7];
+        String filas[] = new String[5];
         for (var IterarEscala : Escalas) {
             filas[0] = String.valueOf(IterarEscala.getIdEscala());
             filas[1] = String.valueOf(IterarEscala.getNumeroEscala());
             filas[2] = String.valueOf(IterarEscala.getNombre());
-            filas[3] = String.valueOf(IterarEscala.getNPasajerosSuben());
-            filas[4] = String.valueOf(IterarEscala.getNpasajerosBajan());
-            filas[5] = String.valueOf(IterarEscala.getPrecio());
+            filas[3] = String.valueOf(IterarEscala.getPrecio());
             ModeloT.addRow(filas);
         }
         tbEscalas.setModel(ModeloT);
