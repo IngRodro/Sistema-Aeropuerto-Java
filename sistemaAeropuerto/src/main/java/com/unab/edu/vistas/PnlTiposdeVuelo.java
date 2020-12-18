@@ -135,6 +135,11 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
         txtDescuento.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtDescuento.setForeground(new java.awt.Color(255, 255, 255));
         txtDescuento.setBorder(null);
+        txtDescuento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescuentoFocusLost(evt);
+            }
+        });
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyTyped(evt);
@@ -391,6 +396,14 @@ public class PnlTiposdeVuelo extends javax.swing.JPanel {
             evt.consume();  // ignorar el evento de teclado
         }
     }//GEN-LAST:event_txtDescuentoKeyTyped
+
+    private void txtDescuentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescuentoFocusLost
+       Double Descuento = Double.parseDouble(txtDescuento.getText());
+        if(Descuento > 100){
+            JOptionPane.showMessageDialog(null, "El Descento no puede ser mayor al 100%", "Errpr", JOptionPane.ERROR_MESSAGE);
+            txtDescuento.setText("");
+       }
+    }//GEN-LAST:event_txtDescuentoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

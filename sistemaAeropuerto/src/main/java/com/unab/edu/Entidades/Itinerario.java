@@ -5,7 +5,6 @@
  */
 package com.unab.edu.Entidades;
 
-import java.sql.Time;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

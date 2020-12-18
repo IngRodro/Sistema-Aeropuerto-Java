@@ -111,6 +111,11 @@ public class PnlAvion extends javax.swing.JPanel {
         txtCapacidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtCapacidad.setForeground(new java.awt.Color(255, 255, 255));
         txtCapacidad.setBorder(null);
+        txtCapacidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCapacidadKeyTyped(evt);
+            }
+        });
 
         txtModelo.setBackground(new java.awt.Color(0, 153, 204));
         txtModelo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -227,11 +232,11 @@ public class PnlAvion extends javax.swing.JPanel {
                         .addComponent(btnGuardar)
                         .addGap(91, 91, 91)
                         .addComponent(btnActualizar)
-                        .addGap(89, 89, 89)
+                        .addGap(101, 101, 101)
                         .addComponent(btnEliminar)
-                        .addGap(93, 93, 93)
+                        .addGap(115, 115, 115)
                         .addComponent(btnClase)))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -393,6 +398,17 @@ public class PnlAvion extends javax.swing.JPanel {
             frmClase.CargarTabla();
         }
     }//GEN-LAST:event_btnClaseActionPerformed
+
+    private void txtCapacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCapacidadKeyTyped
+        char caracter = evt.getKeyChar();
+
+        // Verificar si la tecla pulsada no es un digito
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtCapacidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
