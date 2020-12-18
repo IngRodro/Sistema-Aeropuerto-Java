@@ -288,6 +288,8 @@ public class frmLoguin extends javax.swing.JFrame {
                 frmMenu.Usuario = txtUser.getText();
                 JOptionPane.showMessageDialog(null, "Bienvenido");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Lo sentimos, las credenciales que estas usando no son validas", "Error de Sesion", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

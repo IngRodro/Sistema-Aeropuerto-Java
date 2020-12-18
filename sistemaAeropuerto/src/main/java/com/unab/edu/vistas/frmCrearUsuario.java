@@ -266,7 +266,12 @@ public class frmCrearUsuario extends javax.swing.JFrame {
         } else {
             if (txtAdminPass.getText().equals("2310")) {
                 user.setTipoUser(1);
-                claseUsuario.AgregarUsuario(user);
+                if(claseUsuario.ComprobarExistencia(user.getNombreUsuario())==true){
+                    JOptionPane.showMessageDialog(null, "El nombre de Usuario ya ha esta un uso, intente con otro");
+                }else{
+                    claseUsuario.AgregarUsuario(user);
+                }
+                
             } else {
                 user.setTipoUser(0); 
                 claseUsuario.AgregarUsuario(user);

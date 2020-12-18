@@ -10,7 +10,6 @@ import com.unab.edu.vistas.PnlAvion;
 import com.unab.edu.vistas.PnlClases;
 import com.unab.edu.vistas.PnlCompania;
 import com.unab.edu.vistas.PnlEscala;
-import com.unab.edu.vistas.PnlPasajero;
 import com.unab.edu.vistas.PnlTiposdeVuelo;
 import com.unab.edu.vistas.PnlVuelos;
 

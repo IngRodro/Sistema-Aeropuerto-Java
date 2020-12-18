@@ -80,7 +80,6 @@ public class PnlPasajero extends javax.swing.JPanel {
         txtDui = new javax.swing.JTextField();
         txtPasapote = new javax.swing.JTextField();
         bttnGuardar = new javax.swing.JButton();
-        bttnEliminar = new javax.swing.JButton();
         bttnActualizar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -172,16 +171,6 @@ public class PnlPasajero extends javax.swing.JPanel {
         bttnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnGuardarActionPerformed(evt);
-            }
-        });
-
-        bttnEliminar.setBackground(new java.awt.Color(0, 0, 0));
-        bttnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bttnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        bttnEliminar.setText("Eliminar");
-        bttnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnEliminarActionPerformed(evt);
             }
         });
 
@@ -302,7 +291,7 @@ public class PnlPasajero extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(274, 274, 274)
                         .addComponent(jLabel1))
@@ -336,23 +325,19 @@ public class PnlPasajero extends javax.swing.JPanel {
                                         .addComponent(txtEdad)
                                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(bttnGuardar)
-                                .addGap(138, 138, 138)
-                                .addComponent(bttnActualizar)
-                                .addGap(122, 122, 122)
-                                .addComponent(bttnEliminar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPasapote, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(111, 111, 111)))))
-                .addGap(121, 142, Short.MAX_VALUE))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPasapote, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(bttnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttnActualizar)
+                        .addGap(96, 96, 96)))
+                .addGap(121, 158, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +402,6 @@ public class PnlPasajero extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttnGuardar)
-                    .addComponent(bttnEliminar)
                     .addComponent(bttnActualizar))
                 .addGap(60, 60, 60))
         );
@@ -476,7 +460,7 @@ public class PnlPasajero extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 528, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jtpPasajero, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+                .addComponent(jtpPasajero))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -519,19 +503,6 @@ public class PnlPasajero extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_bttnActualizarActionPerformed
 
-    private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
-        if (lblId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Seleccione un Pasajero para eliminar", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            ClsPasajero pasajero = new ClsPasajero();
-            Pasajero pasajeros = new Pasajero();
-            pasajeros.setIdPasajero(Integer.parseInt(lblId.getText()));
-            pasajero.BorrarPasajero(pasajeros);
-            CargarTabla();
-            LimpiarCajasdeTexto();
-        }
-    }//GEN-LAST:event_bttnEliminarActionPerformed
-
     private void tbPasajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPasajeroMouseClicked
         jtpPasajero.setSelectedIndex(jtpPasajero.indexOfComponent(jPanel1));
         int fila = tbPasajero.getSelectedRow();
@@ -556,7 +527,6 @@ public class PnlPasajero extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnActualizar;
-    private javax.swing.JButton bttnEliminar;
     private javax.swing.JButton bttnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

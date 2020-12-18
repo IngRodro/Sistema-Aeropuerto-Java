@@ -384,7 +384,7 @@ public class PnlAvion extends javax.swing.JPanel {
 
     private void btnClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaseActionPerformed
         if (lblId.getText().isEmpty() == true) {
-            JOptionPane.showMessageDialog(null, "Seleccione un Avion para ver su Clase");
+            JOptionPane.showMessageDialog(null, "Seleccione un Avion para ver sus Clases");
             tbPAvion.setSelectedIndex(tbPAvion.indexOfComponent(jPanel3));
         } else {
             cambio.ModificarPanel(menuAdmin.PnlContenedor, frmClase);

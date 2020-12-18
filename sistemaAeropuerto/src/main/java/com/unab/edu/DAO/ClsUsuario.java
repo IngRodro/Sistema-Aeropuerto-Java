@@ -112,4 +112,20 @@ public class ClsUsuario {
         return Tipo;
 
     }
+    
+    public boolean ComprobarExistencia(String usuario) {
+        boolean Existencia = false;
+        try {
+            CallableStatement Statement = conexion.prepareCall("Call SP_S_1Usuario(?)");
+            Statement.setString("PnombreUsuario", usuario);
+            ResultSet rs = Statement.executeQuery();
+            while (rs.next()) {
+                Existencia = true;
+            }
+        } catch (Exception e) {
+        }
+        
+        return Existencia;
+
+    }
 }
